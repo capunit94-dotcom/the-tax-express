@@ -366,6 +366,13 @@ img { display: block; max-width: 100%; }
 .img-placeholder--sm  { width: 140px; height: 98px; flex-shrink: 0; }
 .img-placeholder--art { width: 220px; height: 148px; flex-shrink: 0; }
 
+/* Real story images */
+.story-img { display: block; object-fit: cover; }
+.story-img--lg  { width: 100%; height: 380px; }
+.story-img--med { width: 100%; height: 180px; margin-bottom: 12px; }
+.story-img--sm  { width: 140px; height: 98px; flex-shrink: 0; }
+.story-img--art { width: 220px; height: 148px; flex-shrink: 0; }
+
 /* ============================================================
    HOME — LEAD STORY
    ============================================================ */
