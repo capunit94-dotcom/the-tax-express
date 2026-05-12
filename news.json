@@ -1,0 +1,50 @@
+{
+  "last_updated": "2026-05-12",
+  "items": [
+    {
+      "id": "cbdt001",
+      "date": "2026-05-12",
+      "category": "it",
+      "title": "CBDT Notifies Form 10-IEA for Section 115BAC(6) Option; Filing Mandatory Before ITR Due Date",
+      "summary": "CBDT has notified the new Form 10-IEA for taxpayers carrying on business who wish to opt out of the new default regime for AY 2026-27. The form must be filed on or before the due date u/s 139(1).",
+      "source": "CBDT",
+      "url": "https://www.incometax.gov.in"
+    },
+    {
+      "id": "gst001",
+      "date": "2026-05-09",
+      "category": "gst",
+      "title": "55th GST Council: Prosecution Threshold Raised to Rs 3 Crore; Term Life Insurance Exempt from GST",
+      "summary": "The 55th GST Council recommended raising the monetary threshold for prosecution under CGST Act from Rs 2 crore to Rs 3 crore. Term life insurance premiums proposed to be fully exempt.",
+      "source": "GST Council",
+      "url": "https://www.gstcouncil.gov.in"
+    },
+    {
+      "id": "itat001",
+      "date": "2026-05-08",
+      "category": "itat",
+      "title": "ITAT Mumbai: Section 56(2)(x) Not Applicable in NCLT-Sanctioned Group Restructuring",
+      "summary": "Special Bench holds that FMV deeming mechanism under Rule 11UA cannot override substance of a court-approved restructuring scheme. Addition of Rs 18.4 crore deleted.",
+      "source": "ITAT Mumbai",
+      "url": "https://www.itatonline.org"
+    },
+    {
+      "id": "sc001",
+      "date": "2026-05-10",
+      "category": "court",
+      "title": "Supreme Court: Satisfaction Note Mandatory Before Section 153C Notice; Absence Renders Proceedings Void",
+      "summary": "Three-judge bench holds that the satisfaction note is a jurisdictional pre-condition under Section 153C and must be recorded before issuance of notice, not after.",
+      "source": "Supreme Court",
+      "url": "https://www.sci.gov.in"
+    },
+    {
+      "id": "cbic001",
+      "date": "2026-05-06",
+      "category": "gst",
+      "title": "CBIC Circular 231/2026: ITC Available on Canteen Services Under Factories Act Obligation",
+      "summary": "CBIC ends long-standing uncertainty confirming GST Input Tax Credit is available on canteen services provided to factory workers under statutory obligation under Factories Act, 1948.",
+      "source": "CBIC",
+      "url": "https://www.cbic.gov.in"
+    }
+  ]
+}
