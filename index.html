@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Tax Express – India's Tax Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util-bar">
+    <div class="wrap util-bar__inner">
+      <span id="js-date" class="util-bar__date"></span>
+      <nav class="util-bar__nav">
+        <a href="#">Subscribe</a>
+        <span class="pipe">|</span>
+        <a href="#">Sign In</a>
+        <span class="pipe">|</span>
+        <a href="#">Newsletter</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <div class="masthead__left">
+        <p class="masthead__edition">Digital Edition</p>
+      </div>
+      <div class="masthead__center">
+        <a href="#" onclick="showSection('home',null);return false;" class="masthead__logo-link">
+          <h1 class="masthead__logo">The Tax Express</h1>
+          <p class="masthead__tagline">Income Tax &nbsp;&middot;&nbsp; GST &nbsp;&middot;&nbsp; Case Laws &nbsp;&middot;&nbsp; Bare Acts</p>
+        </a>
+      </div>
+      <div class="masthead__right">
+        <button class="masthead__search-btn" onclick="toggleSearch()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="masthead__search-bar" id="js-search-bar">
+      <div class="wrap">
+        <input type="text" id="js-search-input" placeholder="Search judgments, sections, circulars…" />
+        <button onclick="doSearch()">Search</button>
+        <button class="close-btn" onclick="toggleSearch()">&#10005;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary Navigation -->
+  <nav class="primary-nav" id="js-nav">
+    <div class="wrap primary-nav__inner">
+      <button class="nav__hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__list" id="js-nav-list">
+        <li><a href="#" class="nav__link is-active" data-section="home"     onclick="navClick(this)">Home</a></li>
+        <li><a href="#" class="nav__link"            data-section="it-news" onclick="navClick(this)">Income Tax</a></li>
+        <li><a href="#" class="nav__link"            data-section="gst"     onclick="navClick(this)">GST</a></li>
+        <li><a href="#" class="nav__link"            data-section="itat"    onclick="navClick(this)">ITAT Judgments</a></li>
+        <li><a href="#" class="nav__link"            data-section="hcsc"    onclick="navClick(this)">HC &amp; SC</a></li>
+        <li><a href="#" class="nav__link"            data-section="bare"    onclick="navClick(this)">Bare Acts</a></li>
+        <li><a href="#" class="nav__link"            data-section="budget"  onclick="navClick(this)">Budget 2025</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Breaking Ticker -->
+  <div class="ticker">
+    <div class="wrap ticker__inner">
+      <span class="ticker__label">BREAKING</span>
+      <div class="ticker__viewport">
+        <div class="ticker__belt" id="js-ticker">
+          <span>CBDT extends ITR deadline for AY 2025-26 to 31 August 2026</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+          <span>Supreme Court upholds IGST levy on ocean freight in import shipments</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+          <span>ITAT Delhi: Cash-credit addition u/s 68 deleted for insufficient evidence</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+          <span>GST Council: prosecution threshold raised to Rs 3 crore</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+          <span>Bombay HC: TDS u/s 194C not applicable on railway goods transport</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+          <span>CBIC Circular 231/2026 clarifies ITC on canteen services for factory workers</span>
+          <span class="sep">&nbsp;/&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= PAGE SECTIONS ======================= -->
+  <main class="page-main wrap">
+
+    <!-- ===== HOME ===== -->
+    <section id="home" class="page-section is-active">
+
+      <div class="home-layout">
+
+        <!-- Lead Story -->
+        <article class="lead-story" onclick="openModal('modal-lead')">
+          <div class="lead-story__img-wrap">
+            <div class="img-placeholder img-placeholder--lg">
+              <span>Supreme Court</span>
+            </div>
+            <span class="story-flag story-flag--red">Supreme Court</span>
+          </div>
+          <div class="lead-story__body">
+            <h2 class="lead-story__hed">Supreme Court Mandates Pre-Notice Satisfaction Note for Section 153C Proceedings; Rules AOs Cannot Initiate Search Assessments Arbitrarily</h2>
+            <p class="lead-story__deck">A three-judge bench holds that the satisfaction note must be recorded before notice issuance — not after — making it a jurisdictional condition precedent whose absence renders entire proceedings void ab initio.</p>
+            <div class="story-byline">
+              <span class="byline__author">By Tax Express Bureau</span>
+              <span class="byline__sep">&nbsp;&bull;&nbsp;</span>
+              <time class="byline__time">May 10, 2026, 11:30 AM IST</time>
+              <span class="byline__sep">&nbsp;&bull;&nbsp;</span>
+              <span class="byline__ref">Civil Appeal No. 4789/2025</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Secondary + Sidebar -->
+        <div class="mid-row">
+
+          <!-- Secondary stories -->
+          <div class="secondary-stack">
+
+            <article class="h-story border-top" onclick="openModal('modal-1')">
+              <div class="h-story__img">
+                <div class="img-placeholder img-placeholder--sm">
+                  <span>CBDT</span>
+                </div>
+              </div>
+              <div class="h-story__body">
+                <span class="story-flag story-flag--blue">Income Tax</span>
+                <h3 class="h-story__hed">CBDT Notifies Form 10-IEA for Section 115BAC(6) Option; Filing Mandatory Before ITR Due Date</h3>
+                <p class="h-story__deck">Taxpayers carrying on business who wish to opt out of the new default regime for AY 2026-27 must now file the newly notified form by the due date u/s 139(1).</p>
+                <div class="story-byline">
+                  <span class="byline__author">Tax Express Desk</span>
+                  <span class="byline__sep">&bull;</span>
+                  <time>May 11, 2026</time>
+                </div>
+              </div>
+            </article>
+
+            <article class="h-story border-top" onclick="openModal('modal-2')">
+              <div class="h-story__img">
+                <div class="img-placeholder img-placeholder--sm">
+                  <span>GST Council</span>
+                </div>
+              </div>
+              <div class="h-story__body">
+                <span class="story-flag story-flag--green">GST</span>
+                <h3 class="h-story__hed">55th GST Council Recommends Decriminalisation: Prosecution Threshold Raised to Rs 3 Crore, Compounding Liberalised</h3>
+                <p class="h-story__deck">Council also recommended zero GST on term life insurance and 5% on health insurance, marking the most significant rate rationalisation in three years.</p>
+                <div class="story-byline">
+                  <span class="byline__author">Tax Express Bureau</span>
+                  <span class="byline__sep">&bull;</span>
+                  <time>May 9, 2026</time>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="home-sidebar">
+
+            <div class="sidebar-block">
+              <h4 class="sidebar-block__title">Due Dates</h4>
+              <ul class="due-date-list">
+                <li><span class="dd-badge">May 15</span>TDS Return Q4 &mdash; Form 24Q / 26Q</li>
+                <li><span class="dd-badge">May 20</span>GSTR-3B for April 2026</li>
+                <li><span class="dd-badge">May 31</span>Form 16 / 16A issuance</li>
+                <li><span class="dd-badge">Jun 7</span>Advance Tax &mdash; 1st instalment FY 26-27</li>
+                <li><span class="dd-badge">Jul 31</span>ITR &mdash; Individuals (Non-Audit)</li>
+                <li><span class="dd-badge">Oct 31</span>ITR &mdash; Audit cases</li>
+              </ul>
+            </div>
+
+            <div class="sidebar-block">
+              <h4 class="sidebar-block__title">Quick Acts</h4>
+              <ul class="quick-acts">
+                <li><a href="#" onclick="navToAct('it-act')">Income Tax Act, 1961</a></li>
+                <li><a href="#" onclick="navToAct('cgst-act')">CGST Act, 2017</a></li>
+                <li><a href="#" onclick="navToAct('igst-act')">IGST Act, 2017</a></li>
+                <li><a href="#" onclick="navToAct('it-act')">Finance Act, 2025</a></li>
+                <li><a href="#" onclick="navToAct('cgst-act')">GST Rules, 2017</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-block sidebar-block--dark">
+              <h4 class="sidebar-block__title sidebar-block__title--light">Daily Tax Digest</h4>
+              <p class="newsletter-text">Top rulings and circulars in your inbox every morning.</p>
+              <input type="email" class="newsletter-input" placeholder="Enter your email" />
+              <button class="newsletter-btn" onclick="handleSubscribe()">Subscribe Free</button>
+            </div>
+
+          </aside>
+        </div>
+
+        <!-- Three-column story row -->
+        <div class="divider-line"></div>
+        <div class="three-col">
+
+          <article class="v-story">
+            <div class="img-placeholder img-placeholder--med"><span>ITAT</span></div>
+            <span class="story-flag story-flag--purple">ITAT Mumbai</span>
+            <h3 class="v-story__hed">Section 56(2)(x) Not Applicable in NCLT-Sanctioned Group Restructuring</h3>
+            <p class="v-story__deck">Special Bench holds deeming FMV mechanism cannot override substance of court-approved scheme.</p>
+            <div class="story-byline"><time>May 8, 2026</time><span class="byline__sep">&bull;</span><span>ITA 3317/Mum/2024</span></div>
+          </article>
+
+          <article class="v-story">
+            <div class="img-placeholder img-placeholder--med"><span>Delhi HC</span></div>
+            <span class="story-flag story-flag--teal">Delhi HC</span>
+            <h3 class="v-story__hed">Faceless Assessment: Personal Hearing Cannot Be Denied on Specific Request, Rules Delhi HC</h3>
+            <p class="v-story__deck">Proviso to Section 144B(7)(vii) confers a statutory right; NFAC order set aside for fresh adjudication.</p>
+            <div class="story-byline"><time>May 2, 2026</time><span class="byline__sep">&bull;</span><span>W.P.(C) 3421/2025</span></div>
+          </article>
+
+          <article class="v-story">
+            <div class="img-placeholder img-placeholder--med"><span>GST</span></div>
+            <span class="story-flag story-flag--green">GST</span>
+            <h3 class="v-story__hed">CBIC Circular Clarifies ITC Availability on Canteen Services Under Factories Act Obligation</h3>
+            <p class="v-story__deck">Circular No. 231/2026 ends uncertainty; ITC now confirmed for statutory canteen obligations.</p>
+            <div class="story-byline"><time>May 6, 2026</time><span class="byline__sep">&bull;</span><span>Circular 231/2026</span></div>
+          </article>
+
+        </div>
+
+        <!-- Live Feed Row — auto-populated from news.json -->
+        <div class="divider-line"></div>
+        <div class="live-feed-header">
+          <h3 class="row-label">Latest Updates</h3>
+          <span class="live-badge">LIVE FEED</span>
+          <span class="live-updated" id="js-live-updated"></span>
+          <div class="live-filters">
+            <button class="lf-btn is-active" onclick="filterLive('all',this)">All</button>
+            <button class="lf-btn" onclick="filterLive('it',this)">Income Tax</button>
+            <button class="lf-btn" onclick="filterLive('gst',this)">GST</button>
+            <button class="lf-btn" onclick="filterLive('itat',this)">ITAT</button>
+            <button class="lf-btn" onclick="filterLive('court',this)">Courts</button>
+          </div>
+        </div>
+        <div class="live-feed-grid" id="js-live-feed">
+          <!-- Populated by app.js from news.json -->
+          <div class="live-feed-loading">Loading latest updates…</div>
+        </div>
+
+      </div>
+    </section><!-- /home -->
+
+    <!-- ===== INCOME TAX NEWS ===== -->
+    <section id="it-news" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--blue">Income Tax</span>
+        <h2 class="section-masthead__title">Income Tax News &amp; Updates</h2>
+      </div>
+
+      <div class="article-list">
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>CBDT</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--blue">Circular</span>
+            <h3 class="article-row__hed">CBDT Circular No. 4/2026: Condonation of Delay in Filing Forms 10-IC and 10-ID Available Up to March 2027</h3>
+            <p class="article-row__text">The Board has issued Circular No. 4/2026 granting condonation of delay for companies that missed filing Form 10-IC (Section 115BAA) and Form 10-ID (Section 115BAB) for AY 2020-21 onwards. Applications must be made to the jurisdictional PCIT/CIT. No penalty shall be levied where delay is condoned, and consequential refund claims will be processed accordingly. The circular provides much-needed relief to companies that inadvertently missed the original deadline while otherwise meeting the substantive conditions for the concessional tax rate.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Desk</span><span class="byline__sep">&bull;</span><time>May 11, 2026</time><span class="byline__sep">&bull;</span><span>Circular No. 4/2026</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>Section 80G</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--blue">Notification</span>
+            <h3 class="article-row__hed">CBDT Notifies Updated List of Approved Institutions Under Section 80G(5)(vi) for FY 2025-26</h3>
+            <p class="article-row__text">The updated list of charitable institutions approved under Section 80G(5)(vi) has been released via Notification No. 42/2026. Donations to these institutions qualify for 50% or 100% deduction, depending on their category. The notification supersedes the provisional approval list and takes effect from FY 2025-26. Donors are advised to verify current approval status on the income tax portal before claiming deductions.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Bureau</span><span class="byline__sep">&bull;</span><time>May 9, 2026</time><span class="byline__sep">&bull;</span><span>Notification No. 42/2026</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>Finance Act</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--blue">Amendment</span>
+            <h3 class="article-row__hed">Finance Act 2025: Key Amendments to Income Tax Act Taking Effect from AY 2026-27</h3>
+            <p class="article-row__text">New tax slabs under Section 115BAC provide zero tax up to Rs 12 lakh with rebate u/s 87A. Standard deduction raised to Rs 75,000. Section 44AD threshold enhanced to Rs 3 crore for digital transactions. TDS rate on professional fees u/s 194J reduced to 7.5%. LTCG on listed equities now taxed at 12.5% without indexation; holding period for STCG treatment reduced to 12 months. Indexation benefit removed across all asset classes. Advance Pricing Agreement rollback extended to five years.</p>
+            <div class="story-byline"><span class="byline__author">Analysis Desk</span><span class="byline__sep">&bull;</span><time>May 1, 2026</time><span class="byline__sep">&bull;</span><span>Finance Act, 2025</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>ITR Forms</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--blue">Compliance</span>
+            <h3 class="article-row__hed">ITR Forms for AY 2026-27 Notified: Mandatory VDA Schedule, Foreign Account Disclosure Now in ITR-1</h3>
+            <p class="article-row__text">CBDT has notified ITR Forms 1 through 7 for AY 2026-27 via Notification No. 38/2026. Key changes include a new schedule for crypto and virtual digital assets (VDA) in all forms, mandatory disclosure of foreign bank accounts in ITR-1, enhanced Schedule AL reporting, and a dedicated column for Section 115BBH tax on VDA income. The utility software will be available on the income tax portal from June 1, 2026.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Bureau</span><span class="byline__sep">&bull;</span><time>Apr 28, 2026</time><span class="byline__sep">&bull;</span><span>Notification No. 38/2026</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>Transfer Pricing</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--blue">Transfer Pricing</span>
+            <h3 class="article-row__hed">CBDT Draft Rules: Safe Harbour Margins Revised for IT/ITES and Intra-Group Loans Under Rule 10TD</h3>
+            <p class="article-row__text">The Board has released draft rules proposing upward revision of safe harbour margins for IT and ITES transactions, with a new category for intra-group loan transactions at MCLR plus 150 basis points. Comments from stakeholders are invited within 30 days. The final rules, once notified, will be applicable from FY 2025-26 onwards and are expected to reduce transfer pricing disputes substantially.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Desk</span><span class="byline__sep">&bull;</span><time>Apr 25, 2026</time><span class="byline__sep">&bull;</span><span>Draft Notification</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section><!-- /it-news -->
+
+    <!-- ===== GST ===== -->
+    <section id="gst" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--green">GST</span>
+        <h2 class="section-masthead__title">GST News &amp; Updates</h2>
+      </div>
+
+      <div class="article-list">
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>CBIC</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--green">Circular</span>
+            <h3 class="article-row__hed">CBIC Circular 231/2026: Comprehensive Clarification on ITC for Canteen Services, Health Insurance and Employee Welfare</h3>
+            <p class="article-row__text">Following the Supreme Court's Safari Retreats decision and conflicting AAR rulings, CBIC has issued a comprehensive master circular clarifying GST ITC treatment. Canteen services provided under Factories Act obligation are eligible for ITC. Health insurance for employees in hazardous occupations qualifies. Club memberships and personal use items remain blocked. Leased accommodation is available pro-rata to business use. The circular is intended to arrest further litigation at the pre-adjudication stage.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Bureau</span><span class="byline__sep">&bull;</span><time>May 6, 2026</time><span class="byline__sep">&bull;</span><span>Circular No. 231/2026-GST</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>Council</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--green">GST Council</span>
+            <h3 class="article-row__hed">55th GST Council: Term Life Insurance Exempt; Health Cover at 5%; Prosecution Bar Raised to Rs 3 Crore</h3>
+            <p class="article-row__text">The 55th GST Council recommended zero rate for term life insurance premiums and 5% (without ITC) for health insurance. GST on electric commercial vehicles reduced to 5%. Prosecution threshold under CGST Act raised from Rs 2 crore to Rs 3 crore. An amnesty scheme for demands up to Rs 25 lakh as of April 1, 2026 has been proposed. Clarifications on online gaming taxation and actionable claims are expected in the forthcoming circular.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Bureau</span><span class="byline__sep">&bull;</span><time>May 3, 2026</time><span class="byline__sep">&bull;</span><span>Council Press Release</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>Delhi HC</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--teal">Delhi HC</span>
+            <h3 class="article-row__hed">Delhi HC Quashes Provisional Attachment U/S 83 CGST: Third-Party Property Cannot Be Attached Without Direct Nexus</h3>
+            <p class="article-row__text">The Delhi High Court held that the power of provisional attachment u/s 83 is drastic and must be exercised strictly against the taxable person whose proceedings are pending. Attaching property of a third party without establishing nexus violates the statute. The Court reiterated that Section 83 cannot be used as a revenue recovery tool and ordered immediate release of the attached property.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Desk</span><span class="byline__sep">&bull;</span><time>Apr 30, 2026</time><span class="byline__sep">&bull;</span><span>W.P. 7823/2025</span></div>
+          </div>
+        </article>
+
+        <article class="article-row border-top">
+          <div class="article-row__img"><div class="img-placeholder img-placeholder--art"><span>GSTR-9</span></div></div>
+          <div class="article-row__body">
+            <span class="story-flag story-flag--green">Compliance</span>
+            <h3 class="article-row__hed">GSTR-9 and GSTR-9C for FY 2024-25 Extended to December 31, 2026; Self-Certification Below Rs 5 Crore Retained</h3>
+            <p class="article-row__text">CBIC has extended the due date for annual returns and reconciliation statements for FY 2024-25. GSTR-9C self-certification remains available for taxpayers with aggregate turnover below Rs 5 crore. CBIC has also issued a revised format for GSTR-9 incorporating new fields for reporting ITC reversal under Rule 42/43 and HSN-level disclosure for outward supplies above Rs 50 lakh.</p>
+            <div class="story-byline"><span class="byline__author">Tax Express Bureau</span><span class="byline__sep">&bull;</span><time>Apr 25, 2026</time><span class="byline__sep">&bull;</span><span>Notification No. 22/2026-CT</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section><!-- /gst -->
+
+    <!-- ===== ITAT ===== -->
+    <section id="itat" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--purple">Tribunal</span>
+        <h2 class="section-masthead__title">ITAT Judgments</h2>
+      </div>
+
+      <div class="judgment-list">
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 3317/Mum/2024</span>
+            <span class="j-bench">ITAT Mumbai &mdash; Special Bench</span>
+            <time class="j-date">May 8, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Section 56(2)(x) Not Invocable Where Shares Transferred Below FMV Under NCLT-Sanctioned Restructuring Scheme</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> XYZ Holdings Pvt. Ltd. v. PCIT-2, Mumbai</div>
+          <div class="judgment-card__sections">Sections: 56(2)(x) &nbsp;&bull;&nbsp; 50CA &nbsp;&bull;&nbsp; Rule 11UA</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether Section 56(2)(x) applies to share transfers made at less than FMV under a holding-subsidiary restructuring scheme sanctioned by the NCLT, or whether the deeming fiction is displaced by the substantive reality of the court-approved arrangement.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>The Special Bench held that where consideration is determined pursuant to a court-approved scheme and is not a colourable device to shift income, Section 56(2)(x) is not attracted. FMV under Rule 11UA is a computational mechanism, not a charging provision, and cannot override substance. Addition of Rs 18.4 crore deleted.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 56(2)(x)</span><span class="jtag">FMV</span><span class="jtag">NCLT Scheme</span><span class="jtag">Restructuring</span>
+          </div>
+        </article>
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 189/Bang/2025</span>
+            <span class="j-bench">ITAT Bangalore</span>
+            <time class="j-date">May 5, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Penny Stock LTCG: Section 68 Addition Unsustainable Without Specific Evidence Linking Assessee to Accommodation Entry Arrangement</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> Individual Taxpayer v. ITO, Ward 2(1), Bangalore</div>
+          <div class="judgment-card__sections">Sections: 68 &nbsp;&bull;&nbsp; 10(38) (pre-amendment) &nbsp;&bull;&nbsp; 115BBE</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether long-term capital gain on listed penny stocks can be treated as unexplained cash credits u/s 68 solely on the basis of a SEBI investigation report naming the scrip as price-manipulated, without establishing the assessee's direct involvement.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Revenue must establish direct, specific link between assessee and accommodation entry providers. A generalised SEBI report is insufficient. Assessee's burden discharged through contract notes and demat statements. Tribunal applied the principle that tax authorities cannot proceed on suspicion alone.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 68</span><span class="jtag">Penny Stock</span><span class="jtag">LTCG</span><span class="jtag">Accommodation Entry</span>
+          </div>
+        </article>
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 5521/Del/2024</span>
+            <span class="j-bench">ITAT Delhi</span>
+            <time class="j-date">Apr 29, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Section 14A Disallowance Capped at Actual Exempt Income Earned; Rule 8D Cannot Create Disallowance Exceeding Exempt Receipts</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> ABC Finance Ltd. v. DCIT, Corporate Circle 5, Delhi</div>
+          <div class="judgment-card__sections">Sections: 14A &nbsp;&bull;&nbsp; Rule 8D &nbsp;&bull;&nbsp; 57</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>AO computed Section 14A disallowance at Rs 3.2 crore under Rule 8D against actual exempt income of only Rs 45 lakh. Whether disallowance can exceed exempt income earned.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Following settled High Court authority, Tribunal restricted disallowance to Rs 45 lakh — the actual exempt income. Rule 8D is a mechanism for computation, not an independent charging provision. Disallowance exceeding exempt income is legally untenable.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 14A</span><span class="jtag">Rule 8D</span><span class="jtag">Disallowance</span><span class="jtag">Exempt Income</span>
+          </div>
+        </article>
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 820/Chd/2025</span>
+            <span class="j-bench">ITAT Chandigarh</span>
+            <time class="j-date">Apr 22, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Voluntary Disclosure of Income Before AO Detection Extinguishes Penalty Liability Under Section 271(1)(c)</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> M/s Sharma Builders v. DCIT, Circle 1, Chandigarh</div>
+          <div class="judgment-card__sections">Sections: 271(1)(c) &nbsp;&bull;&nbsp; 270A &nbsp;&bull;&nbsp; 153A</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether penalty u/s 271(1)(c) can be levied where the assessee proactively disclosed additional income during assessment proceedings before the AO made any specific detection.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Following Price Waterhouse Coopers (SC), voluntary disclosure before detection negates the mens rea of concealment. Penalty proceedings require both actus reus and culpable intent. Bonafides of assessee demonstrated by proactive disclosure. Penalty of Rs 62 lakh cancelled.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 271(1)(c)</span><span class="jtag">Penalty</span><span class="jtag">Voluntary Disclosure</span><span class="jtag">Bonafides</span>
+          </div>
+        </article>
+
+        <!-- India Kanoon – Live Judgment 1 -->
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 9038/Mum/2025</span>
+            <span class="j-bench">ITAT Mumbai – "G" Bench</span>
+            <time class="j-date">Apr 20, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Section 148 Reassessment Quashed for Non-Compliance With Mandatory Faceless Mechanism Under Section 151A</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> ITO, Ward 19(1)(1), Mumbai v. Geeta Kirit Muchhala, Mumbai</div>
+          <div class="judgment-card__sections">Sections: 68 &nbsp;&bull;&nbsp; 115BBE &nbsp;&bull;&nbsp; 147 &nbsp;&bull;&nbsp; 148 &nbsp;&bull;&nbsp; 151A &nbsp;&bull;&nbsp; 158AB</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether reassessment proceedings and consequent addition of Rs 1.61 crore u/s 68 are valid where the notice u/s 148 was not issued through the mandatory faceless assessment mechanism prescribed under Section 151A of the Income Tax Act.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Tribunal dismissed Revenue appeal. Reassessment notice not routed through the Section 151A faceless mechanism is jurisdictionally invalid. Once the foundational jurisdiction is undermined by a binding High Court judgment in the assessee's own case, the entire assessment including substantive additions cannot survive. Revenue appeal dismissed.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 148</span><span class="jtag">Section 151A</span><span class="jtag">Faceless Assessment</span><span class="jtag">Reassessment</span><span class="jtag">Section 68</span>
+            <a href="https://indiankanoon.org/doc/124958782/" target="_blank" class="jtag" style="background:#0a0a0a;color:#fff;text-decoration:none;">View on India Kanoon ↗</a>
+          </div>
+        </article>
+
+        <!-- India Kanoon – Live Judgment 2 -->
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITAT Delhi – Bench 'B'</span>
+            <span class="j-bench">ITAT New Delhi</span>
+            <time class="j-date">Jan 14, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Kanpur Development Authority Entitled to Exemption u/s 11; Infrastructure Funds Received Under Government Orders Not Taxable</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> DCIT, CGO Complex v. Kanpur Development Authority (AY 2012-13)</div>
+          <div class="judgment-card__sections">Sections: 2(15) &nbsp;&bull;&nbsp; 11 &nbsp;&bull;&nbsp; 12 &nbsp;&bull;&nbsp; 12A &nbsp;&bull;&nbsp; 12AA &nbsp;&bull;&nbsp; 143(3)</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether Kanpur Development Authority, a statutory body, qualifies for charitable exemption u/s 11 and 12; whether infrastructure fund of Rs 10.97 crore received under government orders is taxable; and whether contribution of Rs 20 lakh to AwasBandhu is an allowable application of income.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Tribunal dismissed Revenue appeal. Authority established for public development purposes qualifies as charitable under Section 2(15). Infrastructure funds received under government orders and utilised per state committee directives are non-taxable. Contribution to AwasBandhu constitutes permissible application of income under Section 11.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 11</span><span class="jtag">Section 12</span><span class="jtag">Charitable Exemption</span><span class="jtag">Development Authority</span><span class="jtag">Section 2(15)</span>
+            <a href="https://indiankanoon.org/doc/59842959/" target="_blank" class="jtag" style="background:#0a0a0a;color:#fff;text-decoration:none;">View on India Kanoon ↗</a>
+          </div>
+        </article>
+
+        <!-- India Kanoon – Live Judgment 3 -->
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITAT Chennai – 'B' Bench</span>
+            <span class="j-bench">ITAT Chennai</span>
+            <time class="j-date">Feb 17, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Approval for Post-Three-Year Reassessment Must Come from Specified Authority u/s 151(ii); PCIT Approval Invalid</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> Aman Gupta, Chennai v. DCIT, Circle 1, Chennai (AY 2016-17)</div>
+          <div class="judgment-card__sections">Sections: 148 &nbsp;&bull;&nbsp; 148A &nbsp;&bull;&nbsp; 151(ii) &nbsp;&bull;&nbsp; 69A</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether reassessment notice issued beyond three years is valid where approval was obtained from the Principal Commissioner of Income Tax instead of the Specified Authority designated under Section 151(ii) of the Income Tax Act.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Tribunal allowed the appeal and quashed reassessment. For notices issued beyond three years, Section 151(ii) mandates approval only from the Specified Authority. Approval from PCIT who does not hold that designation is without jurisdiction. Notices u/s 148A(d) and 148 both quashed. Addition u/s 69A cannot survive.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 148</span><span class="jtag">Section 151(ii)</span><span class="jtag">Specified Authority</span><span class="jtag">Reassessment</span><span class="jtag">Section 69A</span>
+            <a href="https://indiankanoon.org/doc/4770093/" target="_blank" class="jtag" style="background:#0a0a0a;color:#fff;text-decoration:none;">View on India Kanoon ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section><!-- /itat -->
+
+    <!-- ===== HC & SC ===== -->
+    <section id="hcsc" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--teal">Courts</span>
+        <h2 class="section-masthead__title">High Court &amp; Supreme Court Rulings</h2>
+      </div>
+
+      <div class="judgment-list">
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">Civil Appeal No. 4789/2025</span>
+            <span class="j-bench">Supreme Court of India &mdash; 3-Judge Bench</span>
+            <time class="j-date">May 10, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">SC: Satisfaction Note Mandatory Before Section 153C Notice; Jurisdictional Defect Makes Entire Proceedings Void Ab Initio</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> PCIT-3, Mumbai v. Veedhata Tower Pvt. Ltd.</div>
+          <div class="judgment-card__sections">Sections: 132 &nbsp;&bull;&nbsp; 153A &nbsp;&bull;&nbsp; 153C &nbsp;&bull;&nbsp; 158BD</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Two issues: (i) Whether satisfaction note must be recorded before issuance of Section 153C notice; (ii) Whether a separate satisfaction note is required where the same AO exercises jurisdiction over both the searched person and the other person.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>On (i): Recording satisfaction before notice is a jurisdictional pre-condition; non-compliance renders proceedings void. On (ii): Even where the same AO has dual jurisdiction, an independent satisfaction note based on cogent material is required. The phrase "belong to" denotes authorship, not mere relevance. Revenue appeal dismissed.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 153C</span><span class="jtag">Satisfaction Note</span><span class="jtag">Search Assessment</span><span class="jtag">Jurisdictional</span>
+          </div>
+        </article>
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">W.P.(C) 3421/2025</span>
+            <span class="j-bench">Delhi High Court</span>
+            <time class="j-date">May 2, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Faceless Assessment: NFAC Cannot Deny Personal Hearing on Specific Written Request; Natural Justice Violation Set Aside</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> M/s Global Tech Solutions Pvt. Ltd. v. NFAC, Delhi</div>
+          <div class="judgment-card__sections">Sections: 144B &nbsp;&bull;&nbsp; 144C &nbsp;&bull;&nbsp; Article 14, Constitution</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether NFAC can deny personal hearing where the assessee made a specific written request under the proviso to Section 144B(7)(vii) before an addition of Rs 8.5 crore was proposed.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>The right to personal hearing is a statutory right and cannot be denied by the NFAC irrespective of the faceless assessment framework. The assessment order was passed in clear violation of natural justice. Assessment set aside for fresh adjudication with personal hearing. HC imposed costs of Rs 10,000 on Revenue.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 144B</span><span class="jtag">Faceless Assessment</span><span class="jtag">Natural Justice</span><span class="jtag">Personal Hearing</span>
+          </div>
+        </article>
+
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">Tax Appeal No. 129/2025</span>
+            <span class="j-bench">Gujarat High Court</span>
+            <time class="j-date">Apr 24, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Non-Compete Fee Received on Sale of Pharmaceutical Division Chargeable as Business Income u/s 28(va); Not Capital Receipt</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> Ahmedabad Pharma Pvt. Ltd. v. PCIT, Ahmedabad</div>
+          <div class="judgment-card__sections">Sections: 28(va) &nbsp;&bull;&nbsp; 55(2)(a) &nbsp;&bull;&nbsp; 45</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether non-compete fee received by a company for agreeing not to carry on its pharmaceutical business for five years, paid simultaneously with the sale of the division, is taxable as business income or as a capital receipt.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Section 28(va) specifically includes any sum received for restricting or limiting business activity. The fact that the underlying business has been transferred does not convert the non-compete fee into a capital receipt. The restrictive covenant is a separate obligation, and the fee therefor falls squarely within the charging provision.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 28(va)</span><span class="jtag">Non-Compete Fee</span><span class="jtag">Business Income</span><span class="jtag">Capital Gains</span>
+          </div>
+        </article>
+
+        <!-- India Kanoon – Delhi HC -->
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">ITA No. 260A – PCIT-7 vs Atul Goel</span>
+            <span class="j-bench">Delhi High Court</span>
+            <time class="j-date">Jan 12, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">Reassessment on Client Code Modification Transactions Unsustainable; No Income Escapes Where Tax Already Paid at Highest Rate</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> Pr. Commissioner of Income Tax-7, Delhi v. Atul Goel</div>
+          <div class="judgment-card__sections">Sections: 147 &nbsp;&bull;&nbsp; 148 &nbsp;&bull;&nbsp; 143(3) &nbsp;&bull;&nbsp; 260A</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether reassessment proceedings based on alleged "Client Code Modification" transactions were justified where no specific company or correct broker name appeared in the AO's reasons and the assessee had already disclosed and paid tax at the highest applicable rate on those transactions.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Delhi HC dismissed Revenue appeal confirming ITAT's finding that reassessment was without application of mind. Where the assessee has already paid tax on the same transactions at the highest applicable rate, no income can be said to have escaped assessment. The AO lacked tangible material to form a genuine belief of escapement.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 147</span><span class="jtag">Section 148</span><span class="jtag">Client Code Modification</span><span class="jtag">Reassessment</span><span class="jtag">Escaped Assessment</span>
+            <a href="https://indiankanoon.org/doc/97699235/" target="_blank" class="jtag" style="background:#0a0a0a;color:#fff;text-decoration:none;">View on India Kanoon ↗</a>
+          </div>
+        </article>
+
+        <!-- India Kanoon – Gauhati HC GST -->
+        <article class="judgment-card border-top">
+          <div class="judgment-card__meta-bar">
+            <span class="j-citation">WP(C)/6666/2024</span>
+            <span class="j-bench">Gauhati High Court</span>
+            <time class="j-date">Feb 12, 2026</time>
+          </div>
+          <h3 class="judgment-card__hed">SCN Under Section 73 CGST Issued One Day Before Deadline Valid; Corresponding Date Rule Applies to GST Limitation Periods</h3>
+          <div class="judgment-card__parties"><strong>Between:</strong> M/s Surya Business Pvt. Ltd. v. State of Assam &amp; Others</div>
+          <div class="judgment-card__sections">Sections: 73(2) CGST Act &nbsp;&bull;&nbsp; Article 226 Constitution &nbsp;&bull;&nbsp; Section 9, General Clauses Act</div>
+          <div class="judgment-card__columns">
+            <div>
+              <h4>Issue</h4>
+              <p>Whether a Show Cause Notice for excess ITC for FY 2020-21 issued on 29.11.2024 satisfies the requirement of Section 73(2) CGST Act that the notice be issued "at least three months prior" to the order deadline of 28.02.2025.</p>
+            </div>
+            <div>
+              <h4>Held</h4>
+              <p>Gauhati HC dismissed the writ petition. Applying the corresponding date rule from <em>Dodds v. Walker</em> via the General Clauses Act, the notice issued 29.11.2024 is fully within the three-month window before the 28.02.2025 order deadline. The petition challenging the SCN as barred by limitation was rejected.</p>
+            </div>
+          </div>
+          <div class="judgment-card__tags">
+            <span class="jtag">Section 73 CGST</span><span class="jtag">Show Cause Notice</span><span class="jtag">Limitation</span><span class="jtag">Corresponding Date Rule</span><span class="jtag">ITC</span>
+            <a href="https://indiankanoon.org/doc/180464323/" target="_blank" class="jtag" style="background:#0a0a0a;color:#fff;text-decoration:none;">View on India Kanoon ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section><!-- /hcsc -->
+
+    <!-- ===== BARE ACTS ===== -->
+    <section id="bare" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--dark">Reference</span>
+        <h2 class="section-masthead__title">Bare Acts &amp; Key Provisions</h2>
+      </div>
+
+      <div class="acts-nav">
+        <button class="act-tab is-active" data-act="it-act"   onclick="switchAct('it-act', this)">Income Tax Act, 1961</button>
+        <button class="act-tab"           data-act="cgst-act" onclick="switchAct('cgst-act', this)">CGST Act, 2017</button>
+        <button class="act-tab"           data-act="igst-act" onclick="switchAct('igst-act', this)">IGST Act, 2017</button>
+      </div>
+
+      <!-- Income Tax Act -->
+      <div id="it-act" class="act-panel is-active">
+        <div class="act-search-bar">
+          <input type="text" placeholder="Search by section number or keyword…" oninput="filterSections(this, 'it-act')" />
+        </div>
+        <div class="provision-list">
+
+          <div class="provision border-top" data-text="section 4 charge income tax levy">
+            <div class="provision__num">S.4</div>
+            <div class="provision__body">
+              <h4>Charge of Income-Tax</h4>
+              <p>(1) Where any Central Act enacts that income-tax shall be charged for any assessment year at any rate or rates, income-tax at that rate or those rates shall be charged for that year in accordance with, and subject to the provisions of, this Act in respect of the total income of every person.</p>
+              <p>(2) In respect of income chargeable under sub-section (1), income-tax shall be deducted at the source or paid in advance, where it is so deductible or payable under any provision of this Act.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 9 income deemed accrued arise india business connection">
+            <div class="provision__num">S.9</div>
+            <div class="provision__body">
+              <h4>Income Deemed to Accrue or Arise in India</h4>
+              <p>(1) The following incomes shall be deemed to accrue or arise in India:&mdash; (i) all income accruing or arising, whether directly or indirectly, through or from any business connection in India, or through or from any property in India, or through or from any asset or source of income in India, or through the transfer of a capital asset situate in India.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 14A expenditure exempt income disallowance rule 8D">
+            <div class="provision__num">S.14A</div>
+            <div class="provision__body">
+              <h4>Expenditure Incurred in Relation to Income Not Includible in Total Income</h4>
+              <p>(1) For the purposes of computing the total income under this Chapter, no deduction shall be allowed in respect of expenditure incurred by the assessee in relation to income which does not form part of the total income under this Act.</p>
+              <p>(2) The Assessing Officer shall determine the amount of expenditure incurred in relation to such income which does not form part of the total income under this Act in accordance with such method as may be prescribed, if the Assessing Officer, having regard to the accounts of the assessee, is not satisfied with the correctness of the claim of the assessee.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 37 general deduction business expenditure wholly exclusively">
+            <div class="provision__num">S.37</div>
+            <div class="provision__body">
+              <h4>General Deduction for Business Expenditure</h4>
+              <p>(1) Any expenditure (not being expenditure of the nature described in sections 30 to 36 and not being in the nature of capital expenditure or personal expenses of the assessee), laid out or expended wholly and exclusively for the purposes of the business or profession shall be allowed in computing the income chargeable under the head "Profits and gains of business or profession".</p>
+              <p><em>Explanation 1:</em> Any expenditure incurred by an assessee for any purpose which is an offence or which is prohibited by law shall not be deemed to have been incurred for the purpose of business or profession and no deduction or allowance shall be made in respect of such expenditure.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 45 capital gains charge transfer">
+            <div class="provision__num">S.45</div>
+            <div class="provision__body">
+              <h4>Capital Gains &mdash; Charge to Tax</h4>
+              <p>(1) Any profits or gains arising from the transfer of a capital asset effected in the previous year shall, save as otherwise provided in sections 54, 54B, 54D, 54E, 54EA, 54EB, 54F, 54G and 54H, be chargeable to income-tax under the head "Capital gains", and shall be deemed to be the income of the previous year in which the transfer took place.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 56 income other sources 56(2)(x) gifts FMV">
+            <div class="provision__num">S.56(2)(x)</div>
+            <div class="provision__body">
+              <h4>Income from Other Sources &mdash; Receipts Without / Inadequate Consideration</h4>
+              <p>Where any person receives, in any previous year, from any person or persons on or after the 1st day of April, 2017, (a) any sum of money, without consideration, the aggregate value of which exceeds fifty thousand rupees, the whole of the aggregate value of such sum; (b) any immovable property, without consideration, the stamp duty value of which exceeds fifty thousand rupees, the stamp duty value of such property; (c) any property other than immovable property, without consideration, the aggregate fair market value of which exceeds fifty thousand rupees…</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 68 cash credits unexplained income">
+            <div class="provision__num">S.68</div>
+            <div class="provision__body">
+              <h4>Cash Credits</h4>
+              <p>Where any sum is found credited in the books of an assessee maintained for any previous year, and the assessee offers no explanation about the nature and source thereof or the explanation offered by him is not, in the opinion of the Assessing Officer, satisfactory, the sum so credited may be charged to income-tax as the income of the assessee of that previous year.</p>
+              <p><em>Proviso:</em> Where the assessee is a company (not being a company in which the public are substantially interested) and the sum credited consists of share application money, share capital, share premium or any such amount, any explanation offered shall be deemed not satisfactory unless the source of funds in the hands of the subscriber is also explained to the satisfaction of the Assessing Officer.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 115BAC new tax regime slabs individuals HUF">
+            <div class="provision__num">S.115BAC</div>
+            <div class="provision__body">
+              <h4>Tax on Income of Individuals and HUF under New Tax Regime</h4>
+              <p>Income-tax payable at the following rates for individuals / HUFs under the new default regime (AY 2026-27): Up to Rs 3,00,000 &mdash; Nil &bull; Rs 3,00,001 to Rs 7,00,000 &mdash; 5% &bull; Rs 7,00,001 to Rs 10,00,000 &mdash; 10% &bull; Rs 10,00,001 to Rs 12,00,000 &mdash; 15% &bull; Rs 12,00,001 to Rs 15,00,000 &mdash; 20% &bull; Above Rs 15,00,000 &mdash; 30%.</p>
+              <p>Rebate u/s 87A available up to Rs 60,000 where total income does not exceed Rs 12,00,000. Standard deduction of Rs 75,000 available for salaried individuals and pensioners.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 153C search assessment other person satisfaction">
+            <div class="provision__num">S.153C</div>
+            <div class="provision__body">
+              <h4>Assessment of Income of Any Other Person</h4>
+              <p>Notwithstanding anything contained in section 139, 147, 148, 149, 151 and 153, where the Assessing Officer is satisfied that any money, bullion, jewellery or other valuable article or thing or books of account or documents seized or requisitioned <em>belong to</em> a person other than the person referred to in section 153A, the books of account or documents or assets shall be handed over to the Assessing Officer having jurisdiction over such other person and that Assessing Officer shall proceed against each such other person and issue notice and assess or reassess the income of such other person in accordance with the provisions of section 153A.</p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /it-act -->
+
+      <!-- CGST Act -->
+      <div id="cgst-act" class="act-panel">
+        <div class="act-search-bar">
+          <input type="text" placeholder="Search by section number or keyword…" oninput="filterSections(this, 'cgst-act')" />
+        </div>
+        <div class="provision-list">
+
+          <div class="provision border-top" data-text="section 7 supply scope meaning sale transfer barter">
+            <div class="provision__num">S.7</div>
+            <div class="provision__body">
+              <h4>Scope of Supply</h4>
+              <p>(1) For the purposes of this Act, the expression "supply" includes &mdash; (a) all forms of supply of goods or services or both such as sale, transfer, barter, exchange, licence, rental, lease or disposal made or agreed to be made for a consideration by a person in the course or furtherance of business; (b) import of services for a consideration whether or not in the course or furtherance of business; (c) the activities specified in Schedule I, made or agreed to be made without a consideration.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 16 input tax credit eligibility conditions">
+            <div class="provision__num">S.16</div>
+            <div class="provision__body">
+              <h4>Eligibility and Conditions for Taking Input Tax Credit</h4>
+              <p>(1) Every registered person shall, subject to such conditions and restrictions as may be prescribed, be entitled to take credit of input tax charged on any supply of goods or services or both to him which are used or intended to be used in the course or furtherance of his business.</p>
+              <p>(2) No registered person shall be entitled to ITC unless &mdash; (a) he is in possession of a tax invoice or debit note; (b) he has received the goods or services; (c) the tax charged has actually been paid to the Government; (d) he has furnished the return u/s 39.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 17 blocked credits apportionment 17(5) motor vehicle">
+            <div class="provision__num">S.17(5)</div>
+            <div class="provision__body">
+              <h4>Blocked Credits</h4>
+              <p>Input tax credit shall not be available in respect of: (a) motor vehicles for transportation of persons having approved seating capacity of not more than thirteen persons (including the driver) except for further supply, transport of passengers, or imparting training; (b) food and beverages, outdoor catering, beauty treatment, health services, cosmetic and plastic surgery; (c) membership of a club, health and fitness centre; (d) travel benefits extended to employees on vacation; (e) works contract services when supplied for construction of an immovable property…</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 73 74 demand notice tax not paid short paid">
+            <div class="provision__num">S.73 / 74</div>
+            <div class="provision__body">
+              <h4>Determination of Tax Not Paid, Short-Paid or Erroneously Refunded</h4>
+              <p><strong>Section 73</strong> (no fraud): Where tax has not been paid/short-paid/erroneously refunded without fraud or wilful misstatement, SCN shall be issued with at least 3 months' opportunity to pay. Time limit: 3 years from due date of annual return. Penalty: 10% of tax subject to minimum Rs 10,000.</p>
+              <p><strong>Section 74</strong> (fraud): Where non-payment is by reason of fraud, wilful misstatement or suppression of facts with intent to evade, time limit is 5 years. Penalty: 100% of tax in addition to tax and interest.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 83 provisional attachment protect revenue">
+            <div class="provision__num">S.83</div>
+            <div class="provision__body">
+              <h4>Provisional Attachment to Protect Revenue in Certain Cases</h4>
+              <p>(1) Where during the pendency of any proceedings under section 62, 63, 64, 67, 73 or 74, the Commissioner is of the opinion that for the purpose of protecting the interest of the Government revenue it is necessary to do so, he may, by order in writing, attach provisionally any property, including bank account, belonging to the taxable person.</p>
+              <p>(2) Every such provisional attachment shall cease to have effect after the expiry of one year from the date of the order made under sub-section (1).</p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /cgst-act -->
+
+      <!-- IGST Act -->
+      <div id="igst-act" class="act-panel">
+        <div class="act-search-bar">
+          <input type="text" placeholder="Search by section number or keyword…" oninput="filterSections(this, 'igst-act')" />
+        </div>
+        <div class="provision-list">
+
+          <div class="provision border-top" data-text="section 5 levy IGST integrated goods services tax">
+            <div class="provision__num">S.5</div>
+            <div class="provision__body">
+              <h4>Levy and Collection of Integrated Tax</h4>
+              <p>(1) Subject to the provisions of sub-section (2), there shall be levied a tax called the integrated goods and services tax on all inter-State supplies of goods or services or both, except on the supply of alcoholic liquor for human consumption, on the value determined under section 15 of the Central Goods and Services Tax Act and at such rates, not exceeding forty per cent, as may be notified by the Government on the recommendations of the Council and collected in such manner as may be prescribed.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 7 inter-state supply location supplier different states">
+            <div class="provision__num">S.7</div>
+            <div class="provision__body">
+              <h4>Inter-State Supply</h4>
+              <p>(1) Subject to the provisions of section 10, supply of goods where the location of the supplier and the place of supply are in two different States, two different Union territories, or a State and a Union territory, shall be treated as an inter-State supply of goods.</p>
+              <p>(5) Supply of goods or services or both where the supplier is in India and the place of supply is outside India; or to/by a Special Economic Zone developer or unit; or in the taxable territory not being an intra-State supply shall be treated as inter-State trade or commerce.</p>
+            </div>
+          </div>
+
+          <div class="provision border-top" data-text="section 13 place supply services location outside India">
+            <div class="provision__num">S.13</div>
+            <div class="provision__body">
+              <h4>Place of Supply of Services Where Location of Supplier or Recipient is Outside India</h4>
+              <p>(1) The provisions of this section apply to determine the place of supply where the location of the supplier or the location of the recipient is outside India.</p>
+              <p>(2) The place of supply shall be the location of the recipient of services, except where the recipient's location is not available in the ordinary course of business, in which case it shall be the location of the supplier.</p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /igst-act -->
+
+    </section><!-- /bare -->
+
+    <!-- ===== BUDGET ===== -->
+    <section id="budget" class="page-section">
+      <div class="section-masthead">
+        <span class="section-masthead__flag section-masthead__flag--red">Budget 2025</span>
+        <h2 class="section-masthead__title">Union Budget 2025 &mdash; Key Tax Proposals</h2>
+      </div>
+
+      <div class="budget-layout">
+
+        <div class="budget-lead border-top">
+          <h3 class="budget-lead__hed">Personal Tax Overhaul: Zero Tax Up to Rs 12 Lakh, New Slabs and Enhanced Deductions Mark Biggest Relief in a Decade</h3>
+          <p class="budget-lead__body">Finance Minister presented the Union Budget 2025 with the most significant overhaul of personal income tax since 2020. The new default tax regime under Section 115BAC now provides zero tax for individuals with income up to Rs 12 lakh through a revised rebate u/s 87A of Rs 60,000. Standard deduction raised to Rs 75,000. New slabs rationalized with the 15% bracket covering Rs 10-12 lakh range. The government estimates revenue forgone at Rs 1.1 lakh crore annually, projecting that increased consumption and formalization of the economy will offset the fiscal cost.</p>
+          <div class="story-byline"><span class="byline__author">Budget Analysis Desk</span><span class="byline__sep">&bull;</span><time>February 1, 2025</time></div>
+        </div>
+
+        <div class="budget-grid">
+
+          <div class="budget-item border-top">
+            <h4>Capital Gains Rationalisation</h4>
+            <ul class="budget-item__list">
+              <li>LTCG on listed equities: 12.5% (sans indexation)</li>
+              <li>STCG on listed equities: 20%</li>
+              <li>Holding period: 12 months (listed), 24 months (unlisted)</li>
+              <li>Indexation removed for all asset classes</li>
+              <li>Rs 1.25 lakh LTCG exemption retained</li>
+            </ul>
+          </div>
+
+          <div class="budget-item border-top">
+            <h4>Corporate Tax</h4>
+            <ul class="budget-item__list">
+              <li>No change in base rate (22% for domestic companies)</li>
+              <li>New manufacturing company rate (15%) extended to March 2027</li>
+              <li>Equalisation levy on e-commerce withdrawn from April 2025</li>
+              <li>Safe harbour for sovereign wealth funds extended</li>
+              <li>POEM rules clarified for shipping companies</li>
+            </ul>
+          </div>
+
+          <div class="budget-item border-top">
+            <h4>Transfer Pricing</h4>
+            <ul class="budget-item__list">
+              <li>APA rollback extended from 4 to 5 years</li>
+              <li>Safe harbour for intra-group loans revised upward</li>
+              <li>Dispute resolution under MAP strengthened</li>
+              <li>Secondary adjustment threshold enhanced to Rs 1 crore</li>
+            </ul>
+          </div>
+
+          <div class="budget-item border-top">
+            <h4>GST-Related Proposals</h4>
+            <ul class="budget-item__list">
+              <li>Term life insurance: NIL GST proposed</li>
+              <li>Health insurance: reduced to 5% (without ITC)</li>
+              <li>IGST exemption on re-insurance to be reviewed</li>
+              <li>Online gaming: 28% on actionable claims confirmed</li>
+            </ul>
+          </div>
+
+          <div class="budget-item border-top">
+            <h4>Dispute Resolution</h4>
+            <ul class="budget-item__list">
+              <li>Vivad se Vishwas 2.0 extended &mdash; deadline March 2027</li>
+              <li>ITAT monetary limit raised to Rs 60 lakh</li>
+              <li>Faceless penalty scheme made permanent</li>
+              <li>DRP: time-bound disposal strengthened</li>
+              <li>HC/SC appeals: enhanced monetary limits proposed</li>
+            </ul>
+          </div>
+
+          <div class="budget-item border-top">
+            <h4>TDS / TCS Changes</h4>
+            <ul class="budget-item__list">
+              <li>Section 194J (professional fees): TDS reduced to 7.5%</li>
+              <li>Section 194-O (e-commerce): TDS reduced to 0.1%</li>
+              <li>TCS on LRS/overseas remittances: threshold enhanced</li>
+              <li>Section 194T: New TDS on partner drawings from firms</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /budget -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer__top">
+      <div class="footer__brand">
+        <p class="footer__logo">The Tax Express</p>
+        <p class="footer__about">India's most trusted platform for tax news, judgment analysis and bare act reference. Serving chartered accountants, tax advocates and finance professionals since 2018.</p>
+        <p class="footer__disclaimer"><strong>Disclaimer:</strong> Content on this website is for informational purposes only and does not constitute legal or professional advice. Consult a qualified tax professional for specific matters.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Income Tax</h5>
+        <ul>
+          <li><a href="#">CBDT Circulars</a></li>
+          <li><a href="#">CBDT Notifications</a></li>
+          <li><a href="#">ITR Filing</a></li>
+          <li><a href="#">Transfer Pricing</a></li>
+          <li><a href="#">TDS / TCS</a></li>
+          <li><a href="#">International Tax</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>GST</h5>
+        <ul>
+          <li><a href="#">CBIC Circulars</a></li>
+          <li><a href="#">GST Notifications</a></li>
+          <li><a href="#">AAR / AAAR</a></li>
+          <li><a href="#">GST Returns</a></li>
+          <li><a href="#">E-Way Bill</a></li>
+          <li><a href="#">GST Council</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Case Laws</h5>
+        <ul>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">High Courts</a></li>
+          <li><a href="#">ITAT</a></li>
+          <li><a href="#">CESTAT</a></li>
+          <li><a href="#">Advance Rulings</a></li>
+          <li><a href="#">GAAR Panel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="wrap footer__bottom-inner">
+        <p>&copy; 2026 The Tax Express. All rights reserved.</p>
+        <nav>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Advertise</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+  <div class="modal-backdrop" id="modal-lead" onclick="closeModal('modal-lead')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal('modal-lead')">&#10005;</button>
+      <span class="story-flag story-flag--red">Supreme Court &bull; 3-Judge Bench</span>
+      <h2>SC: Satisfaction Note Mandatory Before Section 153C Notice; Proceedings Without It Are Void Ab Initio</h2>
+      <p class="modal__meta">Civil Appeal No. 4789/2025 &nbsp;&bull;&nbsp; May 10, 2026 &nbsp;&bull;&nbsp; Coram: Justice A.K. Sharma, Justice R. Menon, Justice P. Verma</p>
+      <hr/>
+      <h4>Background</h4>
+      <p>During a search operation u/s 132 at the premises of X Group, the search team seized documents and forwarded them to the AO of Veedhata Tower Pvt. Ltd. (respondent). A notice u/s 153C was issued, and Rs 12 crore was added to the respondent's income. Both CIT(A) and ITAT upheld the challenge to jurisdiction. Revenue appealed to the Supreme Court.</p>
+      <h4>Issues Before the Court</h4>
+      <p>(i) Whether recording of satisfaction before notice u/s 153C is a mandatory jurisdictional requirement. (ii) Whether a separate satisfaction note is necessary where the same AO has jurisdiction over both the searched person and the other person.</p>
+      <h4>Decision</h4>
+      <p>On Issue (i): The Supreme Court held that the satisfaction note is a condition precedent. It must be recorded before the notice is issued. Post-hoc rationalisation does not cure the defect. The satisfaction note must demonstrate that the AO independently formed the opinion that the documents "belong to" the other person — not merely that they were forwarded.</p>
+      <p>On Issue (ii): Even where the same AO exercises jurisdiction over both, a separate and independent satisfaction note is required. The Court distinguished an internal noting from a reasoned satisfaction. The phrase "belong to" in the section means authorship or ownership of the document, not merely that the document mentions the other person or is relevant to them.</p>
+      <h4>Significance</h4>
+      <p>This ruling will have wide impact on pending search assessments. Taxpayers facing proceedings under Section 153C should examine whether a pre-notice satisfaction note exists. Revenue authorities must ensure proper documentation before initiating proceedings. Earlier Bombay HC rulings taking a different view on the dual-jurisdiction issue now stand overruled.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-1" onclick="closeModal('modal-1')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal('modal-1')">&#10005;</button>
+      <span class="story-flag story-flag--blue">Income Tax &bull; CBDT</span>
+      <h2>CBDT Notifies Form 10-IEA for Section 115BAC(6) Option for Business Taxpayers</h2>
+      <p class="modal__meta">Circular No. 4/2026 &nbsp;&bull;&nbsp; May 11, 2026</p>
+      <hr/>
+      <p>CBDT has notified the new Form 10-IEA for individuals and HUFs carrying on business or profession who wish to opt out of the new default tax regime for AY 2026-27. Under Section 115BAC(6), such taxpayers retain the right to elect the old regime, but must exercise the option by filing Form 10-IEA on or before the due date u/s 139(1).</p>
+      <p>The form must be filed electronically on the income tax portal. Late filing will not be accepted and the taxpayer will be assessed under the new regime by default. Taxpayers who had filed Form 10-IEA for AY 2025-26 and continue in the old regime do not need to re-file for AY 2026-27 unless they wish to switch.</p>
+      <h4>Key Conditions</h4>
+      <p>The option under Section 115BAC(6) is available only to taxpayers having income under "Profits and gains of business or profession." Salaried individuals and those with no business income must use the old regime directly without filing Form 10-IEA.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-2" onclick="closeModal('modal-2')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal('modal-2')">&#10005;</button>
+      <span class="story-flag story-flag--green">GST &bull; 55th Council</span>
+      <h2>55th GST Council: Prosecution Threshold Raised, Insurance GST Reduced, Amnesty for Small Demands</h2>
+      <p class="modal__meta">GST Council Meeting Press Release &nbsp;&bull;&nbsp; May 9, 2026</p>
+      <hr/>
+      <p>The 55th GST Council recommended raising the monetary threshold for prosecution from Rs 2 crore to Rs 3 crore. Compounding provisions are also proposed to be liberalised, allowing taxpayers to settle prosecution risk by paying compounding amounts at pre-adjudication stage.</p>
+      <p>Term life insurance premiums proposed to be exempt from GST. Health insurance reduced to 5% without ITC. Electric commercial vehicles brought to 5% GST. An amnesty scheme covering outstanding demands up to Rs 25 lakh as of April 1, 2026 is expected to clean up large volumes of small litigation.</p>
+      <h4>Online Gaming</h4>
+      <p>The Council confirmed 28% GST on the face value of online gaming bets, treating it as actionable claims. Further clarification on treatment of player balance and bonus credits is expected in an upcoming circular.</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="js-toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{
+  "last_updated": "2026-05-12",
+  "items": [
+    {
+      "id": "ik_mum_2026_04",
+      "date": "2026-04-20",
+      "category": "itat",
+      "title": "ITAT Mumbai: Reassessment Under Section 148 Quashed for Non-Compliance With Section 151A Faceless Mechanism",
+      "summary": "Tribunal held that reassessment notice u/s 148 not issued through the mandatory faceless assessment mechanism under Section 151A is jurisdictionally invalid. Once the foundational jurisdiction is vitiated, the entire assessment including addition of Rs 1.61 crore u/s 68 cannot survive.",
+      "source": "ITAT Mumbai – ITA No. 9038/Mum/2025",
+      "url": "https://indiankanoon.org/doc/124958782/"
+    },
+    {
+      "id": "ik_del_hc_2026_01",
+      "date": "2026-01-12",
+      "category": "court",
+      "title": "Delhi HC: Reassessment Based on Client Code Modification Transactions Unsustainable Where Tax Already Paid at Highest Rate",
+      "summary": "Delhi High Court dismissed Revenue appeal holding that reassessment proceedings lacked tangible material — no specific company or correct broker was identified by AO. Since assessee had already paid tax at the highest applicable rate, no income could be said to have escaped assessment.",
+      "source": "Delhi HC – PCIT-7 vs Atul Goel",
+      "url": "https://indiankanoon.org/doc/97699235/"
+    },
+    {
+      "id": "ik_del_itat_2026_01",
+      "date": "2026-01-14",
+      "category": "itat",
+      "title": "ITAT Delhi: Kanpur Development Authority Entitled to Exemption u/s 11; Infrastructure Funds Received Under Govt Orders Not Taxable",
+      "summary": "Tribunal dismissed Revenue appeal holding that the Authority established for public development purposes qualifies for charitable exemption u/s 11. Infrastructure funds received under government orders and utilised per state committee directives were held to be non-taxable. Contribution to AwasBandhu allowed as permissible application of income.",
+      "source": "ITAT Delhi – DCIT vs Kanpur Development Authority",
+      "url": "https://indiankanoon.org/doc/59842959/"
+    },
+    {
+      "id": "ik_chen_itat_2026_02",
+      "date": "2026-02-17",
+      "category": "itat",
+      "title": "ITAT Chennai: Reassessment Notice u/s 148 Quashed – Approval from PCIT Instead of Specified Authority u/s 151(ii) Renders Notice Invalid",
+      "summary": "Tribunal held that for reassessment notices issued beyond three years, approval must be obtained from the Specified Authority under Section 151(ii) and not from the Principal Commissioner of Income Tax. Approval by PCIT is without jurisdiction. Reassessment for AY 2016-17 involving Section 69A addition quashed.",
+      "source": "ITAT Chennai – Aman Gupta vs DCIT",
+      "url": "https://indiankanoon.org/doc/4770093/"
+    },
+    {
+      "id": "ik_gau_hc_2026_02",
+      "date": "2026-02-12",
+      "category": "gst",
+      "title": "Gauhati HC: Show Cause Notice u/s 73 CGST Issued One Day Before Deadline Valid; Corresponding Date Rule Applied",
+      "summary": "Gauhati High Court dismissed writ petition challenging SCN for excess ITC for FY 2020-21. Court applied the corresponding date rule from Dodds v. Walker and held that notice issued on 29.11.2024 for an order deadline of 28.02.2025 fully complies with the three-month prior notice requirement under Section 73(2) CGST Act.",
+      "source": "Gauhati HC – Surya Business Pvt Ltd vs State of Assam",
+      "url": "https://indiankanoon.org/doc/180464323/"
+    },
+    {
+      "id": "cbdt001",
+      "date": "2026-05-12",
+      "category": "it",
+      "title": "CBDT Notifies Form 10-IEA for Section 115BAC(6) Option; Filing Mandatory Before ITR Due Date",
+      "summary": "CBDT has notified the new Form 10-IEA for taxpayers carrying on business who wish to opt out of the new default regime for AY 2026-27. The form must be filed on or before the due date u/s 139(1).",
+      "source": "CBDT",
+      "url": "https://www.incometax.gov.in"
+    },
+    {
+      "id": "gst001",
+      "date": "2026-05-09",
+      "category": "gst",
+      "title": "55th GST Council: Prosecution Threshold Raised to Rs 3 Crore; Term Life Insurance Exempt from GST",
+      "summary": "The 55th GST Council recommended raising the monetary threshold for prosecution under CGST Act from Rs 2 crore to Rs 3 crore. Term life insurance premiums proposed to be fully exempt.",
+      "source": "GST Council",
+      "url": "https://www.gstcouncil.gov.in"
+    },
+    {
+      "id": "itat001",
+      "date": "2026-05-08",
+      "category": "itat",
+      "title": "ITAT Mumbai: Section 56(2)(x) Not Applicable in NCLT-Sanctioned Group Restructuring",
+      "summary": "Special Bench holds that FMV deeming mechanism under Rule 11UA cannot override substance of a court-approved restructuring scheme. Addition of Rs 18.4 crore deleted.",
+      "source": "ITAT Mumbai",
+      "url": "https://www.itatonline.org"
+    },
+    {
+      "id": "sc001",
+      "date": "2026-05-10",
+      "category": "court",
+      "title": "Supreme Court: Satisfaction Note Mandatory Before Section 153C Notice; Absence Renders Proceedings Void",
+      "summary": "Three-judge bench holds that the satisfaction note is a jurisdictional pre-condition under Section 153C and must be recorded before issuance of notice, not after.",
+      "source": "Supreme Court",
+      "url": "https://www.sci.gov.in"
+    },
+    {
+      "id": "cbic001",
+      "date": "2026-05-06",
+      "category": "gst",
+      "title": "CBIC Circular 231/2026: ITC Available on Canteen Services Under Factories Act Obligation",
+      "summary": "CBIC ends long-standing uncertainty confirming GST Input Tax Credit is available on canteen services provided to factory workers under statutory obligation under Factories Act, 1948.",
+      "source": "CBIC",
+      "url": "https://www.cbic.gov.in"
+    }
+  ]
+}
