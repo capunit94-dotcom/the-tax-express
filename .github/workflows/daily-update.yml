@@ -35,3 +35,12 @@ jobs:
             git commit -m "Auto-update: Tax news $(date '+%d %b %Y')" &&
             git push
           )
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: the-tax-express
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
