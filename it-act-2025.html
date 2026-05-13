@@ -5,612 +5,660 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Income-Tax Act, 2025 – The Tax Express</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --red:     #cc0000;
-      --black:   #0a0a0a;
-      --dark:    #1c1c1c;
-      --mid:     #444;
-      --muted:   #777;
-      --light:   #f0f0ee;
-      --border:  #e0e0e0;
-      --white:   #fff;
-      --active-bg: #fff5f5;
-      --hdr: 56px;
-      --col1: 210px;
-      --col2: 310px;
+      --red:      #cc0000;
+      --black:    #0a0a0a;
+      --ink:      #1a1a1a;
+      --mid:      #444;
+      --muted:    #888;
+      --border:   #e2e2e2;
+      --bg:       #f8f7f4;
+      --white:    #ffffff;
+      --sidebar-bg: #111111;
+      --sidebar-w:  280px;
+      --masthead-h: 96px;
     }
-    html, body { height: 100%; font-family: 'Source Sans 3', sans-serif; background: #f5f5f3; color: var(--black); overflow: hidden; }
 
-    /* ══════════════════════════════════════════════
-       TOP HEADER
-    ══════════════════════════════════════════════ */
-    .site-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      height: var(--hdr);
+    html, body {
+      height: 100%; overflow: hidden;
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    /* ════════════════════════════════════════
+       MASTHEAD
+    ════════════════════════════════════════ */
+    .masthead {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--masthead-h);
       background: var(--white);
-      border-bottom: 2px solid var(--red);
-      display: flex; align-items: center; padding: 0 20px;
-      gap: 20px;
     }
-    .hdr-logo { display: flex; align-items: baseline; gap: 3px; text-decoration: none; white-space: nowrap; }
-    .hdr-logo-main { font-family: 'Merriweather', serif; font-size: 20px; font-weight: 900; color: var(--black); }
-    .hdr-logo-main span { color: var(--red); }
-    .hdr-divider { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
-    .hdr-context { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; }
-    .hdr-search {
-      flex: 1; max-width: 480px; margin-left: auto;
-      display: flex; border: 1px solid var(--border); border-radius: 3px; overflow: hidden;
-    }
-    .hdr-search input { flex: 1; padding: 7px 12px; font-size: 13px; border: none; outline: none; font-family: 'Source Sans 3', sans-serif; }
-    .hdr-search button { padding: 7px 16px; background: var(--red); color: #fff; border: none; cursor: pointer; font-size: 12px; font-weight: 600; }
-    .hdr-back { font-size: 12px; color: var(--muted); text-decoration: none; white-space: nowrap; }
-    .hdr-back:hover { color: var(--red); }
-
-    /* ══════════════════════════════════════════════
-       THREE-COLUMN LAYOUT
-    ══════════════════════════════════════════════ */
-    .app-body {
-      display: flex; height: calc(100vh - var(--hdr));
-      margin-top: var(--hdr); overflow: hidden;
-    }
-
-    /* ── COLUMN 1: Category Nav ─────────────────── */
-    .cat-nav {
-      width: var(--col1); flex-shrink: 0;
-      background: var(--white); border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; overflow-y: auto;
-    }
-    .cat-nav__hdr {
-      background: var(--black); color: #fff;
-      padding: 12px 16px; font-size: 13px; font-weight: 700;
+    .masthead__ribbon {
+      background: var(--black);
+      padding: 5px 24px;
       display: flex; align-items: center; justify-content: space-between;
-      cursor: pointer; user-select: none;
     }
-    .cat-nav__hdr svg { width: 12px; height: 12px; fill: #aaa; }
-    .cat-nav__item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 16px; font-size: 13px; color: var(--mid);
-      cursor: pointer; border-left: 3px solid transparent;
-      transition: background .12s;
-    }
-    .cat-nav__item:hover { background: var(--light); }
-    .cat-nav__item.active { color: var(--red); border-left-color: var(--red); font-weight: 600; background: var(--active-bg); }
-    .cat-badge {
-      font-size: 9px; font-weight: 700; background: var(--red); color: #fff;
-      padding: 1px 5px; border-radius: 2px; letter-spacing: .5px;
-    }
-
-    /* ── COLUMN 2: Section List ─────────────────── */
-    .sec-list-panel {
-      width: var(--col2); flex-shrink: 0;
-      background: var(--white); border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; overflow: hidden;
-    }
-    .slp-header {
-      padding: 12px 14px 10px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px; font-weight: 700; color: var(--dark);
-    }
-    .slp-search {
-      padding: 10px 12px; border-bottom: 1px solid var(--border);
-      display: flex; gap: 6px;
-    }
-    .slp-search input {
-      flex: 1; padding: 7px 10px; font-size: 12.5px;
-      border: 1px solid var(--border); border-radius: 3px; outline: none;
+    .masthead__ribbon a {
+      font-size: 11.5px; color: #bbb; text-decoration: none;
       font-family: 'Source Sans 3', sans-serif;
     }
-    .slp-search input:focus { border-color: var(--red); }
-    .slp-search button {
-      padding: 7px 12px; background: var(--red); color: #fff;
-      border: none; border-radius: 3px; cursor: pointer; font-size: 12px;
+    .masthead__ribbon a:hover { color: #fff; }
+    .masthead__ribbon .sep { color: #444; margin: 0 8px; }
+    .masthead__main {
+      display: flex; align-items: center;
+      padding: 0 24px; height: 60px;
+      border-bottom: 3px solid var(--red);
     }
-    .slp-filters { padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--border); }
-    .filter-chip {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--active-bg); border: 1px solid #f0c0c0;
-      color: var(--red); font-size: 11.5px; font-weight: 600;
-      padding: 3px 9px; border-radius: 20px; cursor: pointer;
+    .masthead__logo-wrap { flex: 1; }
+    .masthead__name {
+      font-family: 'Merriweather', serif;
+      font-size: 28px; font-weight: 900;
+      color: var(--black); letter-spacing: -0.5px;
+      text-decoration: none; display: inline-block;
     }
-    .filter-chip span { font-size: 12px; }
-    .slp-meta {
-      padding: 7px 14px; border-bottom: 2px solid var(--red);
-      display: flex; align-items: center; justify-content: space-between;
+    .masthead__name em { color: var(--red); font-style: normal; }
+    .masthead__sub {
+      font-size: 10.5px; color: var(--muted);
+      letter-spacing: 2px; text-transform: uppercase; margin-top: 1px;
     }
-    .slp-count { font-size: 12.5px; font-weight: 700; color: var(--dark); }
-    .slp-icons { display: flex; gap: 8px; }
-    .slp-icon-btn {
-      background: none; border: none; cursor: pointer; color: var(--muted);
-      padding: 2px 4px; font-size: 14px; border-radius: 3px;
+    .masthead__act-label {
+      text-align: right;
     }
-    .slp-icon-btn:hover { background: var(--light); color: var(--dark); }
-    .slp-icon-btn.active { color: var(--red); }
-    .sec-list { flex: 1; overflow-y: auto; }
-    .sec-list::-webkit-scrollbar { width: 4px; }
-    .sec-list::-webkit-scrollbar-thumb { background: #ddd; }
+    .masthead__act-title {
+      font-family: 'Merriweather', serif;
+      font-size: 13px; font-weight: 700; color: var(--ink);
+      line-height: 1.3;
+    }
+    .masthead__act-badge {
+      display: inline-block; margin-top: 4px;
+      background: var(--red); color: #fff;
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1px;
+      padding: 2px 8px; border-radius: 2px; text-transform: uppercase;
+    }
+    .masthead__search {
+      margin: 0 24px;
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: 2px; overflow: hidden;
+      height: 34px; flex: 0 0 260px;
+    }
+    .masthead__search input {
+      flex: 1; padding: 0 12px; font-size: 13px; border: none; outline: none;
+      font-family: 'Source Sans 3', sans-serif; background: #fafafa;
+    }
+    .masthead__search button {
+      padding: 0 14px; height: 34px;
+      background: var(--red); color: #fff; border: none; cursor: pointer;
+      font-size: 12px; font-weight: 600;
+    }
 
-    .chapter-header {
-      padding: 7px 14px; background: #f7f7f5;
-      font-size: 10.5px; font-weight: 700; color: var(--muted);
-      letter-spacing: .6px; text-transform: uppercase;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    /* ════════════════════════════════════════
+       LAYOUT
+    ════════════════════════════════════════ */
+    .layout {
+      display: flex;
+      margin-top: var(--masthead-h);
+      height: calc(100vh - var(--masthead-h));
+      overflow: hidden;
+    }
+
+    /* ════════════════════════════════════════
+       LEFT SIDEBAR (dark editorial style)
+    ════════════════════════════════════════ */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--sidebar-bg);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    .sidebar__header {
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .sidebar__act {
+      font-size: 11px; color: #888;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px;
+    }
+    .sidebar__act-name {
+      font-family: 'Merriweather', serif;
+      font-size: 14px; color: #fff; font-weight: 700; line-height: 1.35;
+    }
+    .sidebar__count {
+      font-size: 11px; color: #666; margin-top: 5px;
+    }
+    .sidebar__count span { color: var(--red); font-weight: 700; }
+
+    .sidebar__search {
+      padding: 10px 12px;
+      border-bottom: 1px solid #222;
+      display: flex; gap: 0;
+    }
+    .sidebar__search input {
+      flex: 1; padding: 7px 10px; font-size: 12.5px;
+      background: #1e1e1e; color: #ddd;
+      border: 1px solid #333; border-right: none;
+      border-radius: 2px 0 0 2px; outline: none;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .sidebar__search input::placeholder { color: #555; }
+    .sidebar__search input:focus { border-color: var(--red); }
+    .sidebar__search button {
+      padding: 7px 12px;
+      background: var(--red); color: #fff; border: none;
+      border-radius: 0 2px 2px 0; cursor: pointer; font-size: 12px;
+    }
+
+    .sidebar__list { flex: 1; overflow-y: auto; }
+    .sidebar__list::-webkit-scrollbar { width: 3px; }
+    .sidebar__list::-webkit-scrollbar-thumb { background: #333; }
+
+    .ch-label {
+      padding: 8px 14px 6px;
+      font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--red); font-weight: 700;
+      background: #161616;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
       position: sticky; top: 0; z-index: 5;
     }
 
-    .sec-row {
-      padding: 10px 14px 10px 12px;
-      border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      display: flex; align-items: flex-start; gap: 8px;
-      transition: background .1s;
+    .sec-btn {
+      display: flex; align-items: flex-start; gap: 10px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 10px 14px; border-left: 3px solid transparent;
+      transition: background .12s, border-color .12s;
+      text-align: left;
     }
-    .sec-row:hover { background: #fafafa; }
-    .sec-row.active {
-      background: var(--active-bg);
-      border-left-color: var(--red);
-    }
-    .sec-row__num {
-      font-size: 12px; font-weight: 700; color: var(--red);
-      white-space: nowrap; min-width: 68px; padding-top: 1px;
-    }
-    .sec-row.active .sec-row__num { color: var(--red); }
-    .sec-row__body { flex: 1; min-width: 0; }
-    .sec-row__title { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.35; }
-    .sec-row__sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
-    .sec-row__tick { color: #22aa55; font-size: 14px; margin-top: 1px; }
-    .no-results-msg { padding: 24px 14px; font-size: 13px; color: var(--muted); text-align: center; }
+    .sec-btn:hover { background: #1c1c1c; }
+    .sec-btn.active { background: #1f0000; border-left-color: var(--red); }
 
-    /* ── COLUMN 3: Content ──────────────────────── */
-    .content-col {
-      flex: 1; display: flex; flex-direction: column; overflow: hidden;
-      background: #f5f5f3;
+    .sec-btn__num {
+      font-size: 13px; font-weight: 700; color: var(--red);
+      min-width: 28px; padding-top: 1px; flex-shrink: 0;
+    }
+    .sec-btn__text { flex: 1; min-width: 0; }
+    .sec-btn__label {
+      font-size: 12.5px; color: #ccc; line-height: 1.4;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .sec-btn.active .sec-btn__label { color: #fff; }
+    .no-res { padding: 20px 16px; font-size: 13px; color: #555; text-align: center; }
+
+    /* ════════════════════════════════════════
+       RIGHT CONTENT AREA
+    ════════════════════════════════════════ */
+    .content-area {
+      flex: 1; display: flex; flex-direction: column;
+      overflow: hidden;
     }
 
-    /* Toolbar */
-    .content-toolbar {
+    /* Action bar — thin strip above content */
+    .action-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      padding: 0 20px;
-      display: flex; align-items: center; gap: 10px; min-height: 46px;
-      flex-wrap: wrap;
+      padding: 0 28px;
+      height: 44px;
+      display: none; /* shown when a section is selected */
+      align-items: center; gap: 10px;
     }
-    .toolbar-sec-input {
-      font-size: 13px; font-weight: 600; color: var(--dark);
-      border: 1px solid var(--border); border-radius: 3px;
-      padding: 5px 10px; outline: none; min-width: 120px;
-      font-family: 'Source Sans 3', sans-serif;
-    }
-    .toolbar-sec-input:focus { border-color: var(--red); }
-    .tb-btn {
-      padding: 5px 14px; border-radius: 3px; cursor: pointer;
-      font-size: 12.5px; font-weight: 600;
-      font-family: 'Source Sans 3', sans-serif;
-      transition: all .12s;
-    }
-    .tb-btn-outline {
-      background: none; color: var(--dark); border: 1px solid var(--border);
-    }
-    .tb-btn-outline:hover { border-color: var(--red); color: var(--red); }
-    .tb-follow {
-      background: none; color: var(--red); border: 1px solid var(--red);
-    }
-    .tb-follow:hover { background: var(--red); color: #fff; }
-    .tb-spacer { flex: 1; }
-    .tb-icons { display: flex; gap: 4px; }
-    .tb-icon {
-      background: none; border: none; cursor: pointer; color: var(--muted);
-      width: 30px; height: 30px; border-radius: 3px; font-size: 14px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .1s;
-    }
-    .tb-icon:hover { background: var(--light); color: var(--dark); }
-    .tb-download {
+    .action-bar.visible { display: flex; }
+    .ab-crumb {
+      font-size: 12px; color: var(--muted);
       display: flex; align-items: center; gap: 6px;
-      padding: 6px 16px; background: var(--red); color: #fff;
-      border: none; border-radius: 3px; cursor: pointer;
-      font-size: 12.5px; font-weight: 700; letter-spacing: .2px;
-      font-family: 'Source Sans 3', sans-serif;
-      transition: background .12s;
     }
-    .tb-download:hover { background: #a80000; }
-
-    /* Content area */
-    .content-scroll {
-      flex: 1; overflow-y: auto; padding: 24px 28px 60px;
-    }
-    .content-scroll::-webkit-scrollbar { width: 6px; }
-    .content-scroll::-webkit-scrollbar-thumb { background: #ccc; }
-
-    /* Welcome */
-    .welcome-screen {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; min-height: 70vh; text-align: center;
-    }
-    .welcome-screen .wi { font-size: 52px; margin-bottom: 16px; opacity: .4; }
-    .welcome-screen h2 { font-family: 'Merriweather', serif; font-size: 20px; color: var(--dark); margin-bottom: 8px; }
-    .welcome-screen p { font-size: 14px; color: var(--muted); max-width: 340px; line-height: 1.6; }
-
-    /* Section card */
-    .section-card {
-      background: var(--white); border-radius: 4px;
-      border: 1px solid var(--border); overflow: hidden;
-      max-width: 900px;
-    }
-    .section-card__top {
-      background: #fafafa; border-bottom: 2px solid var(--red);
-      padding: 16px 24px 14px;
-    }
-    .sct-act-name {
-      font-size: 11px; color: var(--muted); font-weight: 600;
-      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px;
-    }
-    .sct-title {
-      font-family: 'Merriweather', serif;
-      font-size: 18px; font-weight: 700; color: var(--dark); line-height: 1.35;
-    }
-    .sct-sub-title {
-      font-size: 13px; color: var(--muted); margin-top: 6px;
-      font-style: italic;
-    }
-    .sct-meta-row {
-      display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;
-    }
-    .sct-meta-pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--active-bg); border: 1px solid #f0c0c0;
-      color: var(--red); font-size: 11px; font-weight: 600;
-      padding: 3px 10px; border-radius: 20px;
-    }
-    .section-card__body {
-      padding: 24px 24px 32px;
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 14.5px; line-height: 1.9; color: #1a1a1a;
-    }
-    .section-card__body .sec-text { white-space: pre-wrap; }
-
-    /* Prev/Next */
-    .content-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 20px; max-width: 900px;
-    }
-    .cn-btn {
+    .ab-crumb span { color: var(--red); font-weight: 600; }
+    .ab-crumb .sep { color: #ccc; }
+    .ab-spacer { flex: 1; }
+    .ab-nav {
       display: flex; align-items: center; gap: 6px;
-      padding: 9px 18px; background: var(--white);
-      border: 1px solid var(--border); border-radius: 3px;
-      font-size: 12.5px; font-weight: 600; color: var(--mid);
+    }
+    .ab-nav-btn {
+      padding: 5px 14px; background: #f5f5f5;
+      border: 1px solid var(--border); border-radius: 2px;
+      font-size: 12px; font-weight: 600; color: var(--mid);
       cursor: pointer; font-family: 'Source Sans 3', sans-serif;
       transition: all .12s;
     }
-    .cn-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
-    .cn-btn:disabled { opacity: .3; pointer-events: none; }
-    .cn-pos { font-size: 12px; color: var(--muted); }
+    .ab-nav-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+    .ab-nav-btn:disabled { opacity: .3; pointer-events: none; }
+    .ab-pos { font-size: 11.5px; color: #bbb; padding: 0 4px; }
 
-    /* ══════════════════════════════════════════════
-       PRINT / PDF DOWNLOAD STYLES
-    ══════════════════════════════════════════════ */
-    @media print {
-      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      body { overflow: visible !important; background: #fff !important; }
-      .site-header, .cat-nav, .sec-list-panel, .content-toolbar, .content-nav { display: none !important; }
-      .app-body { height: auto !important; overflow: visible !important; display: block !important; }
-      .content-col { height: auto !important; overflow: visible !important; display: block !important; }
-      .content-scroll { overflow: visible !important; padding: 0 !important; }
-      .section-card { border: none !important; max-width: 100% !important; }
-      .welcome-screen { display: none !important; }
-
-      /* Branded print header — The Tax Express style (mirrors Taxmann PDF format) */
-      .print-header { display: block !important; }
-      .section-card__top { background: #fff !important; }
-    }
-
-    .print-header {
-      display: none;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--red);
-    }
-    .print-header__logo {
+    .dl-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 16px;
+      background: var(--black); color: #fff;
+      border: none; border-radius: 2px; cursor: pointer;
+      font-size: 12px; font-weight: 700; letter-spacing: .3px;
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 12px; color: #555; margin-bottom: 2px;
+      transition: background .12s;
     }
-    .print-header__brand {
+    .dl-btn:hover { background: var(--red); }
+    .dl-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+
+    /* Content scroll */
+    .content-scroll {
+      flex: 1; overflow-y: auto; padding: 28px 36px 80px;
+    }
+    .content-scroll::-webkit-scrollbar { width: 5px; }
+    .content-scroll::-webkit-scrollbar-thumb { background: #ddd; }
+
+    /* Welcome */
+    .welcome {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 65vh; text-align: center;
+    }
+    .welcome__icon { font-size: 48px; margin-bottom: 18px; opacity: .3; }
+    .welcome__title {
+      font-family: 'Merriweather', serif; font-size: 21px;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .welcome__line { width: 40px; height: 3px; background: var(--red); margin: 0 auto 12px; }
+    .welcome__text { font-size: 14px; color: var(--muted); max-width: 360px; line-height: 1.7; }
+    .welcome__hint {
+      margin-top: 24px; font-size: 12px; color: #bbb;
+      border-top: 1px solid var(--border); padding-top: 14px;
+      display: flex; gap: 16px; justify-content: center;
+    }
+
+    /* Section view */
+    .sec-view { display: none; max-width: 820px; }
+    .sec-view.on { display: block; }
+
+    /* Top strap (red) */
+    .sec-strap {
+      background: var(--red); color: #fff;
+      padding: 6px 20px; margin-bottom: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      border-radius: 3px 3px 0 0;
+    }
+    .sec-strap__left {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .sec-strap__right { font-size: 11px; opacity: .85; }
+
+    /* Section header */
+    .sec-header {
+      background: var(--white);
+      padding: 24px 28px 20px;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .sec-header__num {
+      font-size: 12px; font-weight: 700; color: var(--red);
+      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .sec-header__title {
       font-family: 'Merriweather', serif;
-      font-size: 18px; font-weight: 900; color: var(--red);
+      font-size: 20px; font-weight: 700; color: var(--black);
+      line-height: 1.35; margin-bottom: 10px;
     }
-    .print-header__brand span { color: var(--black); }
+    .sec-header__rule { height: 1px; background: var(--border); margin: 12px 0; }
+    .sec-header__meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 12px; color: var(--muted);
+    }
+    .sec-header__meta strong { color: var(--mid); }
 
-    /* ══════════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════════ */
-    @media (max-width: 900px) {
-      :root { --col1: 0px; --col2: 260px; }
-      .cat-nav { display: none; }
+    /* Body */
+    .sec-body {
+      background: var(--white);
+      padding: 24px 28px 32px;
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 3px 3px;
     }
-    @media (max-width: 600px) {
-      .sec-list-panel { width: 100%; position: fixed; left: -100%; top: var(--hdr); height: calc(100vh - var(--hdr)); transition: left .25s; z-index: 200; }
-      .sec-list-panel.mob-open { left: 0; box-shadow: 4px 0 20px rgba(0,0,0,.15); }
-      .mob-menu-btn { display: flex !important; }
+    .sec-body__text {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px; line-height: 1.9; color: #1e1e1e;
+      white-space: pre-wrap;
     }
-    .mob-menu-btn {
-      display: none; align-items: center; gap: 6px;
+
+    /* ════════════════════════════════════════
+       PRINT / DOWNLOAD  — The Tax Express branded
+    ════════════════════════════════════════ */
+    @media print {
+      *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { overflow: visible !important; background: #fff !important; }
+      .masthead, .sidebar, .action-bar, .welcome { display: none !important; }
+      .layout { display: block !important; height: auto !important; overflow: visible !important; margin-top: 0 !important; }
+      .content-area { display: block !important; height: auto !important; }
+      .content-scroll { overflow: visible !important; padding: 0 !important; }
+      .sec-view.on { display: block !important; max-width: 100% !important; }
+      .print-header { display: block !important; }
+    }
+    .print-header { display: none; margin-bottom: 24px; }
+    .ph-site { font-size: 11px; color: #888; font-family: 'Source Sans 3', sans-serif; }
+    .ph-brand { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 900; margin: 4px 0; }
+    .ph-brand em { color: var(--red); font-style: normal; }
+    .ph-rule { border: none; border-top: 2px solid var(--red); margin: 8px 0 20px; }
+    .ph-doc-title {
+      text-align: center; font-family: 'Merriweather', serif;
+      font-size: 15px; font-weight: 700; margin-bottom: 4px;
+    }
+    .ph-act-line { text-align: center; font-size: 12px; color: #666; margin-bottom: 20px; }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      :root { --masthead-h: 104px; }
+      .masthead__search { display: none; }
+      .sidebar {
+        position: fixed; left: -100%; top: var(--masthead-h);
+        height: calc(100vh - var(--masthead-h));
+        z-index: 150; transition: left .25s;
+        box-shadow: 4px 0 20px rgba(0,0,0,.4);
+      }
+      .sidebar.open { left: 0; }
+      .mob-btn { display: flex !important; }
+      .content-scroll { padding: 16px 16px 60px; }
+    }
+    .mob-btn {
+      display: none; align-items: center; gap: 7px;
       background: var(--black); color: #fff; border: none;
-      padding: 7px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+      padding: 9px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
       font-family: 'Source Sans 3', sans-serif;
+      border-bottom: 1px solid #333;
     }
   </style>
 </head>
 <body>
 
-  <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
-  <header class="site-header">
-    <a href="it-act-2025.html" class="hdr-logo">
-      <span class="hdr-logo-main">The <span>Tax</span> Express</span>
-    </a>
-    <div class="hdr-divider"></div>
-    <span class="hdr-context">Bare Acts</span>
-    <div class="hdr-search">
-      <input type="text" id="global-q" placeholder="Search sections, keywords…" onkeydown="if(event.key==='Enter')doGlobalSearch()" />
-      <button onclick="doGlobalSearch()">Search</button>
+  <!-- ══ MASTHEAD ══════════════════════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead__ribbon">
+      <div>
+        <a href="index.html">Home</a>
+        <span class="sep">|</span>
+        <a href="index.html#it-news">Income Tax News</a>
+        <span class="sep">|</span>
+        <a href="index.html#itat">ITAT Judgments</a>
+        <span class="sep">|</span>
+        <a href="index.html#gst">GST</a>
+      </div>
+      <div>
+        <a href="index.html">← Back to Main Site</a>
+      </div>
     </div>
-    <a href="index.html" class="hdr-back">← Main Site</a>
+    <div class="masthead__main">
+      <div class="masthead__logo-wrap">
+        <a href="index.html" class="masthead__name">The <em>Tax</em> Express</a>
+        <div class="masthead__sub">India's Tax Intelligence Platform</div>
+      </div>
+      <div class="masthead__search">
+        <input type="text" id="gs-input" placeholder="Search section, keyword…" onkeydown="if(event.key==='Enter')doGS()" />
+        <button onclick="doGS()">Go</button>
+      </div>
+      <div class="masthead__act-label">
+        <div class="masthead__act-title">Income-Tax Act, 2025</div>
+        <span class="masthead__act-badge">Amended by Finance Act, 2026</span>
+      </div>
+    </div>
   </header>
 
-  <!-- ══ APP BODY ══════════════════════════════════════════════════════ -->
-  <div class="app-body">
+  <!-- ══ LAYOUT ════════════════════════════════════════════════════ -->
+  <div class="layout">
 
-    <!-- ── COL 1: Category Nav ──────────────────────────────────────── -->
-    <nav class="cat-nav">
-      <div class="cat-nav__hdr">
-        Income Tax
-        <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
+    <!-- ── LEFT SIDEBAR ─────────────────────────────────────────── -->
+    <aside class="sidebar" id="js-sidebar">
+      <div class="sidebar__header">
+        <div class="sidebar__act">Bare Act</div>
+        <div class="sidebar__act-name">Income-Tax Act, 2025</div>
+        <div class="sidebar__count"><span id="js-count">—</span> sections available</div>
       </div>
-      <div class="cat-nav__item">Updates</div>
-      <div class="cat-nav__item">All About Income Tax Act</div>
-      <div class="cat-nav__item" style="justify-content:flex-start;gap:8px;">Comparative <span class="cat-badge">NEW</span></div>
-      <div class="cat-nav__item" style="justify-content:flex-start;gap:8px;">Comparative Rules <span class="cat-badge">NEW</span></div>
-      <div class="cat-nav__item">Case Laws</div>
-      <div class="cat-nav__item active">Acts</div>
-      <div class="cat-nav__item">Rules</div>
-      <div class="cat-nav__item">Forms</div>
-      <div class="cat-nav__item">Circulars</div>
-    </nav>
+      <div class="sidebar__search">
+        <input type="text" id="sb-q" placeholder="Filter sections…" oninput="filterList(this.value)" />
+        <button onclick="filterList(document.getElementById('sb-q').value)">→</button>
+      </div>
+      <div class="sidebar__list" id="js-list">
+        <div class="no-res">Loading…</div>
+      </div>
+    </aside>
 
-    <!-- ── COL 2: Section List ──────────────────────────────────────── -->
-    <div class="sec-list-panel" id="js-slp">
-      <div class="slp-header">Income Tax — Acts</div>
-      <div class="slp-search">
-        <input type="text" id="slp-q" placeholder="Search Text" oninput="filterList(this.value)" />
-        <button onclick="filterList(document.getElementById('slp-q').value)">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-      </div>
-      <div class="slp-filters">
-        <span class="filter-chip">Income-Tax Act, 2025 <span>×</span></span>
-        <span class="filter-chip">2026 <span>×</span></span>
-      </div>
-      <div class="slp-meta">
-        <span class="slp-count" id="js-count">Loading…</span>
-        <div class="slp-icons">
-          <button class="slp-icon-btn active" title="List view">☰</button>
-          <button class="slp-icon-btn" title="Print" onclick="window.print()">⎙</button>
-        </div>
-      </div>
-      <div class="sec-list" id="js-sec-list">
-        <div class="no-results-msg">Loading sections…</div>
-      </div>
-    </div>
+    <!-- ── CONTENT ───────────────────────────────────────────────── -->
+    <div class="content-area">
 
-    <!-- ── COL 3: Content ────────────────────────────────────────────── -->
-    <div class="content-col">
-
-      <!-- Toolbar -->
-      <div class="content-toolbar" id="js-toolbar" style="display:none;">
-        <input class="toolbar-sec-input" id="tb-sec-num" value="" readonly />
-        <button class="tb-btn tb-btn-outline" id="tb-corr">Corresponding Section</button>
-        <div class="tb-spacer"></div>
-        <div class="tb-icons">
-          <button class="tb-icon" title="Bookmark">☆</button>
-          <button class="tb-icon" title="Highlight">✏️</button>
-          <button class="tb-icon" title="Share link">🔗</button>
-        </div>
-        <button class="tb-download" onclick="downloadPDF()">
-          ↓ Download PDF
-        </button>
-      </div>
-
-      <button class="mob-menu-btn" onclick="document.getElementById('js-slp').classList.toggle('mob-open')">
-        ☰ Sections
+      <button class="mob-btn" onclick="document.getElementById('js-sidebar').classList.toggle('open')">
+        ☰ &nbsp;Browse Sections
       </button>
 
-      <!-- Scroll area -->
-      <div class="content-scroll" id="js-content-scroll">
+      <!-- Action bar -->
+      <div class="action-bar" id="js-abar">
+        <div class="ab-crumb">
+          <span id="ab-chapter">—</span>
+          <span class="sep">›</span>
+          <span id="ab-sec">—</span>
+        </div>
+        <div class="ab-spacer"></div>
+        <div class="ab-nav">
+          <button class="ab-nav-btn" id="btn-prev" onclick="navigate(-1)">← Prev</button>
+          <span class="ab-pos" id="js-pos"></span>
+          <button class="ab-nav-btn" id="btn-next" onclick="navigate(1)">Next →</button>
+        </div>
+        <button class="dl-btn" onclick="downloadPDF()">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as PDF
+        </button>
+      </div>
+
+      <!-- Scroll -->
+      <div class="content-scroll" id="js-scroll">
 
         <!-- Welcome -->
-        <div class="welcome-screen" id="js-welcome">
-          <div class="wi">⚖️</div>
-          <h2>Income-Tax Act, 2025</h2>
-          <p>Select any section from the list on the left to read its text, sub-sections, provisos and explanations — as amended by Finance Act, 2026.</p>
+        <div class="welcome" id="js-welcome">
+          <div class="welcome__icon">§</div>
+          <h2 class="welcome__title">Income-Tax Act, 2025</h2>
+          <div class="welcome__line"></div>
+          <p class="welcome__text">Choose any section from the left panel to read its full text — sub-sections, provisos, explanations and Finance Act 2026 amendments included.</p>
+          <div class="welcome__hint">
+            <span>220+ Sections</span>
+            <span>·</span>
+            <span>13 Chapters</span>
+            <span>·</span>
+            <span>As amended by FA 2026</span>
+          </div>
         </div>
 
-        <!-- Section display -->
-        <div id="js-sec-display" style="display:none;">
+        <!-- Section view -->
+        <div class="sec-view" id="js-secview">
 
-          <!-- Print header (visible only when printing) -->
-          <div class="print-header" id="js-print-header">
-            <div class="print-header__logo">thetaxexpress.pages.dev</div>
-            <div class="print-header__brand"><span>The</span> Tax Express — <span>Bare Acts</span></div>
+          <!-- Print header (hidden on screen, shows on print) -->
+          <div class="print-header" id="js-ph">
+            <div class="ph-site">thetaxexpress.pages.dev &nbsp;·&nbsp; Bare Acts</div>
+            <div class="ph-brand">The <em>Tax</em> Express</div>
+            <hr class="ph-rule" />
+            <div class="ph-doc-title" id="ph-title"></div>
+            <div class="ph-act-line">Income-Tax Act, 2025 &nbsp;[As amended by Finance Act, 2026]</div>
           </div>
 
-          <div class="section-card" id="js-section-card">
-            <div class="section-card__top">
-              <div class="sct-act-name">Income-Tax Act, 2025 — As Amended by Finance Act, 2026</div>
-              <div class="sct-title" id="js-sct-title"></div>
-              <div class="sct-sub-title" id="js-sct-subtitle"></div>
-              <div class="sct-meta-row">
-                <span class="sct-meta-pill" id="js-sct-chapter"></span>
-                <span class="sct-meta-pill">Income-Tax Act, 2025</span>
-              </div>
+          <!-- Red strap -->
+          <div class="sec-strap">
+            <span class="sec-strap__left" id="js-strap-left">Section</span>
+            <span class="sec-strap__right">Income-Tax Act, 2025 · As amended by Finance Act, 2026</span>
+          </div>
+
+          <!-- Header card -->
+          <div class="sec-header">
+            <div class="sec-header__num" id="js-hnum"></div>
+            <div class="sec-header__title" id="js-htitle"></div>
+            <div class="sec-header__rule"></div>
+            <div class="sec-header__meta">
+              <div><strong>Act:</strong> Income-Tax Act, 2025 (30 of 2025)</div>
+              <div id="js-hmeta-ch"></div>
+              <div><strong>Amendment:</strong> Finance Act, 2026</div>
             </div>
-            <div class="section-card__body">
-              <div class="sec-text" id="js-sec-body"></div>
-            </div>
           </div>
 
-          <div class="content-nav">
-            <button class="cn-btn" id="btn-prev" onclick="navigate(-1)">← Previous</button>
-            <span class="cn-pos" id="js-nav-pos"></span>
-            <button class="cn-btn" id="btn-next" onclick="navigate(1)">Next →</button>
+          <!-- Body -->
+          <div class="sec-body">
+            <div class="sec-body__text" id="js-sectext"></div>
           </div>
 
-        </div>
-      </div>
-    </div>
+        </div><!-- /sec-view -->
+      </div><!-- /scroll -->
+    </div><!-- /content-area -->
+  </div><!-- /layout -->
 
-  </div>
-
-  <!-- ══ SCRIPT ══════════════════════════════════════════════════════ -->
+  <!-- ══ SCRIPT ════════════════════════════════════════════════════ -->
   <script>
-    let ALL = [], FILTERED = [], CURRENT = -1;
+    let ALL = [], FILTERED = [], CUR = -1;
 
     fetch('ita2025.json?v=' + Date.now())
       .then(r => r.json())
-      .then(data => {
-        ALL = data.sections;
+      .then(d => {
+        ALL = d.sections;
         FILTERED = ALL;
-        document.getElementById('js-count').textContent = ALL.length + ' Records';
+        document.getElementById('js-count').textContent = ALL.length;
         buildList(ALL);
-        // Auto-select first section
-        if (ALL.length) showSection(0);
+        if (ALL.length) showSec(0);
       })
       .catch(() => {
-        document.getElementById('js-sec-list').innerHTML = '<div class="no-results-msg">Could not load sections.</div>';
+        document.getElementById('js-list').innerHTML = '<div class="no-res">Could not load sections.</div>';
       });
 
     function buildList(secs) {
-      const el = document.getElementById('js-sec-list');
-      if (!secs.length) { el.innerHTML = '<div class="no-results-msg">No sections found.</div>'; return; }
+      const el = document.getElementById('js-list');
+      if (!secs.length) { el.innerHTML = '<div class="no-res">No sections match.</div>'; return; }
 
-      let html = '', lastChapter = '';
+      let html = '', lastCh = '';
       secs.forEach((s, i) => {
-        if (s.chapter !== lastChapter) {
-          html += `<div class="chapter-header">${s.chapter} &mdash; ${s.chapter_title}</div>`;
-          lastChapter = s.chapter;
+        if (s.chapter !== lastCh) {
+          html += `<div class="ch-label">${s.chapter} &mdash; ${s.chapter_title}</div>`;
+          lastCh = s.chapter;
         }
-        const hasTitle = s.title && s.title !== `Section ${s.num}`;
-        html += `<div class="sec-row" id="row-${s.num}" onclick="showSection(${i})">
-          <div class="sec-row__num">Section - ${s.num}</div>
-          <div class="sec-row__body">
-            <div class="sec-row__title">${hasTitle ? s.title : '—'}</div>
-            ${hasTitle ? '' : ''}
-          </div>
-        </div>`;
+        const label = (s.title && s.title !== `Section ${s.num}`) ? s.title : 'Section ' + s.num;
+        html += `<button class="sec-btn" id="sb${s.num}" onclick="showSec(${i})">
+          <span class="sec-btn__num">§ ${s.num}</span>
+          <span class="sec-btn__text">
+            <span class="sec-btn__label">${label}</span>
+          </span>
+        </button>`;
       });
       el.innerHTML = html;
     }
 
-    function showSection(idx) {
+    function showSec(idx) {
       if (idx < 0 || idx >= FILTERED.length) return;
-      CURRENT = idx;
+      CUR = idx;
       const s = FILTERED[idx];
-
-      // Show toolbar + content
-      document.getElementById('js-toolbar').style.display = '';
-      document.getElementById('js-welcome').style.display = 'none';
-      document.getElementById('js-sec-display').style.display = '';
-
-      // Toolbar
-      document.getElementById('tb-sec-num').value = `Section - ${s.num}`;
-      document.getElementById('tb-corr').textContent = 'Corresponding Section';
-
-      // Card
       const hasTitle = s.title && s.title !== `Section ${s.num}`;
-      document.getElementById('js-sct-title').textContent = `Section - ${s.num}, Income-Tax Act, 2025 - 2026`;
-      document.getElementById('js-sct-subtitle').textContent = hasTitle ? s.title : '';
-      document.getElementById('js-sct-chapter').textContent = `${s.chapter} — ${s.chapter_title}`;
-      document.getElementById('js-sec-body').textContent = s.content;
 
-      // Nav
+      // Show elements
+      document.getElementById('js-welcome').style.display = 'none';
+      document.getElementById('js-abar').classList.add('visible');
+      document.getElementById('js-secview').classList.add('on');
+
+      // Action bar
+      document.getElementById('ab-chapter').textContent = s.chapter;
+      document.getElementById('ab-sec').textContent = 'Section ' + s.num;
+      document.getElementById('js-pos').textContent = (idx + 1) + ' / ' + FILTERED.length;
       document.getElementById('btn-prev').disabled = idx === 0;
       document.getElementById('btn-next').disabled = idx === FILTERED.length - 1;
-      document.getElementById('js-nav-pos').textContent = `${idx + 1} of ${FILTERED.length}`;
 
-      // Sidebar active
-      document.querySelectorAll('.sec-row').forEach(r => r.classList.remove('active'));
-      const row = document.getElementById('row-' + s.num);
-      if (row) {
-        row.classList.add('active');
-        row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      // Header
+      document.getElementById('js-strap-left').textContent = 'Section ' + s.num + (hasTitle ? ' — ' + s.title : '');
+      document.getElementById('js-hnum').textContent = 'Section ' + s.num;
+      document.getElementById('js-htitle').textContent = hasTitle ? s.title : 'Income-Tax Act, 2025';
+      document.getElementById('js-hmeta-ch').innerHTML = `<strong>Chapter:</strong> ${s.chapter} &mdash; ${s.chapter_title}`;
+
+      // Print header
+      document.getElementById('ph-title').textContent = 'Section - ' + s.num + ', Income-Tax Act, 2025 - 2026';
+
+      // Body
+      document.getElementById('js-sectext').textContent = s.content;
+
+      // Sidebar
+      document.querySelectorAll('.sec-btn').forEach(b => b.classList.remove('active'));
+      const btn = document.getElementById('sb' + s.num);
+      if (btn) {
+        btn.classList.add('active');
+        btn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
 
-      // Scroll content to top
-      document.getElementById('js-content-scroll').scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('js-slp').classList.remove('mob-open');
+      document.getElementById('js-scroll').scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('js-sidebar').classList.remove('open');
     }
 
-    function navigate(dir) { showSection(CURRENT + dir); }
+    function navigate(d) { showSec(CUR + d); }
 
     function filterList(q) {
       q = q.trim().toLowerCase();
-      FILTERED = q
-        ? ALL.filter(s => s.num.toLowerCase().includes(q) || s.title.toLowerCase().includes(q) || s.content.toLowerCase().includes(q))
-        : ALL;
-      document.getElementById('js-count').textContent = FILTERED.length + ' Records';
+      FILTERED = q ? ALL.filter(s =>
+        ('section ' + s.num).includes(q) ||
+        s.title.toLowerCase().includes(q) ||
+        s.content.toLowerCase().includes(q)
+      ) : ALL;
+      document.getElementById('js-count').textContent = FILTERED.length;
       buildList(FILTERED);
-      if (FILTERED.length > 0) showSection(0);
+      if (FILTERED.length) showSec(0);
     }
 
-    function doGlobalSearch() {
-      const q = document.getElementById('global-q').value.trim();
+    function doGS() {
+      const q = document.getElementById('gs-input').value.trim();
       if (!q) return;
-      document.getElementById('slp-q').value = q;
+      document.getElementById('sb-q').value = q;
       filterList(q);
     }
 
-    /* ── PDF Download ────────────────────────────────────────────── */
+    /* ── PDF Download — The Tax Express branded ────────────────── */
     function downloadPDF() {
-      if (CURRENT < 0) return;
-      const s = FILTERED[CURRENT];
+      if (CUR < 0) return;
+      const s = FILTERED[CUR];
       const hasTitle = s.title && s.title !== `Section ${s.num}`;
 
-      const win = window.open('', '_blank');
-      win.document.write(`<!DOCTYPE html><html><head>
-        <meta charset="UTF-8"/>
-        <title>Section ${s.num} - The Tax Express</title>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet"/>
-        <style>
-          body { font-family: 'Source Sans 3', Arial, sans-serif; margin: 40px; color: #111; }
-          .te-logo-line { font-size: 12px; color: #555; margin-bottom: 2px; }
-          .te-brand { font-size: 20px; font-weight: 900; color: #cc0000; margin-bottom: 4px; font-family: Georgia, serif; }
-          .te-brand span { color: #000; }
-          .te-divider { border: none; border-top: 2px solid #cc0000; margin: 8px 0 24px; }
-          .sec-heading { font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 12px; }
-          .sec-title-main { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-          .sec-content { font-family: 'Source Serif 4', Georgia, serif; font-size: 13px; line-height: 1.85; white-space: pre-wrap; }
-          .sec-meta { font-size: 11px; color: #777; margin-bottom: 16px; font-style: italic; }
-          @media print { body { margin: 20px 30px; } }
-        </style>
-      </head><body>
-        <div class="te-logo-line">thetaxexpress.pages.dev</div>
-        <div class="te-brand"><span>The</span> Tax Express</div>
-        <hr class="te-divider"/>
-        <div class="sec-heading">Section - ${s.num}, Income-Tax Act, 2025 - 2026</div>
-        ${hasTitle ? `<div class="sec-title-main">${s.title}</div>` : ''}
-        <div class="sec-meta">${s.chapter} — ${s.chapter_title} &nbsp;|&nbsp; Income-Tax Act, 2025 [As amended by Finance Act, 2026]</div>
-        <div class="sec-content">${escHtml(s.content)}</div>
-        <script>window.onload=function(){window.print();}<\/script>
-      </body></html>`);
+      const win = window.open('', '_blank', 'width=800,height=900');
+      win.document.write(`<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8"/>
+<title>Section ${s.num} – The Tax Express</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  body { margin: 48px 52px; font-family: 'Source Sans 3', Arial, sans-serif; color: #111; background: #fff; }
+  .tte-header { margin-bottom: 0; }
+  .tte-site { font-size: 11px; color: #999; letter-spacing: .3px; }
+  .tte-masthead { font-family: 'Merriweather', serif; font-size: 24px; font-weight: 900; color: #0a0a0a; margin: 4px 0 8px; }
+  .tte-masthead em { color: #cc0000; font-style: normal; }
+  .tte-rule { border: none; border-top: 2.5px solid #cc0000; margin-bottom: 22px; }
+  .tte-doc-box { text-align: center; margin-bottom: 24px; }
+  .tte-doc-title { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+  .tte-act-line { font-size: 12px; color: #666; }
+  .tte-meta { font-size: 11.5px; color: #888; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 22px; display: flex; gap: 24px; }
+  .tte-sec-title { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 700; margin-bottom: 18px; color: #0a0a0a; }
+  .tte-body { font-family: 'Source Serif 4', Georgia, serif; font-size: 13.5px; line-height: 1.85; white-space: pre-wrap; }
+  .tte-footer { margin-top: 40px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 10.5px; color: #aaa; display: flex; justify-content: space-between; }
+  @media print { body { margin: 24px 32px; } }
+</style>
+</head><body>
+<div class="tte-header">
+  <div class="tte-site">The Tax Express &nbsp;·&nbsp; thetaxexpress.pages.dev &nbsp;·&nbsp; Bare Acts</div>
+  <div class="tte-masthead">The <em>Tax</em> Express</div>
+</div>
+<hr class="tte-rule"/>
+<div class="tte-doc-box">
+  <div class="tte-doc-title">Section ${s.num} — Income-Tax Act, 2025</div>
+  <div class="tte-act-line">As amended by Finance Act, 2026</div>
+</div>
+${hasTitle ? `<div class="tte-sec-title">${escHtml(s.title)}</div>` : ''}
+<div class="tte-meta">
+  <span><strong>Chapter:</strong> ${escHtml(s.chapter)} &mdash; ${escHtml(s.chapter_title)}</span>
+  <span><strong>Act:</strong> Income-Tax Act, 2025 (30 of 2025)</span>
+</div>
+<div class="tte-body">${escHtml(s.content)}</div>
+<div class="tte-footer">
+  <span>© The Tax Express &nbsp;·&nbsp; thetaxexpress.pages.dev</span>
+  <span>Printed ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</span>
+</div>
+<script>window.onload=function(){setTimeout(function(){window.print();},600);}<\/script>
+</body></html>`);
       win.document.close();
     }
 
-    function escHtml(str) {
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
   </script>
-
 </body>
 </html>
