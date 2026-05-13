@@ -693,6 +693,39 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    BARE ACTS
    ============================================================ */
+
+/* Full Act Promo Card */
+.bare-act-promo {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+  background: var(--black);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.bare-act-promo__left { display: flex; align-items: flex-start; gap: 14px; }
+.bap-badge {
+  display: inline-block; background: var(--red); color: #fff;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; margin-top: 3px;
+}
+.bap-title {
+  font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700;
+  color: #fff; margin-bottom: 5px; line-height: 1.4;
+}
+.bap-desc { font-size: 13px; color: #aaa; line-height: 1.5; }
+.bap-btn {
+  display: inline-flex; align-items: center; white-space: nowrap;
+  background: var(--red); color: #fff;
+  font-size: 13px; font-weight: 700; letter-spacing: .3px;
+  padding: 11px 22px; border-radius: 3px; text-decoration: none;
+  transition: background .15s;
+}
+.bap-btn:hover { background: #a80000; }
+@media (max-width: 640px) {
+  .bare-act-promo { flex-direction: column; align-items: flex-start; }
+}
+
 .acts-nav {
   display: flex;
   gap: 0;

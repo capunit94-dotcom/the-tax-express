@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Income-Tax Act, 2025 – The Tax Express</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #cc0000;
+      --black:  #0a0a0a;
+      --dark:   #1a1a1a;
+      --mid:    #333;
+      --muted:  #666;
+      --border: #d8d8d8;
+      --bg:     #f5f5f0;
+      --white:  #ffffff;
+      --sidebar-w: 300px;
+      --header-h:  112px;
+    }
+
+    html, body { height: 100%; font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--black); }
+
+    /* ── TOP HEADER ─────────────────────────────────────────── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--white);
+      border-bottom: 3px solid var(--red);
+      height: var(--header-h);
+    }
+    .header-top {
+      background: var(--black);
+      padding: 6px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-top a {
+      color: #aaa; font-size: 12px; text-decoration: none; font-family: 'Source Sans 3', sans-serif;
+    }
+    .header-top a:hover { color: var(--white); }
+    .header-top .pipe { color: #555; margin: 0 8px; }
+    .header-brand {
+      padding: 10px 24px 8px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px;
+    }
+    .brand-left { display: flex; align-items: baseline; gap: 14px; }
+    .brand-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 26px; font-weight: 900;
+      color: var(--black); text-decoration: none;
+      white-space: nowrap;
+    }
+    .brand-logo span { color: var(--red); }
+    .brand-divider { width: 1px; height: 32px; background: var(--border); }
+    .act-title-tag {
+      font-size: 13px; font-weight: 700; letter-spacing: .5px;
+      color: var(--muted); text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .act-tag-badge {
+      display: inline-block;
+      background: var(--red); color: var(--white);
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      padding: 2px 7px; border-radius: 2px;
+      text-transform: uppercase; margin-left: 8px;
+    }
+    .header-search {
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: 3px;
+      overflow: hidden; flex: 0 0 280px;
+    }
+    .header-search input {
+      flex: 1; padding: 7px 12px; font-size: 13px;
+      font-family: 'Source Sans 3', sans-serif;
+      border: none; outline: none; background: var(--white);
+    }
+    .header-search button {
+      padding: 7px 14px; background: var(--red); color: var(--white);
+      border: none; cursor: pointer; font-size: 12px; font-weight: 600;
+    }
+    .header-search button:hover { background: #a80000; }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    .app-layout {
+      display: flex;
+      margin-top: var(--header-h);
+      height: calc(100vh - var(--header-h));
+      overflow: hidden;
+    }
+
+    /* ── LEFT SIDEBAR ───────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar-act-header {
+      padding: 14px 16px 12px;
+      border-bottom: 2px solid var(--red);
+      background: var(--black);
+    }
+    .sidebar-act-header h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 13px; color: var(--white); font-weight: 700;
+      line-height: 1.4;
+    }
+    .sidebar-act-header p {
+      font-size: 11px; color: #aaa; margin-top: 4px;
+    }
+    .sidebar-filter {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-filter input {
+      width: 100%; padding: 7px 10px; font-size: 12px;
+      border: 1px solid var(--border); border-radius: 3px; outline: none;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .sidebar-filter input:focus { border-color: var(--red); }
+    .sidebar-scroll { flex: 1; overflow-y: auto; }
+    .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+    .sidebar-scroll::-webkit-scrollbar-thumb { background: #ccc; }
+
+    .chapter-group { border-bottom: 1px solid var(--border); }
+    .chapter-toggle {
+      width: 100%; text-align: left;
+      padding: 10px 14px 10px 12px;
+      background: #f8f8f8;
+      font-size: 11px; font-weight: 700; letter-spacing: .4px;
+      text-transform: uppercase; color: var(--mid);
+      cursor: pointer; border: none;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .chapter-toggle:hover { background: #efefef; }
+    .chapter-toggle .ch-arrow { font-size: 9px; transition: transform .2s; }
+    .chapter-toggle.open .ch-arrow { transform: rotate(90deg); }
+    .chapter-sections { display: none; }
+    .chapter-sections.open { display: block; }
+
+    .sec-item {
+      display: block; width: 100%; text-align: left;
+      padding: 8px 14px 8px 20px;
+      border: none; background: none; cursor: pointer;
+      font-size: 12.5px; color: var(--mid);
+      border-left: 3px solid transparent;
+      transition: background .15s, border-color .15s;
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.4; text-align: left;
+    }
+    .sec-item:hover { background: #fef5f5; color: var(--black); border-left-color: #ffaaaa; }
+    .sec-item.active { background: #fef0f0; color: var(--red); border-left-color: var(--red); font-weight: 600; }
+    .sec-num { font-weight: 700; color: var(--red); font-size: 11px; display: block; margin-bottom: 1px; }
+    .sec-item.active .sec-num { color: var(--red); }
+
+    /* ── MAIN CONTENT ───────────────────────────────────────── */
+    .main-content {
+      flex: 1; overflow-y: auto; padding: 0;
+      background: var(--bg);
+    }
+    .main-content::-webkit-scrollbar { width: 6px; }
+    .main-content::-webkit-scrollbar-thumb { background: #ccc; }
+
+    .content-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: 32px 40px 80px;
+    }
+
+    /* Welcome screen */
+    .welcome-panel {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 60vh;
+      text-align: center; color: var(--muted);
+    }
+    .welcome-panel .welcome-icon {
+      font-size: 56px; margin-bottom: 16px; opacity: .5;
+    }
+    .welcome-panel h2 {
+      font-family: 'Merriweather', serif; font-size: 22px;
+      color: var(--black); margin-bottom: 10px;
+    }
+    .welcome-panel p { font-size: 15px; max-width: 400px; line-height: 1.6; }
+    .welcome-hint {
+      margin-top: 24px; font-size: 13px; color: #999;
+      border-top: 1px solid var(--border); padding-top: 14px;
+    }
+
+    /* Section content */
+    .section-view { display: none; }
+    .section-view.visible { display: block; }
+
+    .section-breadcrumb {
+      font-size: 12px; color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .section-breadcrumb a { color: var(--red); text-decoration: none; cursor: pointer; }
+    .section-breadcrumb a:hover { text-decoration: underline; }
+    .bc-sep { color: #bbb; }
+
+    .section-header {
+      border-bottom: 2px solid var(--red); padding-bottom: 14px; margin-bottom: 24px;
+    }
+    .section-header .sec-flag {
+      display: inline-block;
+      background: var(--red); color: var(--white);
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      padding: 3px 10px; border-radius: 2px; margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .section-header h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 22px; font-weight: 700; color: var(--black);
+      line-height: 1.35; margin-bottom: 8px;
+    }
+    .section-header .section-meta {
+      font-size: 12.5px; color: var(--muted);
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .section-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .section-body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px; line-height: 1.85; color: #222;
+    }
+    .section-body p { margin-bottom: 14px; }
+    .section-body .sub-section {
+      margin: 10px 0 10px 0;
+    }
+    .section-body .sub-section-num {
+      font-weight: 700; color: var(--black);
+    }
+    .section-body .proviso {
+      margin: 10px 0 10px 28px;
+      font-style: italic; color: #444;
+      border-left: 3px solid #e8e8e8;
+      padding-left: 14px;
+    }
+    .section-body .clause {
+      margin: 6px 0 6px 24px;
+    }
+    .section-body .explanation {
+      margin: 12px 0;
+      background: #fafafa; border: 1px solid #eee;
+      padding: 12px 16px; border-radius: 3px;
+      font-size: 14px;
+    }
+    .section-body .explanation-title {
+      font-weight: 700; color: var(--mid); margin-bottom: 6px;
+    }
+
+    /* Formatted content rendering */
+    .section-text {
+      white-space: pre-wrap;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px; line-height: 1.85; color: #222;
+    }
+
+    /* Nav arrows */
+    .section-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 48px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-arrow {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--border);
+      padding: 10px 18px; border-radius: 3px; cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--mid);
+      font-family: 'Source Sans 3', sans-serif;
+      transition: all .15s;
+    }
+    .nav-arrow:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+    .nav-arrow:disabled { opacity: .3; cursor: default; background: var(--white); color: var(--muted); }
+    .nav-arrow:disabled:hover { background: var(--white); color: var(--muted); border-color: var(--border); }
+
+    .no-results {
+      padding: 20px 16px; text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      :root { --sidebar-w: 260px; --header-h: 104px; }
+      .brand-logo { font-size: 20px; }
+      .header-search { display: none; }
+      .content-wrap { padding: 20px 18px 60px; }
+      .sidebar { width: 260px; position: fixed; left: -260px; top: var(--header-h); height: calc(100vh - var(--header-h)); transition: left .25s; z-index: 100; }
+      .sidebar.mob-open { left: 0; box-shadow: 4px 0 20px rgba(0,0,0,.15); }
+      .mob-toggle { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--black); color: var(--white); font-size: 13px; font-weight: 600; border: none; cursor: pointer; font-family: 'Source Sans 3', sans-serif; }
+    }
+    @media (min-width: 769px) { .mob-toggle { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-top">
+      <div>
+        <a href="index.html">← Back to The Tax Express</a>
+        <span class="pipe">|</span>
+        <a href="index.html">Home</a>
+        <span class="pipe">|</span>
+        <a href="#">Case Laws</a>
+        <span class="pipe">|</span>
+        <a href="#">Circulars</a>
+      </div>
+      <div>
+        <a href="#">Subscribe</a>
+        <span class="pipe">|</span>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+    <div class="header-brand">
+      <div class="brand-left">
+        <a href="index.html" class="brand-logo">The <span>Tax</span> Express</a>
+        <div class="brand-divider"></div>
+        <div>
+          <div class="act-title-tag">Income-Tax Act, 2025
+            <span class="act-tag-badge">As Amended by FA 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-search">
+        <input type="text" id="global-search" placeholder="Search sections, keywords…" oninput="globalSearch(this.value)" />
+        <button onclick="globalSearch(document.getElementById('global-search').value)">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ APP LAYOUT ═══════════════════════════════════════════════ -->
+  <div class="app-layout">
+
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="sidebar" id="js-sidebar">
+      <div class="sidebar-act-header">
+        <h3>Income-Tax Act, 2025</h3>
+        <p id="js-sec-count">Loading sections…</p>
+      </div>
+      <div class="sidebar-filter">
+        <input type="text" id="sidebar-search" placeholder="Filter sections…" oninput="filterSidebar(this.value)" />
+      </div>
+      <div class="sidebar-scroll" id="js-sidebar-list">
+        <div class="no-results">Loading…</div>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ─────────────────────────────────────────── -->
+    <main class="main-content" id="js-main">
+      <button class="mob-toggle" onclick="document.getElementById('js-sidebar').classList.toggle('mob-open')">
+        ☰ Browse Sections
+      </button>
+
+      <div class="content-wrap">
+
+        <!-- Welcome screen -->
+        <div class="welcome-panel" id="js-welcome">
+          <div class="welcome-icon">⚖️</div>
+          <h2>Income-Tax Act, 2025</h2>
+          <p>Select any section from the left panel to read its text, sub-sections, provisos and explanations.</p>
+          <div class="welcome-hint">As amended by Finance Act, 2026 &nbsp;·&nbsp; 220+ Sections</div>
+        </div>
+
+        <!-- Section view -->
+        <div class="section-view" id="js-section-view">
+
+          <div class="section-breadcrumb">
+            <a onclick="showWelcome()">Home</a>
+            <span class="bc-sep">›</span>
+            <span id="js-bc-chapter"></span>
+            <span class="bc-sep">›</span>
+            <span id="js-bc-section"></span>
+          </div>
+
+          <div class="section-header">
+            <div class="sec-flag" id="js-sec-flag">Section</div>
+            <h1 id="js-sec-title"></h1>
+            <div class="section-meta">
+              <span id="js-sec-chapter-meta"></span>
+              <span id="js-sec-act-meta">Income-Tax Act, 2025</span>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="section-text" id="js-sec-content"></div>
+          </div>
+
+          <div class="section-nav">
+            <button class="nav-arrow" id="btn-prev" onclick="navigate(-1)">← Previous Section</button>
+            <span id="js-sec-position" style="font-size:12px;color:#999;"></span>
+            <button class="nav-arrow" id="btn-next" onclick="navigate(1)">Next Section →</button>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    let ALL_SECTIONS = [];
+    let ALL_CHAPTERS = [];
+    let FILTERED = [];
+    let CURRENT_IDX = -1;
+
+    // Load data
+    fetch('ita2025.json?v=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        ALL_SECTIONS = data.sections;
+        ALL_CHAPTERS = data.chapters;
+        FILTERED = ALL_SECTIONS;
+        document.getElementById('js-sec-count').textContent = `${ALL_SECTIONS.length} Sections · ${ALL_CHAPTERS.length} Chapters`;
+        buildSidebar(ALL_SECTIONS);
+        // Auto-open first chapter
+        const firstToggle = document.querySelector('.chapter-toggle');
+        if (firstToggle) openChapter(firstToggle);
+      })
+      .catch(() => {
+        document.getElementById('js-sidebar-list').innerHTML = '<div class="no-results">Could not load sections.</div>';
+      });
+
+    function buildSidebar(sections) {
+      const container = document.getElementById('js-sidebar-list');
+      if (!sections.length) { container.innerHTML = '<div class="no-results">No sections found.</div>'; return; }
+
+      // Group by chapter
+      const chapterMap = {};
+      sections.forEach(s => {
+        const key = s.chapter || 'Other';
+        if (!chapterMap[key]) chapterMap[key] = { title: s.chapter_title || '', sections: [] };
+        chapterMap[key].sections.push(s);
+      });
+
+      let html = '';
+      Object.entries(chapterMap).forEach(([chNum, chData]) => {
+        const chId = 'ch-' + chNum.replace(/\s+/g, '-');
+        html += `<div class="chapter-group">
+          <button class="chapter-toggle" data-ch="${chId}" onclick="toggleChapter(this)">
+            <span>${chNum}<br/><span style="font-size:10px;font-weight:400;text-transform:none;color:#888;">${chData.title}</span></span>
+            <span class="ch-arrow">▶</span>
+          </button>
+          <div class="chapter-sections" id="${chId}">`;
+        chData.sections.forEach(s => {
+          const label = s.title && s.title !== `Section ${s.num}` ? s.title : '';
+          html += `<button class="sec-item" data-num="${s.num}" onclick="showSection('${s.num}')">
+            <span class="sec-num">Section ${s.num}</span>
+            ${label || ''}
+          </button>`;
+        });
+        html += `</div></div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function toggleChapter(btn) {
+      const id = btn.dataset.ch;
+      const panel = document.getElementById(id);
+      const isOpen = panel.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.chapter-sections.open').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('.chapter-toggle.open').forEach(b => b.classList.remove('open'));
+      if (!isOpen) openChapter(btn);
+    }
+    function openChapter(btn) {
+      const id = btn.dataset.ch;
+      document.getElementById(id)?.classList.add('open');
+      btn.classList.add('open');
+    }
+
+    function showSection(num) {
+      const idx = FILTERED.findIndex(s => s.num === num);
+      if (idx === -1) {
+        // Try from ALL_SECTIONS
+        const s = ALL_SECTIONS.find(x => x.num === num);
+        if (s) { FILTERED = ALL_SECTIONS; renderSection(ALL_SECTIONS.findIndex(x => x.num === num)); return; }
+        return;
+      }
+      renderSection(idx);
+    }
+
+    function renderSection(idx) {
+      if (idx < 0 || idx >= FILTERED.length) return;
+      CURRENT_IDX = idx;
+      const s = FILTERED[idx];
+
+      document.getElementById('js-welcome').style.display = 'none';
+      const view = document.getElementById('js-section-view');
+      view.classList.add('visible');
+
+      document.getElementById('js-bc-chapter').textContent = s.chapter;
+      document.getElementById('js-bc-section').textContent = `Section ${s.num}`;
+      document.getElementById('js-sec-flag').textContent = `Section ${s.num}`;
+      document.getElementById('js-sec-title').textContent = s.title && s.title !== `Section ${s.num}` ? s.title : `Section ${s.num}`;
+      document.getElementById('js-sec-chapter-meta').textContent = `${s.chapter} – ${s.chapter_title}`;
+      document.getElementById('js-sec-act-meta').textContent = 'Income-Tax Act, 2025';
+      document.getElementById('js-sec-position').textContent = `${idx + 1} of ${FILTERED.length}`;
+
+      // Format content
+      document.getElementById('js-sec-content').textContent = s.content;
+
+      // Update sidebar active state
+      document.querySelectorAll('.sec-item').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.querySelector(`.sec-item[data-num="${s.num}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        // Open the chapter
+        const chPanel = activeBtn.closest('.chapter-sections');
+        if (chPanel && !chPanel.classList.contains('open')) {
+          const btn = document.querySelector(`[data-ch="${chPanel.id}"]`);
+          if (btn) openChapter(btn);
+        }
+      }
+
+      // Update nav buttons
+      document.getElementById('btn-prev').disabled = idx === 0;
+      document.getElementById('btn-next').disabled = idx === FILTERED.length - 1;
+
+      // Scroll main to top
+      document.getElementById('js-main').scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Close mobile sidebar
+      document.getElementById('js-sidebar').classList.remove('mob-open');
+    }
+
+    function navigate(dir) {
+      renderSection(CURRENT_IDX + dir);
+    }
+
+    function showWelcome() {
+      document.getElementById('js-welcome').style.display = '';
+      document.getElementById('js-section-view').classList.remove('visible');
+      document.querySelectorAll('.sec-item').forEach(b => b.classList.remove('active'));
+      CURRENT_IDX = -1;
+    }
+
+    function filterSidebar(q) {
+      q = q.trim().toLowerCase();
+      if (!q) {
+        FILTERED = ALL_SECTIONS;
+        buildSidebar(ALL_SECTIONS);
+        return;
+      }
+      FILTERED = ALL_SECTIONS.filter(s =>
+        s.num.toLowerCase().includes(q) ||
+        s.title.toLowerCase().includes(q) ||
+        s.content.toLowerCase().includes(q)
+      );
+      buildSidebar(FILTERED);
+      // Open all chapters in filtered view
+      document.querySelectorAll('.chapter-toggle').forEach(openChapter);
+    }
+
+    function globalSearch(q) {
+      q = q.trim().toLowerCase();
+      if (!q) return;
+      document.getElementById('sidebar-search').value = q;
+      filterSidebar(q);
+      // Show first result
+      if (FILTERED.length > 0) renderSection(0);
+    }
+  </script>
+
+</body>
+</html>
