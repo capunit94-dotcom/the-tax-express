@@ -1045,6 +1045,12 @@
       <p>The forms are now live on the e-filing portal (www.incometax.gov.in). The due date for individuals and HUFs not subject to audit is July 31, 2026. Taxpayers are advised to verify their Form 26AS and AIS before filing to avoid mismatch notices.</p>
       <h4>Significance</h4>
       <p>This is one of the most complex ITR revision cycles in recent years. Tax professionals and taxpayers must carefully identify the correct holding period cut-off for each asset disposal. Errors in the new Schedule CG are likely to trigger automated scrutiny under the faceless assessment system.</p>
+      <div class="modal__actions">
+        <button class="modal__pdf-btn" onclick="downloadArticlePDF('modal-lead')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as PDF
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1059,6 +1065,12 @@
       <p>The form must be filed electronically on the income tax portal. Late filing will not be accepted and the taxpayer will be assessed under the new regime by default. Taxpayers who had filed Form 10-IEA for AY 2025-26 and continue in the old regime do not need to re-file for AY 2026-27 unless they wish to switch.</p>
       <h4>Key Conditions</h4>
       <p>The option under Section 115BAC(6) is available only to taxpayers having income under "Profits and gains of business or profession." Salaried individuals and those with no business income must use the old regime directly without filing Form 10-IEA.</p>
+      <div class="modal__actions">
+        <button class="modal__pdf-btn" onclick="downloadArticlePDF('modal-1')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as PDF
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1073,6 +1085,30 @@
       <p>Term life insurance premiums proposed to be exempt from GST. Health insurance reduced to 5% without ITC. Electric commercial vehicles brought to 5% GST. An amnesty scheme covering outstanding demands up to Rs 25 lakh as of April 1, 2026 is expected to clean up large volumes of small litigation.</p>
       <h4>Online Gaming</h4>
       <p>The Council confirmed 28% GST on the face value of online gaming bets, treating it as actionable claims. Further clarification on treatment of player balance and bonus credits is expected in an upcoming circular.</p>
+      <div class="modal__actions">
+        <button class="modal__pdf-btn" onclick="downloadArticlePDF('modal-2')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Reader Modal — live feed items from news.json -->
+  <div class="modal-backdrop" id="modal-story" onclick="closeModal('modal-story')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal('modal-story')">&#10005;</button>
+      <div id="modal-story-flag"></div>
+      <h2 id="modal-story-title"></h2>
+      <p class="modal__meta" id="modal-story-meta"></p>
+      <hr/>
+      <div id="modal-story-body"></div>
+      <div class="modal__actions">
+        <button class="modal__pdf-btn" onclick="downloadStoryPDF()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as PDF
+        </button>
+      </div>
     </div>
   </div>
 

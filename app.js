@@ -127,6 +127,9 @@ const CAT_FLAG = {
   court: { label: 'Courts',     cls: 'story-flag--teal'   },
 };
 
+// Global store so openStory() can look up full body content
+let _newsItems = [];
+
 async function loadLiveFeed() {
   const container = document.getElementById('js-live-feed');
   const updatedEl = document.getElementById('js-live-updated');
@@ -144,10 +147,13 @@ async function loadLiveFeed() {
       return;
     }
 
+    // Store items globally for lookup
+    _newsItems = data.items;
+
     container.innerHTML = data.items.map(item => {
       const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
       return `
-        <article class="live-item" data-cat="${item.category}" onclick="window.open('${item.url}','_blank')">
+        <article class="live-item" data-cat="${item.category}" onclick="openStory('${item.id}')">
           <span class="story-flag ${flag.cls}">${flag.label}</span>
           <h4 class="live-item__hed">${item.title}</h4>
           <p class="live-item__summary">${item.summary}</p>
@@ -170,6 +176,130 @@ function filterLive(cat, btn) {
   document.querySelectorAll('.live-item').forEach(item => {
     item.classList.toggle('is-hidden', cat !== 'all' && item.dataset.cat !== cat);
   });
+}
+
+// ── Story Reader (live feed items) ───────────────────────────
+function openStory(id) {
+  const item = _newsItems.find(n => n.id === id);
+  if (!item) return;
+
+  const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
+
+  document.getElementById('modal-story-flag').innerHTML =
+    `<span class="story-flag ${flag.cls}">${flag.label}</span>`;
+  document.getElementById('modal-story-title').textContent = item.title;
+  document.getElementById('modal-story-meta').textContent =
+    `${item.source}  •  ${item.date}`;
+  document.getElementById('modal-story-body').innerHTML =
+    item.body || `<p>${item.summary}</p>`;
+
+  openModal('modal-story');
+}
+
+// ── PDF Download — story reader modal ────────────────────────
+function downloadStoryPDF() {
+  const title = document.getElementById('modal-story-title')?.textContent || 'Report';
+  const body  = document.getElementById('modal-story-body')?.innerHTML   || '';
+  const meta  = document.getElementById('modal-story-meta')?.textContent || '';
+  _openPDFWindow(title, meta, body);
+}
+
+// ── PDF Download — static article modals (lead/1/2) ──────────
+function downloadArticlePDF(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  const title = modal.querySelector('h2')?.textContent || 'Article';
+  const meta  = modal.querySelector('.modal__meta')?.textContent || '';
+  // Grab everything after the <hr> as the body
+  const hr    = modal.querySelector('hr');
+  let body    = '';
+  if (hr) {
+    let el = hr.nextElementSibling;
+    while (el && !el.classList.contains('modal__actions')) {
+      body += el.outerHTML;
+      el = el.nextElementSibling;
+    }
+  }
+  _openPDFWindow(title, meta, body);
+}
+
+// ── Shared PDF window builder ─────────────────────────────────
+function _openPDFWindow(title, meta, bodyHTML) {
+  const date = new Date().toLocaleDateString('en-IN', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const w = window.open('', '_blank');
+  if (!w) { toast('Please allow pop-ups to download PDF.'); return; }
+  w.document.write(`<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/>
+<title>${title.replace(/</g,'&lt;')} — The Tax Express</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', Arial, sans-serif;
+    color: #111; background: #fff;
+    padding: 52px 56px; max-width: 800px; margin: 0 auto;
+    font-size: 14px; line-height: 1.8;
+  }
+  .pdf-head {
+    text-align: center; padding-bottom: 18px;
+    border-bottom: 3px solid #cc0000; margin-bottom: 28px;
+  }
+  .pdf-logo {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 30px; font-weight: 900; color: #cc0000; letter-spacing: -0.5px;
+  }
+  .pdf-tagline {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: #888; margin-top: 5px;
+  }
+  .pdf-label {
+    display: inline-block; font-size: 10px; font-weight: 800;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: #cc0000; color: #fff;
+    padding: 3px 10px; border-radius: 2px; margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px; font-weight: 900; line-height: 1.4;
+    color: #0a0a0a; margin-bottom: 10px;
+  }
+  .pdf-meta { font-size: 12px; color: #777; margin-bottom: 18px; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 18px 0; }
+  h3, h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #cc0000; margin: 22px 0 8px;
+  }
+  p { font-size: 14px; line-height: 1.8; color: #222; margin-bottom: 13px; }
+  .pdf-foot {
+    margin-top: 44px; padding-top: 14px;
+    border-top: 1px solid #ddd; font-size: 11px; color: #aaa;
+    display: flex; justify-content: space-between;
+  }
+  @media print {
+    body { padding: 0; }
+    @page { margin: 20mm 18mm; }
+  }
+</style>
+</head><body>
+<div class="pdf-head">
+  <div class="pdf-logo">The Tax Express</div>
+  <div class="pdf-tagline">Income Tax &nbsp;&middot;&nbsp; GST &nbsp;&middot;&nbsp; Case Laws &nbsp;&middot;&nbsp; Bare Acts</div>
+</div>
+<div class="pdf-label">The Tax Express &mdash; Exclusive Report</div>
+<h1>${title}</h1>
+<p class="pdf-meta">${meta}</p>
+<hr/>
+${bodyHTML}
+<div class="pdf-foot">
+  <span>&copy; The Tax Express &nbsp;|&nbsp; thetaxexpress.in</span>
+  <span>Downloaded: ${date}</span>
+</div>
+</body></html>`);
+  w.document.close();
+  setTimeout(() => { w.focus(); w.print(); }, 700);
 }
 
 // Load live feed on page ready
