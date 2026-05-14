@@ -979,6 +979,35 @@ img { display: block; max-width: 100%; }
 }
 .modal__pdf-btn:hover { background: var(--red); }
 .modal__pdf-btn svg { flex-shrink: 0; }
+.modal__source-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid var(--rule);
+  padding: 8px 16px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: border-color var(--trans), color var(--trans);
+  margin-right: auto;
+}
+.modal__source-btn:hover { border-color: var(--red); color: var(--red); }
+.modal__source-btn svg { flex-shrink: 0; }
+.modal__disclaimer {
+  font-size: .78rem;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--rule);
+  background: #fafafa;
+}
 
 /* ============================================================
    TOAST

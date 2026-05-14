@@ -193,6 +193,17 @@ function openStory(id) {
   document.getElementById('modal-story-body').innerHTML =
     item.body || `<p>${item.summary}</p>`;
 
+  // Wire up "View Original Source" link — opens in new tab
+  const srcLink = document.getElementById('modal-story-source-link');
+  if (srcLink) {
+    if (item.url && item.url !== '#') {
+      srcLink.href = item.url;
+      srcLink.style.display = 'inline-flex';
+    } else {
+      srcLink.style.display = 'none';
+    }
+  }
+
   openModal('modal-story');
 }
 
