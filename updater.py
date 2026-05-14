@@ -1,7 +1,8 @@
 """
 The Tax Express — Auto-Update Bot
 Runs every 3 hours via GitHub Actions.
-Fetches latest tax news from ITAT, CBDT, CBIC, and tax news portals.
+Fetches latest tax news from RSS feeds, then uses Claude AI to write
+full 500-700 word editorial articles for each new item.
 Updates news.json → triggers Cloudflare Pages auto-deploy.
 """
 
@@ -9,10 +10,10 @@ import feedparser
 import json
 import re
 import hashlib
-import textwrap
+import os
 from datetime import datetime, timezone
 
-# ── RSS / Atom feeds from reliable public tax sources ────────
+# ── RSS / Atom feeds ──────────────────────────────────────────
 FEEDS = [
     {
         "url": "https://taxguru.in/feed/",
@@ -50,20 +51,14 @@ FEEDS = [
         "default_category": "it",
     },
     {
-        "url": "https://www.incometaxindia.gov.in/Lists/Latest%20Updates/Rss.aspx",
-        "source": "Income Tax Dept",
-        "category_map": {},
-        "default_category": "it",
-    },
-    {
         "url": "https://taxclick.in/feed/",
         "source": "TaxClick",
         "category_map": {
-            "gst":            "gst",
-            "income-tax":     "it",
-            "itat":           "itat",
-            "high court":     "court",
-            "supreme court":  "court",
+            "gst":           "gst",
+            "income-tax":    "it",
+            "itat":          "itat",
+            "high court":    "court",
+            "supreme court": "court",
         },
         "default_category": "it",
     },
@@ -80,17 +75,15 @@ FEEDS = [
     },
 ]
 
-# ── Helpers ──────────────────────────────────────────────────
-def strip_html(text: str) -> str:
-    """Remove HTML tags and collapse whitespace."""
+# ── Helpers ───────────────────────────────────────────────────
+def strip_html(text):
     text = re.sub(r"<[^>]+>", " ", text or "")
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
+    return re.sub(r"\s+", " ", text).strip()
 
-def make_id(title: str) -> str:
+def make_id(title):
     return "tte_" + hashlib.md5(title.encode("utf-8")).hexdigest()[:10]
 
-def parse_date(entry) -> str:
+def parse_date(entry):
     if hasattr(entry, "published_parsed") and entry.published_parsed:
         try:
             return datetime(*entry.published_parsed[:3]).strftime("%Y-%m-%d")
@@ -98,7 +91,7 @@ def parse_date(entry) -> str:
             pass
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-def detect_category(entry, feed_cfg: dict) -> str:
+def detect_category(entry, feed_cfg):
     tags = []
     if hasattr(entry, "tags"):
         tags = [t.term.lower() for t in entry.tags]
@@ -110,144 +103,230 @@ def detect_category(entry, feed_cfg: dict) -> str:
             return cat
     return feed_cfg["default_category"]
 
-def get_full_content(entry) -> str:
-    """Return the richest available text content from a feed entry."""
-    # Try content (Atom) — may be full HTML
+def get_rss_content(entry):
     if hasattr(entry, "content") and entry.content:
         for c in entry.content:
             val = c.get("value", "")
             if val and len(val) > 200:
                 return val
-    # Try summary
     if hasattr(entry, "summary") and entry.summary:
         return entry.summary
     return ""
 
-def build_body_html(title: str, raw_content: str, source: str, category: str) -> str:
+# ── AI Editorial Generator ────────────────────────────────────
+def generate_editorial(title, summary, category, api_key):
     """
-    Convert raw RSS content (HTML or plain text) into a clean article body
-    for The Tax Express story reader modal.
-    Tries to preserve any real HTML paragraphs; falls back to auto-formatting
-    plain text into structured sections.
+    Call Claude API to write a full editorial article.
+    Returns HTML string with h3/p tags.
+    Falls back to basic body if API unavailable.
     """
-    # If raw_content already has substantial HTML paragraph tags, clean & return
-    plain = strip_html(raw_content)
-    has_html_paras = bool(re.search(r"<p[^>]*>", raw_content, re.IGNORECASE))
+    try:
+        import anthropic
 
-    if has_html_paras and len(plain) > 300:
-        # Strip everything except safe tags
-        safe = re.sub(r"<(?!/?(?:p|h[2-6]|strong|em|b|i|ul|ol|li|br)(?:\s[^>]*)?)([^>]+)>",
-                      "", raw_content)
-        safe = re.sub(r"\s{2,}", " ", safe).strip()
-        return safe
+        client = anthropic.Anthropic(api_key=api_key)
 
-    # Plain-text path — split into sentences and build structured HTML
-    if len(plain) < 60:
-        plain = title
+        cat_context = {
+            "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
+            "court": "High Court or Supreme Court tax ruling",
+            "gst":   "GST / indirect tax development, circular, or ruling",
+            "it":    "income tax notification, circular, amendment, or CBDT development",
+        }.get(category, "Indian tax development")
 
-    # Break into ~3 paragraphs intelligently
-    sentences = re.split(r'(?<=[.!?])\s+', plain)
-    chunks = []
-    current = []
-    char_count = 0
-    target = max(200, len(plain) // 3)
+        section_guide = {
+            "itat": [
+                "Background",
+                "Facts of the Case",
+                "Issue Before the Tribunal",
+                "Arguments Raised",
+                "Tribunal's Decision",
+                "Implications for Taxpayers",
+            ],
+            "court": [
+                "Background",
+                "Facts of the Case",
+                "Issue Before the Court",
+                "Arguments and Legal Provisions",
+                "Court's Ruling",
+                "Implications for Taxpayers",
+            ],
+            "gst": [
+                "Background",
+                "What Was Issued",
+                "Key Provisions and Clarifications",
+                "Analysis",
+                "Compliance Impact",
+            ],
+            "it": [
+                "Background",
+                "What Was Notified or Decided",
+                "Key Provisions",
+                "Analysis",
+                "Implications for Taxpayers",
+            ],
+        }.get(category, [
+            "Background",
+            "Key Development",
+            "Analysis",
+            "Implications for Taxpayers",
+        ])
 
+        sections_str = "\n".join(f"- <h3>{s}</h3>" for s in section_guide)
+
+        prompt = f"""You are a senior tax journalist and legal analyst writing for The Tax Express — India's premier tax intelligence platform read by chartered accountants, tax advocates, and finance professionals.
+
+Write a comprehensive, authoritative editorial article (550–750 words) about the following {cat_context}:
+
+TITLE: {title}
+
+BRIEF: {strip_html(summary)[:600]}
+
+INSTRUCTIONS:
+1. Write in a professional Indian tax journalism style — factual, precise, and insightful.
+2. Use these exact HTML section headings in this order:
+{sections_str}
+3. Each section must have at least 2 substantive paragraphs using <p> tags.
+4. Draw on your knowledge of Indian income tax law, GST law, and judicial precedents to provide depth and context. Mention relevant sections of the Act, earlier case law, or CBDT circulars where appropriate.
+5. Do NOT reference "Tax Guru", "Taxmann", or any third-party source. Write as The Tax Express original editorial.
+6. Do NOT use vague phrases like "it is reported that" or "according to sources". Write authoritatively.
+7. The "Implications for Taxpayers" section must give concrete, actionable guidance — what should a CA or taxpayer do differently based on this development?
+8. Write only the article body HTML (h3 and p tags). No preamble, no title, no byline.
+"""
+
+        message = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        html = message.content[0].text.strip()
+        # Ensure it's clean HTML
+        html = re.sub(r"```html?\s*", "", html)
+        html = re.sub(r"```\s*$", "", html).strip()
+        print(f"    ✓ AI editorial generated ({len(html)} chars)")
+        return html
+
+    except ImportError:
+        print("    ✗ anthropic package not installed — using basic body")
+        return _basic_body(title, summary, category)
+    except Exception as e:
+        print(f"    ✗ Claude API error: {e} — using basic body")
+        return _basic_body(title, summary, category)
+
+
+def _basic_body(title, plain, category):
+    """Fallback: split plain text into headed sections."""
+    sentences = re.split(r'(?<=[.!?])\s+', strip_html(plain) or title)
+    chunks, cur, n = [], [], 0
     for s in sentences:
-        current.append(s)
-        char_count += len(s)
-        if char_count >= target and len(chunks) < 2:
-            chunks.append(" ".join(current))
-            current = []
-            char_count = 0
-    if current:
-        chunks.append(" ".join(current))
-
-    # Assign section headings by category
-    heading_map = {
+        cur.append(s)
+        n += len(s)
+        if n >= max(180, len(strip_html(plain)) // 3) and len(chunks) < 2:
+            chunks.append(" ".join(cur)); cur = []; n = 0
+    if cur:
+        chunks.append(" ".join(cur))
+    heads = {
         "it":    ["Background", "Key Development", "Implications"],
-        "gst":   ["Background", "Key Decision / Circular", "Compliance Impact"],
+        "gst":   ["Background", "Key Decision", "Compliance Impact"],
         "itat":  ["Background & Facts", "Issue Before the Tribunal", "Held"],
         "court": ["Background & Facts", "Issue Before the Court", "Court's Ruling"],
-    }
-    headings = heading_map.get(category, ["Background", "Update", "Significance"])
+    }.get(category, ["Background", "Update", "Significance"])
+    return "\n".join(
+        f"<h3>{heads[i] if i < len(heads) else 'Further Detail'}</h3><p>{c.strip()}</p>"
+        for i, c in enumerate(chunks)
+    )
 
-    parts = []
-    for i, chunk in enumerate(chunks):
-        heading = headings[i] if i < len(headings) else "Further Detail"
-        parts.append(f"<h3>{heading}</h3><p>{chunk.strip()}</p>")
 
-    return "\n".join(parts)
-
-def load_news(path="news.json") -> dict:
+# ── File I/O ──────────────────────────────────────────────────
+def load_news(path="news.json"):
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return {"last_updated": "", "items": []}
 
-def save_news(data: dict, path="news.json"):
+def save_news(data, path="news.json"):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-# ── Main ─────────────────────────────────────────────────────
+
+# ── Main ──────────────────────────────────────────────────────
 def main():
-    existing   = load_news()
-    seen_ids   = {item["id"] for item in existing.get("items", [])}
-    new_items  = []
+    api_key    = os.environ.get("ANTHROPIC_API_KEY", "")
+    use_ai     = bool(api_key)
+    if use_ai:
+        print("Claude AI editorial generation: ENABLED")
+    else:
+        print("Claude AI editorial generation: DISABLED (set ANTHROPIC_API_KEY secret)")
+
+    existing  = load_news()
+    seen_ids  = {item["id"] for item in existing.get("items", [])}
+    # Also index old-format IDs (plain md5 without tte_ prefix)
+    seen_ids |= {
+        hashlib.md5(item.get("title","").encode()).hexdigest()[:10]
+        for item in existing.get("items", [])
+    }
+
+    new_items = []
+    ai_count  = 0
+    AI_LIMIT  = 8   # max AI articles per run (cost control)
 
     for feed_cfg in FEEDS:
-        print(f"Fetching: {feed_cfg['url']}")
+        print(f"\nFetching: {feed_cfg['url']}")
         try:
             feed = feedparser.parse(feed_cfg["url"])
             for entry in feed.entries[:15]:
-                title    = strip_html(entry.get("title", "")).strip()
+                title = strip_html(entry.get("title", "")).strip()
                 if not title or len(title) < 10:
                     continue
 
-                item_id = make_id(title)
-                # Also check plain md5 (old format without tte_ prefix)
+                item_id  = make_id(title)
                 plain_id = hashlib.md5(title.encode("utf-8")).hexdigest()[:10]
                 if item_id in seen_ids or plain_id in seen_ids:
                     continue
 
                 category  = detect_category(entry, feed_cfg)
-                raw       = get_full_content(entry)
+                raw       = get_rss_content(entry)
                 plain_sum = strip_html(raw)[:480].strip()
                 if plain_sum and not plain_sum.endswith((".", "…")):
                     plain_sum = plain_sum.rsplit(" ", 1)[0] + "…"
 
-                body_html = build_body_html(title, raw, feed_cfg["source"], category)
+                print(f"  + [{category.upper()}] {title[:70]}")
 
-                item = {
+                # Generate AI editorial or fall back to basic
+                if use_ai and ai_count < AI_LIMIT:
+                    body_html = generate_editorial(title, plain_sum or title, category, api_key)
+                    ai_count += 1
+                else:
+                    body_html = _basic_body(title, plain_sum or title, category)
+
+                new_items.append({
                     "id":       item_id,
                     "date":     parse_date(entry),
                     "category": category,
                     "title":    title,
                     "summary":  plain_sum or title,
-                    "source":   feed_cfg["source"],
+                    "source":   "The Tax Express",   # original editorial, not external source
                     "url":      entry.get("link", "#"),
                     "body":     body_html,
-                }
-                new_items.append(item)
+                })
                 seen_ids.add(item_id)
-                print(f"  + [{item['category'].upper()}] {title[:72]}")
 
         except Exception as exc:
-            print(f"  ERROR fetching {feed_cfg['url']}: {exc}")
+            print(f"  ERROR: {exc}")
 
     if new_items:
-        # Newest first; keep latest 120 total
         all_items = new_items + existing.get("items", [])
         all_items.sort(key=lambda x: x["date"], reverse=True)
         existing["items"]        = all_items[:120]
         existing["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         save_news(existing)
-        print(f"\nDone — added {len(new_items)} new item(s). Total: {len(existing['items'])}")
+        ai_note = f" ({ai_count} AI-generated)" if use_ai else ""
+        print(f"\nDone — added {len(new_items)} new article(s){ai_note}. Total: {len(existing['items'])}")
     else:
-        # Still update the timestamp so users see "last checked" time
         existing["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         save_news(existing)
         print("\nNo new items found. Timestamp updated.")
+
 
 if __name__ == "__main__":
     main()

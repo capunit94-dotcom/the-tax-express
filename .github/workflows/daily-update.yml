@@ -32,10 +32,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install feedparser requests
+        run: pip install feedparser requests anthropic
 
       - name: Run auto-updater
         run: python updater.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Commit and push news.json
         run: |
