@@ -188,10 +188,14 @@ INSTRUCTIONS:
 2. Use these exact HTML section headings in this order:
 {sections_str}
 3. Each section must have at least 2 substantive paragraphs using <p> tags.
-4. Draw on your knowledge of Indian income tax law, GST law, and judicial precedents to provide depth and context. Mention relevant sections of the Act, earlier case law, or CBDT circulars where appropriate.
-5. Do NOT reference "Tax Guru", "Taxmann", or any third-party source. Write as The Tax Express original editorial.
-6. Do NOT use vague phrases like "it is reported that" or "according to sources". Write authoritatively.
-7. The "Implications for Taxpayers" section must give concrete, actionable guidance — what should a CA or taxpayer do differently based on this development?
+4. STRICT RULE — Do NOT invent or fabricate ANY specific facts not present in the TITLE or BRIEF above. This means:
+   - Do NOT invent circular numbers, notification numbers, or case citation numbers (e.g. do not write "Circular No. 45/2026" unless it appears in the title/brief)
+   - Do NOT invent specific dates, deadlines, or monetary amounts not mentioned
+   - Do NOT invent names of parties in a case not mentioned
+   - If a specific detail is unknown, refer to it generically (e.g. "this circular", "the ruling in question", "the court held")
+5. You MAY and SHOULD draw on your knowledge of Indian tax law to provide legal context: cite real sections of the CGST Act, Income Tax Act, relevant established case law, and CBDT/CBIC circulars that form the BACKGROUND to this topic — not the specific development being reported.
+6. Do NOT reference "Tax Guru", "Taxmann", or any third-party source. Write as The Tax Express original editorial.
+7. The "Implications for Taxpayers" section must give concrete, actionable guidance for CAs and taxpayers.
 8. Write only the article body HTML (h3 and p tags only). No preamble, no title, no byline, no markdown.
 """
 
