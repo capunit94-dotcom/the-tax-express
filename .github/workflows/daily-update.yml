@@ -2,8 +2,10 @@ name: Tax News Auto-Update (Every 3 Hours)
 
 on:
   schedule:
-    # Runs every 3 hours: 5:30, 8:30, 11:30, 14:30, 17:30, 20:30, 23:30 IST
-    - cron: '0 */3 * * *'
+    # Offset from top-of-hour to avoid GitHub Actions congestion.
+    # Runs at UTC: 02:47, 05:47, 08:47, 11:47, 14:47, 17:47, 20:47, 23:47
+    # = IST:        8:17AM  11:17AM  2:17PM  5:17PM  8:17PM  11:17PM  2:17AM  5:17AM
+    - cron: '47 2,5,8,11,14,17,20,23 * * *'
   workflow_dispatch:   # Allows manual trigger from GitHub dashboard
 
 jobs:
@@ -15,6 +17,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Full history so git pull works cleanly
+
+      - name: Pull latest (avoid stale checkout conflicts)
+        run: |
+          git config --global user.email "taxexpress-bot@users.noreply.github.com"
+          git config --global user.name "Tax Express Bot"
+          git pull --rebase origin main || true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,14 +37,13 @@ jobs:
       - name: Run auto-updater
         run: python updater.py
 
-      - name: Commit and push if news.json changed
+      - name: Commit and push news.json
         run: |
-          git config --global user.email "taxexpress-bot@users.noreply.github.com"
-          git config --global user.name "Tax Express Bot"
           git add news.json
-          git diff --staged --quiet || (
-            git commit -m "Auto-update: Tax news $(date '+%d %b %Y')" &&
-            git push
+          # Always commit — updater always writes updated timestamp
+          git diff --staged --quiet && echo "No changes to commit" || (
+            git commit -m "Auto-update: Tax news $(date -u '+%d %b %Y %H:%M UTC')" &&
+            git push origin main
           )
 
       - name: Deploy to Cloudflare Pages

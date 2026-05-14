@@ -49,6 +49,35 @@ FEEDS = [
         },
         "default_category": "it",
     },
+    {
+        "url": "https://www.incometaxindia.gov.in/Lists/Latest%20Updates/Rss.aspx",
+        "source": "Income Tax Dept",
+        "category_map": {},
+        "default_category": "it",
+    },
+    {
+        "url": "https://taxclick.in/feed/",
+        "source": "TaxClick",
+        "category_map": {
+            "gst":            "gst",
+            "income-tax":     "it",
+            "itat":           "itat",
+            "high court":     "court",
+            "supreme court":  "court",
+        },
+        "default_category": "it",
+    },
+    {
+        "url": "https://caclubindia.com/news/rss.asp",
+        "source": "CA Club India",
+        "category_map": {
+            "gst":         "gst",
+            "income tax":  "it",
+            "itat":        "itat",
+            "high court":  "court",
+        },
+        "default_category": "it",
+    },
 ]
 
 # ── Helpers ──────────────────────────────────────────────────
@@ -176,7 +205,9 @@ def main():
                     continue
 
                 item_id = make_id(title)
-                if item_id in seen_ids:
+                # Also check plain md5 (old format without tte_ prefix)
+                plain_id = hashlib.md5(title.encode("utf-8")).hexdigest()[:10]
+                if item_id in seen_ids or plain_id in seen_ids:
                     continue
 
                 category  = detect_category(entry, feed_cfg)
