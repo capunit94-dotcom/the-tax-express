@@ -116,14 +116,17 @@ def get_rss_content(entry):
 # ── AI Editorial Generator ────────────────────────────────────
 def generate_editorial(title, summary, category, api_key):
     """
-    Call Claude API to write a full editorial article.
+    Call Google Gemini API (free tier) to write a full editorial article.
     Returns HTML string with h3/p tags.
     Falls back to basic body if API unavailable.
+    Free tier: 1,500 requests/day — more than enough.
+    Get free key at: https://aistudio.google.com/
     """
     try:
-        import anthropic
+        import google.generativeai as genai
 
-        client = anthropic.Anthropic(api_key=api_key)
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel("gemini-1.5-flash")
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
@@ -189,27 +192,21 @@ INSTRUCTIONS:
 5. Do NOT reference "Tax Guru", "Taxmann", or any third-party source. Write as The Tax Express original editorial.
 6. Do NOT use vague phrases like "it is reported that" or "according to sources". Write authoritatively.
 7. The "Implications for Taxpayers" section must give concrete, actionable guidance — what should a CA or taxpayer do differently based on this development?
-8. Write only the article body HTML (h3 and p tags). No preamble, no title, no byline.
+8. Write only the article body HTML (h3 and p tags only). No preamble, no title, no byline, no markdown.
 """
 
-        message = client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=1500,
-            messages=[{"role": "user", "content": prompt}],
-        )
-
-        html = message.content[0].text.strip()
-        # Ensure it's clean HTML
-        html = re.sub(r"```html?\s*", "", html)
-        html = re.sub(r"```\s*$", "", html).strip()
-        print(f"    ✓ AI editorial generated ({len(html)} chars)")
+        response  = model.generate_content(prompt)
+        html      = response.text.strip()
+        html      = re.sub(r"```html?\s*", "", html)
+        html      = re.sub(r"```\s*$",     "", html).strip()
+        print(f"    ✓ Gemini editorial generated ({len(html)} chars)")
         return html
 
     except ImportError:
-        print("    ✗ anthropic package not installed — using basic body")
+        print("    ✗ google-generativeai not installed — using basic body")
         return _basic_body(title, summary, category)
     except Exception as e:
-        print(f"    ✗ Claude API error: {e} — using basic body")
+        print(f"    ✗ Gemini API error: {e} — using basic body")
         return _basic_body(title, summary, category)
 
 
@@ -251,12 +248,12 @@ def save_news(data, path="news.json"):
 
 # ── Main ──────────────────────────────────────────────────────
 def main():
-    api_key    = os.environ.get("ANTHROPIC_API_KEY", "")
+    api_key    = os.environ.get("GEMINI_API_KEY", "")
     use_ai     = bool(api_key)
     if use_ai:
-        print("Claude AI editorial generation: ENABLED")
+        print("Gemini AI editorial generation: ENABLED (free tier)")
     else:
-        print("Claude AI editorial generation: DISABLED (set ANTHROPIC_API_KEY secret)")
+        print("Gemini AI editorial generation: DISABLED (add GEMINI_API_KEY to GitHub secrets)")
 
     existing  = load_news()
     seen_ids  = {item["id"] for item in existing.get("items", [])}

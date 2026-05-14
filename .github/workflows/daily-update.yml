@@ -32,12 +32,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install feedparser requests anthropic
+        run: pip install feedparser requests google-generativeai
 
       - name: Run auto-updater
         run: python updater.py
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit and push news.json
         run: |
