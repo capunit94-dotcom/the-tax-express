@@ -126,7 +126,7 @@ def generate_editorial(title, summary, category, api_key):
         import google.generativeai as genai
 
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",

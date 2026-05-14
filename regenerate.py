@@ -68,7 +68,7 @@ def main():
 
     import google.generativeai as genai
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -87,19 +87,30 @@ def main():
 
         print(f"[{i+1}/{len(items)}] {title[:65]}")
 
-        try:
-            body = generate_editorial(title, summary, category, model)
-            item["body"]   = body
-            item["source"] = "The Tax Express"
-            updated += 1
-            print(f"  ✓ {len(body)} chars generated")
-        except Exception as e:
-            errors += 1
-            print(f"  ✗ Error: {e}")
+        # Retry up to 3 times with exponential backoff on rate limit errors
+        success = False
+        for attempt in range(3):
+            try:
+                body = generate_editorial(title, summary, category, model)
+                item["body"]   = body
+                item["source"] = "The Tax Express"
+                updated += 1
+                print(f"  ✓ {len(body)} chars generated")
+                success = True
+                break
+            except Exception as e:
+                if "429" in str(e) and attempt < 2:
+                    wait = 60 * (attempt + 1)   # 60s, then 120s
+                    print(f"  ⚠ Rate limited — waiting {wait}s before retry {attempt+2}/3...")
+                    time.sleep(wait)
+                else:
+                    errors += 1
+                    print(f"  ✗ Error: {e}")
+                    break
 
-        # Respect free tier rate limit: 15 req/min → wait 4s between calls
+        # 6 seconds between requests = 10 RPM (well under 15 RPM free limit)
         if i < len(items) - 1:
-            time.sleep(4)
+            time.sleep(6)
 
     data["items"]        = items
     data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
