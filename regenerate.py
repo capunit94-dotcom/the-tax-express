@@ -68,7 +68,7 @@ def main():
 
     import google.generativeai as genai
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.0-flash")
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
