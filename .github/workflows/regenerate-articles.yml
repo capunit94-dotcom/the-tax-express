@@ -1,0 +1,50 @@
+name: Regenerate All Articles with AI Editorials
+
+on:
+  workflow_dispatch:   # Manual trigger only
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: |
+          git config --global user.email "taxexpress-bot@users.noreply.github.com"
+          git config --global user.name "Tax Express Bot"
+          git pull --rebase origin main || true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install google-generativeai
+
+      - name: Regenerate article bodies with Gemini
+        run: python regenerate.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git add news.json
+          git diff --staged --quiet && echo "Nothing changed" || (
+            git commit -m "AI editorial regeneration: $(date -u '+%d %b %Y %H:%M UTC')" &&
+            git push origin main
+          )
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=the-tax-express --branch=main
