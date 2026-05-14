@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 def strip_html(text):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text or "")).strip()
 
-def generate_editorial(title, summary, category, model):
+def generate_editorial(title, summary, category, client):
     cat_context = {
         "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
         "court": "High Court or Supreme Court tax ruling",
@@ -53,7 +53,7 @@ INSTRUCTIONS:
 7. The "Implications for Taxpayers" section must give concrete, actionable guidance for CAs and taxpayers.
 8. Return ONLY the article body HTML (h3 and p tags). No preamble, no title, no byline, no markdown fences.
 """
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
     html = response.text.strip()
     html = re.sub(r"```html?\s*", "", html)
     html = re.sub(r"```\s*$", "", html).strip()
@@ -66,9 +66,8 @@ def main():
         print("ERROR: GEMINI_API_KEY not set")
         return
 
-    import google.generativeai as genai
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    from google import genai
+    client = genai.Client(api_key=api_key)
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -91,7 +90,7 @@ def main():
         success = False
         for attempt in range(3):
             try:
-                body = generate_editorial(title, summary, category, model)
+                body = generate_editorial(title, summary, category, client)
                 item["body"]   = body
                 item["source"] = "The Tax Express"
                 updated += 1

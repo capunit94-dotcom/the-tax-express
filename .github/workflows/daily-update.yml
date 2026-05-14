@@ -32,7 +32,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install feedparser requests google-generativeai
+        run: pip install feedparser requests google-genai
 
       - name: Run auto-updater
         run: python updater.py

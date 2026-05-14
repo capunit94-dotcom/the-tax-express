@@ -123,10 +123,10 @@ def generate_editorial(title, summary, category, api_key):
     Get free key at: https://aistudio.google.com/
     """
     try:
-        import google.generativeai as genai
+        from google import genai
+        from google.genai import types
 
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash-latest")
+        client = genai.Client(api_key=api_key)
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
@@ -195,15 +195,17 @@ INSTRUCTIONS:
 8. Write only the article body HTML (h3 and p tags only). No preamble, no title, no byline, no markdown.
 """
 
-        response  = model.generate_content(prompt)
-        html      = response.text.strip()
-        html      = re.sub(r"```html?\s*", "", html)
-        html      = re.sub(r"```\s*$",     "", html).strip()
+        response  = client.models.generate_content(
+            model="gemini-2.0-flash", contents=prompt
+        )
+        html = response.text.strip()
+        html = re.sub(r"```html?\s*", "", html)
+        html = re.sub(r"```\s*$",     "", html).strip()
         print(f"    ✓ Gemini editorial generated ({len(html)} chars)")
         return html
 
     except ImportError:
-        print("    ✗ google-generativeai not installed — using basic body")
+        print("    ✗ google-genai not installed — using basic body")
         return _basic_body(title, summary, category)
     except Exception as e:
         print(f"    ✗ Gemini API error: {e} — using basic body")
