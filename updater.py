@@ -1,6 +1,6 @@
 """
 The Tax Express — Auto-Update Bot
-Runs daily via GitHub Actions.
+Runs every 3 hours via GitHub Actions.
 Fetches latest tax news from ITAT, CBDT, CBIC, and tax news portals.
 Updates news.json → triggers Cloudflare Pages auto-deploy.
 """
@@ -9,6 +9,7 @@ import feedparser
 import json
 import re
 import hashlib
+import textwrap
 from datetime import datetime, timezone
 
 # ── RSS / Atom feeds from reliable public tax sources ────────
@@ -40,11 +41,11 @@ FEEDS = [
         "url": "https://www.taxmann.com/research/rss/news.xml",
         "source": "Taxmann",
         "category_map": {
-            "gst":          "gst",
-            "income-tax":   "it",
-            "itat":         "itat",
-            "high court":   "court",
-            "supreme court":"court",
+            "gst":           "gst",
+            "income-tax":    "it",
+            "itat":          "itat",
+            "high court":    "court",
+            "supreme court": "court",
         },
         "default_category": "it",
     },
@@ -52,10 +53,13 @@ FEEDS = [
 
 # ── Helpers ──────────────────────────────────────────────────
 def strip_html(text: str) -> str:
-    return re.sub(r"<[^>]+>", "", text or "").strip()
+    """Remove HTML tags and collapse whitespace."""
+    text = re.sub(r"<[^>]+>", " ", text or "")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
 
 def make_id(title: str) -> str:
-    return hashlib.md5(title.encode("utf-8")).hexdigest()[:10]
+    return "tte_" + hashlib.md5(title.encode("utf-8")).hexdigest()[:10]
 
 def parse_date(entry) -> str:
     if hasattr(entry, "published_parsed") and entry.published_parsed:
@@ -71,11 +75,79 @@ def detect_category(entry, feed_cfg: dict) -> str:
         tags = [t.term.lower() for t in entry.tags]
     if hasattr(entry, "category"):
         tags.append(str(entry.category).lower())
-    title_lower = (entry.title or "").lower()
+    title_lower = (entry.get("title", "")).lower()
     for keyword, cat in feed_cfg["category_map"].items():
         if keyword in tags or keyword in title_lower:
             return cat
     return feed_cfg["default_category"]
+
+def get_full_content(entry) -> str:
+    """Return the richest available text content from a feed entry."""
+    # Try content (Atom) — may be full HTML
+    if hasattr(entry, "content") and entry.content:
+        for c in entry.content:
+            val = c.get("value", "")
+            if val and len(val) > 200:
+                return val
+    # Try summary
+    if hasattr(entry, "summary") and entry.summary:
+        return entry.summary
+    return ""
+
+def build_body_html(title: str, raw_content: str, source: str, category: str) -> str:
+    """
+    Convert raw RSS content (HTML or plain text) into a clean article body
+    for The Tax Express story reader modal.
+    Tries to preserve any real HTML paragraphs; falls back to auto-formatting
+    plain text into structured sections.
+    """
+    # If raw_content already has substantial HTML paragraph tags, clean & return
+    plain = strip_html(raw_content)
+    has_html_paras = bool(re.search(r"<p[^>]*>", raw_content, re.IGNORECASE))
+
+    if has_html_paras and len(plain) > 300:
+        # Strip everything except safe tags
+        safe = re.sub(r"<(?!/?(?:p|h[2-6]|strong|em|b|i|ul|ol|li|br)(?:\s[^>]*)?)([^>]+)>",
+                      "", raw_content)
+        safe = re.sub(r"\s{2,}", " ", safe).strip()
+        return safe
+
+    # Plain-text path — split into sentences and build structured HTML
+    if len(plain) < 60:
+        plain = title
+
+    # Break into ~3 paragraphs intelligently
+    sentences = re.split(r'(?<=[.!?])\s+', plain)
+    chunks = []
+    current = []
+    char_count = 0
+    target = max(200, len(plain) // 3)
+
+    for s in sentences:
+        current.append(s)
+        char_count += len(s)
+        if char_count >= target and len(chunks) < 2:
+            chunks.append(" ".join(current))
+            current = []
+            char_count = 0
+    if current:
+        chunks.append(" ".join(current))
+
+    # Assign section headings by category
+    heading_map = {
+        "it":    ["Background", "Key Development", "Implications"],
+        "gst":   ["Background", "Key Decision / Circular", "Compliance Impact"],
+        "itat":  ["Background & Facts", "Issue Before the Tribunal", "Held"],
+        "court": ["Background & Facts", "Issue Before the Court", "Court's Ruling"],
+    }
+    headings = heading_map.get(category, ["Background", "Update", "Significance"])
+
+    parts = []
+    for i, chunk in enumerate(chunks):
+        heading = headings[i] if i < len(headings) else "Further Detail"
+        parts.append(f"<h3>{heading}</h3><p>{chunk.strip()}</p>")
+
+    return "\n".join(parts)
 
 def load_news(path="news.json") -> dict:
     try:
@@ -99,32 +171,35 @@ def main():
         try:
             feed = feedparser.parse(feed_cfg["url"])
             for entry in feed.entries[:15]:
-                item_id = make_id(entry.get("title", ""))
+                title    = strip_html(entry.get("title", "")).strip()
+                if not title or len(title) < 10:
+                    continue
+
+                item_id = make_id(title)
                 if item_id in seen_ids:
                     continue
 
-                # Build summary — prefer summary, fall back to content
-                raw_summary = ""
-                if hasattr(entry, "summary"):
-                    raw_summary = entry.summary
-                elif hasattr(entry, "content") and entry.content:
-                    raw_summary = entry.content[0].get("value", "")
-                summary = strip_html(raw_summary)[:450].strip()
-                if summary and not summary.endswith("."):
-                    summary = summary.rsplit(" ", 1)[0] + "…"
+                category  = detect_category(entry, feed_cfg)
+                raw       = get_full_content(entry)
+                plain_sum = strip_html(raw)[:480].strip()
+                if plain_sum and not plain_sum.endswith((".", "…")):
+                    plain_sum = plain_sum.rsplit(" ", 1)[0] + "…"
+
+                body_html = build_body_html(title, raw, feed_cfg["source"], category)
 
                 item = {
                     "id":       item_id,
                     "date":     parse_date(entry),
-                    "category": detect_category(entry, feed_cfg),
-                    "title":    strip_html(entry.get("title", "No Title")),
-                    "summary":  summary,
+                    "category": category,
+                    "title":    title,
+                    "summary":  plain_sum or title,
                     "source":   feed_cfg["source"],
                     "url":      entry.get("link", "#"),
+                    "body":     body_html,
                 }
                 new_items.append(item)
                 seen_ids.add(item_id)
-                print(f"  + [{item['category'].upper()}] {item['title'][:70]}")
+                print(f"  + [{item['category'].upper()}] {title[:72]}")
 
         except Exception as exc:
             print(f"  ERROR fetching {feed_cfg['url']}: {exc}")
@@ -134,11 +209,14 @@ def main():
         all_items = new_items + existing.get("items", [])
         all_items.sort(key=lambda x: x["date"], reverse=True)
         existing["items"]        = all_items[:120]
-        existing["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        existing["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         save_news(existing)
         print(f"\nDone — added {len(new_items)} new item(s). Total: {len(existing['items'])}")
     else:
-        print("\nNo new items found today.")
+        # Still update the timestamp so users see "last checked" time
+        existing["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        save_news(existing)
+        print("\nNo new items found. Timestamp updated.")
 
 if __name__ == "__main__":
     main()
