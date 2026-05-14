@@ -39,6 +39,7 @@ jobs:
           git add news.json
           git diff --staged --quiet && echo "Nothing changed" || (
             git commit -m "AI editorial regeneration: $(date -u '+%d %b %Y %H:%M UTC')" &&
+            git pull --rebase origin main &&
             git push origin main
           )
 

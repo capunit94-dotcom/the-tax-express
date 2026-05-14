@@ -86,6 +86,12 @@ def main():
 
         print(f"[{i+1}/{len(items)}] {title[:65]}")
 
+        # Skip articles already having a long AI-generated body (>800 chars with h3 tags)
+        existing_body = item.get("body", "")
+        if len(existing_body) > 800 and "<h3>" in existing_body:
+            print(f"  ↷ Already has full editorial ({len(existing_body)} chars) — skipping")
+            continue
+
         # Retry up to 3 times with exponential backoff on rate limit errors
         success = False
         for attempt in range(3):
