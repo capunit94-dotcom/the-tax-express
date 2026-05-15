@@ -150,9 +150,6 @@ async function loadLiveFeed() {
     // Store items globally for lookup
     _newsItems = data.items;
 
-    // Dynamically populate lead story and three-column section
-    _populateHomeStories(data.items);
-
     container.innerHTML = data.items.map(item => {
       const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
       return `
@@ -181,56 +178,10 @@ function filterLive(cat, btn) {
   });
 }
 
-// ── Home page dynamic population ─────────────────────────────
-const CAT_IMAGES = {
-  it:    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
-  gst:   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
-  itat:  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80',
-  court: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80',
-};
-const COL_IMAGES = [
-  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80',
-  'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=500&q=80',
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80',
-];
-
-function _populateHomeStories(items) {
-  if (!items || !items.length) return;
-
-  // ── Lead story: most recent item ──────────────────────────
-  const lead = items[0];
-  const leadFlag = CAT_FLAG[lead.category] || { label: lead.category.toUpperCase(), cls: 'story-flag--dark' };
-  const leadEl = document.querySelector('.lead-story');
-  if (leadEl) {
-    leadEl.setAttribute('onclick', `openStory('${lead.id}')`);
-    const imgEl = leadEl.querySelector('.story-img');
-    if (imgEl) imgEl.src = CAT_IMAGES[lead.category] || CAT_IMAGES.it;
-    const flagEl = leadEl.querySelector('.story-flag');
-    if (flagEl) { flagEl.className = `story-flag ${leadFlag.cls}`; flagEl.textContent = leadFlag.label; }
-    const hedEl = leadEl.querySelector('.lead-story__hed');
-    if (hedEl) hedEl.textContent = lead.title;
-    const deckEl = leadEl.querySelector('.lead-story__deck');
-    if (deckEl) deckEl.textContent = lead.summary;
-    const timeEl = leadEl.querySelector('time');
-    if (timeEl) timeEl.textContent = lead.date;
-  }
-
-  // ── Three-column row: items 1–3 ───────────────────────────
-  const threeCol = document.querySelector('.three-col');
-  if (threeCol && items.length > 1) {
-    const colItems = items.slice(1, 4);
-    threeCol.innerHTML = colItems.map((item, i) => {
-      const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
-      return `
-        <article class="v-story" style="cursor:pointer" onclick="openStory('${item.id}')">
-          <img class="story-img story-img--med" src="${COL_IMAGES[i]}" alt="${flag.label} update" />
-          <span class="story-flag ${flag.cls}">${flag.label}</span>
-          <h3 class="v-story__hed">${item.title}</h3>
-          <p class="v-story__deck">${item.summary}</p>
-          <div class="story-byline"><time>${item.date}</time></div>
-        </article>`;
-    }).join('');
-  }
+// ── Open story by title match (for static hardcoded cards) ───
+function openStoryByTitle(title) {
+  const item = _newsItems.find(n => n.title.includes(title.trim()));
+  if (item) openStory(item.id);
 }
 
 // ── Story Reader (live feed items) ───────────────────────────
