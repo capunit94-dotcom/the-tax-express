@@ -150,6 +150,9 @@ async function loadLiveFeed() {
     // Store items globally for lookup
     _newsItems = data.items;
 
+    // Update lead story + three-col cards dynamically
+    _populateHomeStories(data.items);
+
     container.innerHTML = data.items.map(item => {
       const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
       return `
@@ -178,10 +181,55 @@ function filterLive(cat, btn) {
   });
 }
 
-// ── Open story by title match (for static hardcoded cards) ───
-function openStoryByTitle(title) {
-  const item = _newsItems.find(n => n.title.includes(title.trim()));
-  if (item) openStory(item.id);
+// ── Dynamic home page population ─────────────────────────────
+const _CAT_IMG_LG = {
+  it:    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
+  gst:   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+  itat:  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80',
+  court: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80',
+};
+const _COL_IMGS = [
+  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80',
+  'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=500&q=80',
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80',
+];
+
+function _populateHomeStories(items) {
+  if (!items || !items.length) return;
+
+  // Lead story — most recent article
+  const lead = items[0];
+  const lf = CAT_FLAG[lead.category] || { label: lead.category.toUpperCase(), cls: 'story-flag--dark' };
+  const leadEl = document.querySelector('.lead-story');
+  if (leadEl) {
+    leadEl.onclick = () => openStory(lead.id);
+    leadEl.style.cursor = 'pointer';
+    const img = leadEl.querySelector('.story-img');
+    if (img) img.src = _CAT_IMG_LG[lead.category] || _CAT_IMG_LG.it;
+    const flag = leadEl.querySelector('.story-flag');
+    if (flag) { flag.className = `story-flag ${lf.cls}`; flag.textContent = lf.label; }
+    const hed = leadEl.querySelector('.lead-story__hed');
+    if (hed) hed.textContent = lead.title;
+    const deck = leadEl.querySelector('.lead-story__deck');
+    if (deck) deck.textContent = lead.summary;
+    const t = leadEl.querySelector('time');
+    if (t) t.textContent = lead.date;
+  }
+
+  // Three-column row — items 1, 2, 3
+  const threeCol = document.querySelector('.three-col');
+  if (threeCol && items.length > 1) {
+    threeCol.innerHTML = items.slice(1, 4).map((item, i) => {
+      const f = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
+      return `<article class="v-story" style="cursor:pointer" onclick="openStory('${item.id}')">
+        <img class="story-img story-img--med" src="${_COL_IMGS[i]}" alt="${f.label} update" />
+        <span class="story-flag ${f.cls}">${f.label}</span>
+        <h3 class="v-story__hed">${item.title}</h3>
+        <p class="v-story__deck">${item.summary}</p>
+        <div class="story-byline"><time>${item.date}</time></div>
+      </article>`;
+    }).join('');
+  }
 }
 
 // ── Story Reader (live feed items) ───────────────────────────
