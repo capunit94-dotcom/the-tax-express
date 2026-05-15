@@ -150,13 +150,13 @@ async function loadLiveFeed() {
     // Store items globally for lookup
     _newsItems = data.items;
 
-    // Update lead story + three-col cards dynamically
+    // FIFO: populate lead [0], secondary [1-2], three-col [3-5]
     _populateHomeStories(data.items);
 
-    container.innerHTML = data.items.map(item => {
+    // ── Live feed: items[6–15] — latest 10 stories ─────────────
+    const _liveFeedTpl = item => {
       const flag = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
-      return `
-        <article class="live-item" data-cat="${item.category}" onclick="openStory('${item.id}')">
+      return `<article class="live-item" data-cat="${item.category}" onclick="openStory('${item.id}')">
           <span class="story-flag ${flag.cls}">${flag.label}</span>
           <h4 class="live-item__hed">${item.title}</h4>
           <p class="live-item__summary">${item.summary}</p>
@@ -166,7 +166,24 @@ async function loadLiveFeed() {
             <time>${item.date}</time>
           </div>
         </article>`;
-    }).join('');
+    };
+
+    container.innerHTML = data.items.slice(6, 16).map(_liveFeedTpl).join('');
+
+    // ── Show More: items[16+] — pre-rendered, collapsed ─────────
+    const moreItems  = data.items.slice(16);
+    const moreWrap   = document.getElementById('js-show-more-wrap');
+    const moreGrid   = document.getElementById('js-more-stories');
+    const moreBtn    = document.getElementById('js-show-more-btn');
+    if (moreWrap && moreGrid && moreBtn) {
+      if (moreItems.length > 0) {
+        moreGrid.innerHTML = moreItems.map(_liveFeedTpl).join('');
+        moreBtn.textContent = `Show More Stories (${moreItems.length})`;
+        moreWrap.style.display = 'block';
+      } else {
+        moreWrap.style.display = 'none';
+      }
+    }
 
   } catch (e) {
     container.innerHTML = '<p class="live-feed-loading">Could not load updates.</p>';
@@ -176,9 +193,21 @@ async function loadLiveFeed() {
 function filterLive(cat, btn) {
   document.querySelectorAll('.lf-btn').forEach(b => b.classList.remove('is-active'));
   btn.classList.add('is-active');
+  // Filter covers both live-feed and show-more grids
   document.querySelectorAll('.live-item').forEach(item => {
     item.classList.toggle('is-hidden', cat !== 'all' && item.dataset.cat !== cat);
   });
+}
+
+// ── Show More Stories toggle ─────────────────────────────────
+function showMoreStories() {
+  const grid = document.getElementById('js-more-stories');
+  const btn  = document.getElementById('js-show-more-btn');
+  if (!grid || !btn) return;
+  const isOpen = grid.classList.toggle('is-open');
+  const count  = grid.querySelectorAll('.live-item').length;
+  btn.textContent = isOpen ? 'Show Fewer Stories ▲' : `Show More Stories (${count}) ▼`;
+  if (isOpen) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ── Dynamic home page population ─────────────────────────────
@@ -193,11 +222,26 @@ const _COL_IMGS = [
   'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=500&q=80',
   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80',
 ];
+// Small images for the 2 secondary h-stories
+const _CAT_IMG_SM = {
+  it:    'https://images.unsplash.com/photo-1568234928966-359c35dd8327?auto=format&fit=crop&w=400&q=80',
+  gst:   'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80',
+  itat:  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80',
+  court: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=400&q=80',
+};
 
+/*
+ * FIFO Home Layout (items from news.json, newest first):
+ *  [0]     → Lead story (full-width)
+ *  [1–2]   → Secondary h-stories (fills the 2-story row beside sidebar)
+ *  [3–5]   → Three-col cards
+ *  [6–15]  → Live feed (10 stories)
+ *  [16+]   → Show More Stories (pre-rendered, collapsed)
+ */
 function _populateHomeStories(items) {
   if (!items || !items.length) return;
 
-  // Lead story — most recent article
+  // ── [0] Lead story ───────────────────────────────────────────
   const lead = items[0];
   const lf = CAT_FLAG[lead.category] || { label: lead.category.toUpperCase(), cls: 'story-flag--dark' };
   const leadEl = document.querySelector('.lead-story');
@@ -216,10 +260,34 @@ function _populateHomeStories(items) {
     if (t) t.textContent = lead.date;
   }
 
-  // Three-column row — items 1, 2, 3
+  // ── [1–2] Secondary h-stories (fills blank row beside sidebar) ─
+  const secStack = document.querySelector('.secondary-stack');
+  if (secStack && items.length > 1) {
+    secStack.innerHTML = items.slice(1, 3).map(item => {
+      const f = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
+      const sm = _CAT_IMG_SM[item.category] || _CAT_IMG_SM.it;
+      return `<article class="h-story border-top" style="cursor:pointer" onclick="openStory('${item.id}')">
+        <div class="h-story__img">
+          <img class="story-img story-img--sm" src="${sm}" alt="${f.label} update" />
+        </div>
+        <div class="h-story__body">
+          <span class="story-flag ${f.cls}">${f.label}</span>
+          <h3 class="h-story__hed">${item.title}</h3>
+          <p class="h-story__deck">${item.summary}</p>
+          <div class="story-byline">
+            <span class="byline__author">${item.source}</span>
+            <span class="byline__sep">&bull;</span>
+            <time>${item.date}</time>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  // ── [3–5] Three-col cards ────────────────────────────────────
   const threeCol = document.querySelector('.three-col');
-  if (threeCol && items.length > 1) {
-    threeCol.innerHTML = items.slice(1, 4).map((item, i) => {
+  if (threeCol && items.length > 3) {
+    threeCol.innerHTML = items.slice(3, 6).map((item, i) => {
       const f = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
       return `<article class="v-story" style="cursor:pointer" onclick="openStory('${item.id}')">
         <img class="story-img story-img--med" src="${_COL_IMGS[i]}" alt="${f.label} update" />

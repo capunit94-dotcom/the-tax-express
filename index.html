@@ -241,8 +241,20 @@
           </div>
         </div>
         <div class="live-feed-grid" id="js-live-feed">
-          <!-- Populated by app.js from news.json -->
+          <!-- Populated by app.js — items[6-15] (latest 10) -->
           <div class="live-feed-loading">Loading latest updates…</div>
+        </div>
+
+        <!-- Show More Stories — items[16+], FIFO overflow -->
+        <div id="js-show-more-wrap" style="display:none">
+          <div class="show-more-bar">
+            <button id="js-show-more-btn" class="show-more-btn" onclick="showMoreStories()">
+              Show More Stories ▼
+            </button>
+          </div>
+          <div class="live-feed-grid" id="js-more-stories">
+            <!-- Pre-rendered by app.js, shown on click -->
+          </div>
         </div>
 
       </div>
