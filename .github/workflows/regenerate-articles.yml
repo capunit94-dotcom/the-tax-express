@@ -1,7 +1,9 @@
 name: Regenerate All Articles with AI Editorials
 
 on:
-  workflow_dispatch:   # Manual trigger only
+  workflow_dispatch:   # Manual trigger
+  schedule:
+    - cron: '30 0 * * *'   # Daily at 6:00 AM IST (00:30 UTC)
 
 jobs:
   regenerate:

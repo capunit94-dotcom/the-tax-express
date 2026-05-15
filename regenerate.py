@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 
 SAVE_EVERY        = 10   # write news.json to disk after every N successes
 MAX_CONSEC_ERRORS = 5    # abort if this many consecutive 429/errors in a row
+VISIBLE_SLOTS     = 16   # lead(1) + secondary(2) + three-col(3) + live-feed(10)
+                         # items[16+] are in "Show More" — skip them
 
 def strip_html(text):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text or "")).strip()
@@ -97,20 +99,24 @@ def main():
     consec_errors    = 0   # consecutive failures — quota exhaustion detector
     quota_exhausted  = False
 
-    need_regen = [i for i, x in enumerate(items)
+    visible_items = items[:VISIBLE_SLOTS]
+
+    need_regen = [i for i, x in enumerate(visible_items)
                   if not (len(x.get("body","")) > 800 and "<h3>" in x.get("body",""))]
 
     print(f"Total articles : {len(items)}")
+    print(f"Visible slots  : {VISIBLE_SLOTS} (lead + secondary + three-col + live feed)")
+    print(f"Show More skip : {max(0, len(items) - VISIBLE_SLOTS)} articles (items[{VISIBLE_SLOTS}+] — not regenerated)")
     print(f"Need editorials: {len(need_regen)}")
-    print(f"Already done   : {len(items) - len(need_regen)}")
-    print("Starting Gemini regeneration...\n")
+    print(f"Already done   : {VISIBLE_SLOTS - len(need_regen)}")
+    print("Starting Gemini regeneration (visible articles only)...\n")
 
-    for i, item in enumerate(items):
+    for i, item in enumerate(visible_items):
         title    = item.get("title", "")
         summary  = item.get("summary", "") or item.get("body", "")
         category = item.get("category", "it")
 
-        print(f"[{i+1}/{len(items)}] {title[:65]}")
+        print(f"[{i+1}/{VISIBLE_SLOTS}] {title[:65]}")
 
         # Skip articles already having a full AI-generated body
         existing_body = item.get("body", "")
@@ -155,7 +161,7 @@ def main():
             break
 
         # 6 seconds between requests = 10 RPM (well under 15 RPM free limit)
-        if i < len(items) - 1:
+        if i < VISIBLE_SLOTS - 1:
             time.sleep(6)
 
     # ── Final save + merge with remote ───────────────────────────────────────
