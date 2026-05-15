@@ -247,18 +247,86 @@ function openStory(id) {
   document.getElementById('modal-story-body').innerHTML =
     item.body || `<p>${item.summary}</p>`;
 
-  // Wire up "View Original Source" link — opens in new tab
-  const srcLink = document.getElementById('modal-story-source-link');
-  if (srcLink) {
-    if (item.url && item.url !== '#') {
-      srcLink.href = item.url;
-      srcLink.style.display = 'inline-flex';
-    } else {
-      srcLink.style.display = 'none';
-    }
-  }
-
   openModal('modal-story');
+}
+
+// ── View Full Story — opens branded full-page article ────────
+function viewFullStory() {
+  const title = document.getElementById('modal-story-title')?.textContent || 'Report';
+  const body  = document.getElementById('modal-story-body')?.innerHTML   || '';
+  const meta  = document.getElementById('modal-story-meta')?.textContent || '';
+  const date  = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  const w = window.open('', '_blank');
+  if (!w) { toast('Please allow pop-ups to open the full story.'); return; }
+  w.document.write(`<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>${title.replace(/</g,'&lt;')} — The Tax Express</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', Arial, sans-serif; color: #111; background: #fff; font-size: 15px; line-height: 1.8; }
+  .page { max-width: 780px; margin: 0 auto; padding: 40px 28px 60px; }
+  .top-bar {
+    position: sticky; top: 0; background: #fff; border-bottom: 2px solid #cc0000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 28px; z-index: 100;
+  }
+  .top-logo { font-family: 'Merriweather', Georgia, serif; font-size: 20px; font-weight: 900; color: #cc0000; }
+  .top-btns { display: flex; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer;
+    border-radius: 2px; border: none;
+  }
+  .btn-print { background: #111; color: #fff; }
+  .btn-print:hover { background: #cc0000; }
+  .btn-dl { background: #fff; color: #111; border: 1.5px solid #ccc; }
+  .btn-dl:hover { border-color: #cc0000; color: #cc0000; }
+  .label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: #cc0000; color: #fff; padding: 3px 10px; border-radius: 2px; display: inline-block; margin: 32px 0 14px; }
+  h1 { font-family: 'Merriweather', Georgia, serif; font-size: 26px; font-weight: 900; line-height: 1.35; color: #0a0a0a; margin-bottom: 10px; }
+  .meta { font-size: 13px; color: #777; margin-bottom: 20px; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 20px 0; }
+  h3, h4 { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #cc0000; margin: 26px 0 8px; }
+  p { font-size: 15px; line-height: 1.85; color: #222; margin-bottom: 14px; }
+  .disclaimer { font-size: 12px; color: #888; font-style: italic; margin-top: 24px; padding: 10px 14px; border-left: 3px solid #ddd; background: #fafafa; }
+  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; }
+  @media print {
+    .top-bar { display: none; }
+    body { font-size: 13px; }
+    @page { margin: 18mm; }
+  }
+</style>
+</head><body>
+<div class="top-bar">
+  <span class="top-logo">The Tax Express</span>
+  <div class="top-btns">
+    <button class="btn btn-print" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print
+    </button>
+    <button class="btn btn-dl" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+  </div>
+</div>
+<div class="page">
+  <div class="label">The Tax Express — Exclusive Report</div>
+  <h1>${title}</h1>
+  <p class="meta">${meta}</p>
+  <hr/>
+  ${body}
+  <p class="disclaimer">&#9432; AI-assisted editorial. Verify against the original source before relying on this for compliance purposes.</p>
+  <div class="foot">
+    <span>&copy; The Tax Express &nbsp;|&nbsp; thetaxexpress.in</span>
+    <span>Viewed: ${date}</span>
+  </div>
+</div>
+</body></html>`);
+  w.document.close();
 }
 
 // ── PDF Download — story reader modal ────────────────────────
