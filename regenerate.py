@@ -7,6 +7,7 @@ Run via GitHub Actions: Actions > Regenerate All Articles with AI Editorials > R
 import json
 import os
 import re
+import subprocess
 import time
 from datetime import datetime, timezone
 
@@ -124,10 +125,41 @@ def main():
     data["items"]        = items
     data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
+    # ── Merge with remote to preserve articles added during the long run ──────
+    # Auto-updater may have pushed 1-3 new articles while we were regenerating.
+    # Fetch remote, apply our regenerated bodies onto it, then save the merged result.
+    try:
+        subprocess.run(["git", "fetch", "origin", "main"], capture_output=True)
+        remote_raw = subprocess.check_output(
+            ["git", "show", "origin/main:news.json"], stderr=subprocess.DEVNULL
+        ).decode("utf-8")
+        remote_data = json.loads(remote_raw)
+
+        # Map of article IDs that now have full AI editorials
+        regen_map = {
+            item["id"]: item["body"]
+            for item in items
+            if item.get("body") and len(item.get("body", "")) > 800 and "<h3>" in item.get("body", "")
+        }
+
+        # Apply our regenerated bodies onto the remote's article list
+        merge_count = 0
+        for ritem in remote_data["items"]:
+            if ritem["id"] in regen_map:
+                ritem["body"]   = regen_map[ritem["id"]]
+                ritem["source"] = "The Tax Express"
+                merge_count += 1
+
+        remote_data["last_updated"] = data["last_updated"]
+        data = remote_data
+        print(f"\nMerged {merge_count} regenerated bodies onto {len(data['items'])} remote articles (preserving new articles added during run).")
+    except Exception as e:
+        print(f"\nCould not merge with remote ({e}) — saving local data only.")
+
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"\nDone — {updated} articles regenerated, {errors} errors.")
+    print(f"Done — {updated} articles regenerated, {errors} errors.")
 
 
 if __name__ == "__main__":

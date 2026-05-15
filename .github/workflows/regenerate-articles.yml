@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest
+      - name: Configure git
         run: |
           git config --global user.email "taxexpress-bot@users.noreply.github.com"
           git config --global user.name "Tax Express Bot"
@@ -34,53 +34,10 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Merge regenerated bodies onto latest remote and push
+      - name: Commit and push
         run: |
-          # Fetch latest remote (auto-updater may have added articles during the long run)
           git fetch origin main
-
-          # Smart merge: apply our regenerated bodies onto the remote's latest news.json
-          # This preserves new articles added by auto-updater + our regenerated bodies
-          python3 - <<'EOF'
-import json, subprocess, sys
-
-# Load our locally regenerated news.json
-with open("news.json", encoding="utf-8") as f:
-    local_data = json.load(f)
-
-# Get the latest remote news.json (may have new articles added during the run)
-try:
-    remote_raw = subprocess.check_output(
-        ["git", "show", "origin/main:news.json"], stderr=subprocess.DEVNULL
-    ).decode("utf-8")
-    remote_data = json.loads(remote_raw)
-except Exception as e:
-    print(f"Could not fetch remote news.json ({e}), using local only")
-    sys.exit(0)
-
-# Build map of regenerated bodies by article ID (only full AI editorials)
-regenerated = {
-    item["id"]: item
-    for item in local_data["items"]
-    if item.get("body") and len(item.get("body", "")) > 800 and "<h3>" in item.get("body", "")
-}
-
-# Apply regenerated bodies onto remote data (which may have newer articles)
-updated = 0
-for item in remote_data["items"]:
-    if item["id"] in regenerated:
-        item["body"]   = regenerated[item["id"]]["body"]
-        item["source"] = "The Tax Express"
-        updated += 1
-
-print(f"Merged {updated} regenerated bodies onto {len(remote_data['items'])} remote articles")
-
-# Save merged result back to news.json
-with open("news.json", "w", encoding="utf-8") as f:
-    json.dump(remote_data, f, indent=2, ensure_ascii=False)
-EOF
-
-          # Now commit and push — we are already up to date with remote, no rebase needed
+          git reset --soft origin/main
           git add news.json
           git diff --staged --quiet && echo "Nothing changed" || (
             git commit -m "AI editorial regeneration: $(date -u '+%d %b %Y %H:%M UTC')" &&
