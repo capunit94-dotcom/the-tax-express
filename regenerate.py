@@ -2,6 +2,9 @@
 The Tax Express — One-time AI Editorial Regeneration
 Rewrites body field of ALL items in news.json using Google Gemini.
 Run via GitHub Actions: Actions > Regenerate All Articles with AI Editorials > Run workflow
+
+Quota-aware: exits early if Gemini daily quota is exhausted (5 consecutive 429s).
+Saves progress to disk every 10 articles so partial work is never lost.
 """
 
 import json
@@ -10,6 +13,9 @@ import re
 import subprocess
 import time
 from datetime import datetime, timezone
+
+SAVE_EVERY        = 10   # write news.json to disk after every N successes
+MAX_CONSEC_ERRORS = 5    # abort if this many consecutive 429/errors in a row
 
 def strip_html(text):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text or "")).strip()
@@ -65,6 +71,14 @@ INSTRUCTIONS:
     return html
 
 
+def save_progress(data, items):
+    """Write current state to disk (no git commit — just preserve progress)."""
+    data["items"]        = items
+    data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    with open("news.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
 def main():
     api_key = os.environ.get("GEMINI_API_KEY", "")
     if not api_key:
@@ -77,12 +91,19 @@ def main():
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    items   = data.get("items", [])
-    updated = 0
-    errors  = 0
+    items            = data.get("items", [])
+    updated          = 0
+    errors           = 0
+    consec_errors    = 0   # consecutive failures — quota exhaustion detector
+    quota_exhausted  = False
 
-    print(f"Total articles: {len(items)}")
-    print("Regenerating all with Gemini AI editorials...\n")
+    need_regen = [i for i, x in enumerate(items)
+                  if not (len(x.get("body","")) > 800 and "<h3>" in x.get("body",""))]
+
+    print(f"Total articles : {len(items)}")
+    print(f"Need editorials: {len(need_regen)}")
+    print(f"Already done   : {len(items) - len(need_regen)}")
+    print("Starting Gemini regeneration...\n")
 
     for i, item in enumerate(items):
         title    = item.get("title", "")
@@ -91,10 +112,11 @@ def main():
 
         print(f"[{i+1}/{len(items)}] {title[:65]}")
 
-        # Skip articles already having a long AI-generated body (>800 chars with h3 tags)
+        # Skip articles already having a full AI-generated body
         existing_body = item.get("body", "")
         if len(existing_body) > 800 and "<h3>" in existing_body:
-            print(f"  ↷ Already has full editorial ({len(existing_body)} chars) — skipping")
+            print(f"  ↷ Already done ({len(existing_body)} chars) — skipping")
+            consec_errors = 0   # reset streak on skip (not a failure)
             continue
 
         # Retry up to 3 times with exponential backoff on rate limit errors
@@ -104,30 +126,42 @@ def main():
                 body = generate_editorial(title, summary, category, client)
                 item["body"]   = body
                 item["source"] = "The Tax Express"
-                updated += 1
+                updated       += 1
+                consec_errors  = 0
                 print(f"  ✓ {len(body)} chars generated")
                 success = True
                 break
             except Exception as e:
                 if "429" in str(e) and attempt < 2:
                     wait = 60 * (attempt + 1)   # 60s, then 120s
-                    print(f"  ⚠ Rate limited — waiting {wait}s before retry {attempt+2}/3...")
+                    print(f"  ⚠ Rate limited — waiting {wait}s (attempt {attempt+2}/3)...")
                     time.sleep(wait)
                 else:
-                    errors += 1
+                    errors       += 1
+                    consec_errors += 1
                     print(f"  ✗ Error: {e}")
                     break
+
+        # Save progress to disk every SAVE_EVERY successes
+        if updated > 0 and updated % SAVE_EVERY == 0:
+            save_progress(data, items)
+            print(f"  💾 Progress saved ({updated} articles done so far)")
+
+        # Abort early if quota appears exhausted
+        if consec_errors >= MAX_CONSEC_ERRORS:
+            print(f"\n⛔ {MAX_CONSEC_ERRORS} consecutive failures — Gemini daily quota likely exhausted.")
+            print(   "   Saving progress and exiting. Re-run after quota resets (midnight UTC).")
+            quota_exhausted = True
+            break
 
         # 6 seconds between requests = 10 RPM (well under 15 RPM free limit)
         if i < len(items) - 1:
             time.sleep(6)
 
-    data["items"]        = items
-    data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    # ── Final save + merge with remote ───────────────────────────────────────
+    save_progress(data, items)
 
-    # ── Merge with remote to preserve articles added during the long run ──────
-    # Auto-updater may have pushed 1-3 new articles while we were regenerating.
-    # Fetch remote, apply our regenerated bodies onto it, then save the merged result.
+    # Merge with remote to preserve articles added during the long run
     try:
         subprocess.run(["git", "fetch", "origin", "main"], capture_output=True)
         remote_raw = subprocess.check_output(
@@ -142,24 +176,25 @@ def main():
             if item.get("body") and len(item.get("body", "")) > 800 and "<h3>" in item.get("body", "")
         }
 
-        # Apply our regenerated bodies onto the remote's article list
+        # Apply regenerated bodies onto the remote's article list
         merge_count = 0
         for ritem in remote_data["items"]:
             if ritem["id"] in regen_map:
                 ritem["body"]   = regen_map[ritem["id"]]
                 ritem["source"] = "The Tax Express"
-                merge_count += 1
+                merge_count     += 1
 
         remote_data["last_updated"] = data["last_updated"]
         data = remote_data
-        print(f"\nMerged {merge_count} regenerated bodies onto {len(data['items'])} remote articles (preserving new articles added during run).")
+        print(f"\nMerged {merge_count} regenerated bodies onto {len(data['items'])} remote articles.")
     except Exception as e:
         print(f"\nCould not merge with remote ({e}) — saving local data only.")
 
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"Done — {updated} articles regenerated, {errors} errors.")
+    status = "⛔ QUOTA EXHAUSTED — re-run tomorrow" if quota_exhausted else "✅ Complete"
+    print(f"\n{status} — {updated} regenerated, {errors} errors.")
 
 
 if __name__ == "__main__":
