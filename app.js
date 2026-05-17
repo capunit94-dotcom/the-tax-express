@@ -387,7 +387,6 @@ function viewFullStory() {
   <p class="meta">${meta}</p>
   <hr/>
   ${body}
-  <p class="disclaimer">&#9432; AI-assisted editorial. Verify against the original source before relying on this for compliance purposes.</p>
   <div class="foot">
     <span>&copy; The Tax Express &nbsp;|&nbsp; thetaxexpress.in</span>
     <span>Viewed: ${date}</span>
