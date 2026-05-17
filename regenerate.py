@@ -1,9 +1,9 @@
 """
 The Tax Express — One-time AI Editorial Regeneration
-Rewrites body field of ALL items in news.json using Google Gemini.
+Rewrites body field of visible items in news.json using Groq (Llama 3.3 70B).
 Run via GitHub Actions: Actions > Regenerate All Articles with AI Editorials > Run workflow
 
-Quota-aware: exits early if Gemini daily quota is exhausted (5 consecutive 429s).
+Quota-aware: exits early if quota is exhausted (5 consecutive errors).
 Saves progress to disk every 10 articles so partial work is never lost.
 """
 
@@ -66,8 +66,13 @@ INSTRUCTIONS:
 7. The "Implications for Taxpayers" section must give concrete, actionable guidance for CAs and taxpayers.
 8. Return ONLY the article body HTML (h3 and p tags). No preamble, no title, no byline, no markdown fences.
 """
-    response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
-    html = response.text.strip()
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=1500,
+        temperature=0.7,
+    )
+    html = response.choices[0].message.content.strip()
     html = re.sub(r"```html?\s*", "", html)
     html = re.sub(r"```\s*$", "", html).strip()
     return html
@@ -82,13 +87,13 @@ def save_progress(data, items):
 
 
 def main():
-    api_key = os.environ.get("GEMINI_API_KEY", "")
+    api_key = os.environ.get("GROQ_API_KEY", "")
     if not api_key:
-        print("ERROR: GEMINI_API_KEY not set")
+        print("ERROR: GROQ_API_KEY not set")
         return
 
-    from google import genai
-    client = genai.Client(api_key=api_key)
+    from groq import Groq
+    client = Groq(api_key=api_key)
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -160,9 +165,9 @@ def main():
             quota_exhausted = True
             break
 
-        # 6 seconds between requests = 10 RPM (well under 15 RPM free limit)
+        # 4 seconds between requests = 15 RPM (well under 30 RPM Groq free limit)
         if i < VISIBLE_SLOTS - 1:
-            time.sleep(6)
+            time.sleep(4)
 
     # ── Final save + merge with remote ───────────────────────────────────────
     save_progress(data, items)

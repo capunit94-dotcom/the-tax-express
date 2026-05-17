@@ -116,17 +116,15 @@ def get_rss_content(entry):
 # ── AI Editorial Generator ────────────────────────────────────
 def generate_editorial(title, summary, category, api_key):
     """
-    Call Google Gemini API (free tier) to write a full editorial article.
+    Call Groq API (free tier, Llama 3.3 70B) to write a full editorial article.
     Returns HTML string with h3/p tags.
     Falls back to basic body if API unavailable.
-    Free tier: 1,500 requests/day — more than enough.
-    Get free key at: https://aistudio.google.com/
+    Free tier: 14,400 requests/day — very generous.
+    Get free key at: https://console.groq.com/
     """
     try:
-        from google import genai
-        from google.genai import types
-
-        client = genai.Client(api_key=api_key)
+        from groq import Groq
+        client = Groq(api_key=api_key)
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
@@ -199,17 +197,20 @@ INSTRUCTIONS:
 8. Write only the article body HTML (h3 and p tags only). No preamble, no title, no byline, no markdown.
 """
 
-        response  = client.models.generate_content(
-            model="gemini-2.0-flash", contents=prompt
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1500,
+            temperature=0.7,
         )
-        html = response.text.strip()
+        html = response.choices[0].message.content.strip()
         html = re.sub(r"```html?\s*", "", html)
         html = re.sub(r"```\s*$",     "", html).strip()
         print(f"    ✓ Gemini editorial generated ({len(html)} chars)")
         return html
 
     except ImportError:
-        print("    ✗ google-genai not installed — using basic body")
+        print("    ✗ groq not installed — using basic body")
         return _basic_body(title, summary, category)
     except Exception as e:
         print(f"    ✗ Gemini API error: {e} — using basic body")
@@ -254,12 +255,12 @@ def save_news(data, path="news.json"):
 
 # ── Main ──────────────────────────────────────────────────────
 def main():
-    api_key    = os.environ.get("GEMINI_API_KEY", "")
+    api_key    = os.environ.get("GROQ_API_KEY", "")
     use_ai     = bool(api_key)
     if use_ai:
-        print("Gemini AI editorial generation: ENABLED (free tier)")
+        print("Groq AI editorial generation: ENABLED (Llama 3.3 70B, free tier)")
     else:
-        print("Gemini AI editorial generation: DISABLED (add GEMINI_API_KEY to GitHub secrets)")
+        print("Groq AI editorial generation: DISABLED (add GROQ_API_KEY to GitHub secrets)")
 
     existing  = load_news()
     seen_ids  = {item["id"] for item in existing.get("items", [])}
