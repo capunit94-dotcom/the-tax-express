@@ -295,12 +295,15 @@ def main():
 
                 print(f"  + [{category.upper()}] {title[:70]}")
 
-                # Generate AI editorial or fall back to basic
+                # Generate AI editorial — regenerate.py will fill gaps at 6 AM
+                # Use _basic_body only as a temporary placeholder (< 800 chars,
+                # no full <h3> structure) so regenerate.py detects and rewrites it.
                 if use_ai and ai_count < AI_LIMIT:
                     body_html = generate_editorial(title, plain_sum or title, category, api_key)
                     ai_count += 1
                 else:
-                    body_html = _basic_body(title, plain_sum or title, category)
+                    # Short placeholder — regenerate.py scheduled job will rewrite this
+                    body_html = f"<p>{plain_sum or title}</p>"
 
                 new_items.append({
                     "id":       item_id,
