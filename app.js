@@ -249,7 +249,7 @@ function _populateHomeStories(items) {
     leadEl.onclick = () => openStory(lead.id);
     leadEl.style.cursor = 'pointer';
     const img = leadEl.querySelector('.story-img');
-    if (img) img.src = _CAT_IMG_LG[lead.category] || _CAT_IMG_LG.it;
+    if (img) img.src = lead.image || _CAT_IMG_LG[lead.category] || _CAT_IMG_LG.it;
     const flag = leadEl.querySelector('.story-flag');
     if (flag) { flag.className = `story-flag ${lf.cls}`; flag.textContent = lf.label; }
     const hed = leadEl.querySelector('.lead-story__hed');
@@ -265,7 +265,7 @@ function _populateHomeStories(items) {
   if (secStack && items.length > 1) {
     secStack.innerHTML = items.slice(1, 3).map(item => {
       const f = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
-      const sm = _CAT_IMG_SM[item.category] || _CAT_IMG_SM.it;
+      const sm = item.image || _CAT_IMG_SM[item.category] || _CAT_IMG_SM.it;
       return `<article class="h-story border-top" style="cursor:pointer" onclick="openStory('${item.id}')">
         <div class="h-story__img">
           <img class="story-img story-img--sm" src="${sm}" alt="${f.label} update" />
@@ -290,7 +290,7 @@ function _populateHomeStories(items) {
     threeCol.innerHTML = items.slice(3, 6).map((item, i) => {
       const f = CAT_FLAG[item.category] || { label: item.category.toUpperCase(), cls: 'story-flag--dark' };
       return `<article class="v-story" style="cursor:pointer" onclick="openStory('${item.id}')">
-        <img class="story-img story-img--med" src="${_COL_IMGS[i]}" alt="${f.label} update" />
+        <img class="story-img story-img--med" src="${item.image || _COL_IMGS[i]}" alt="${f.label} update" />
         <span class="story-flag ${f.cls}">${f.label}</span>
         <h3 class="v-story__hed">${item.title}</h3>
         <p class="v-story__deck">${item.summary}</p>

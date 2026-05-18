@@ -113,6 +113,31 @@ def get_rss_content(entry):
         return entry.summary
     return ""
 
+def get_rss_image(entry, raw_content=""):
+    """Extract the best image URL from an RSS entry."""
+    # 1. media:content or media:thumbnail tags
+    if hasattr(entry, "media_content") and entry.media_content:
+        for m in entry.media_content:
+            url = m.get("url", "")
+            if url and url.startswith("http") and any(ext in url.lower() for ext in [".jpg", ".jpeg", ".png", ".webp", "image"]):
+                return url
+    if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
+        url = entry.media_thumbnail[0].get("url", "")
+        if url and url.startswith("http"):
+            return url
+    # 2. enclosure (podcast-style image attachment)
+    if hasattr(entry, "enclosures") and entry.enclosures:
+        for enc in entry.enclosures:
+            if "image" in enc.get("type", ""):
+                return enc.get("href", "")
+    # 3. First <img> tag in the content HTML
+    img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', raw_content or "")
+    if img_match:
+        url = img_match.group(1)
+        if url.startswith("http"):
+            return url
+    return ""
+
 # ── AI Editorial Generator ────────────────────────────────────
 def generate_editorial(title, summary, category, api_key):
     """
@@ -290,6 +315,7 @@ def main():
 
                 category  = detect_category(entry, feed_cfg)
                 raw       = get_rss_content(entry)
+                image_url = get_rss_image(entry, raw)
                 plain_sum = strip_html(raw)[:480].strip()
                 if plain_sum and not plain_sum.endswith((".", "…")):
                     plain_sum = plain_sum.rsplit(" ", 1)[0] + "…"
@@ -314,6 +340,7 @@ def main():
                     "summary":  plain_sum or title,
                     "source":   "The Tax Express",   # original editorial, not external source
                     "url":      entry.get("link", "#"),
+                    "image":    image_url,
                     "body":     body_html,
                 })
                 seen_ids.add(item_id)
