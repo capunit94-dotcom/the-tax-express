@@ -845,6 +845,17 @@ img { display: block; max-width: 100%; }
   line-height: 1.55;
 }
 
+/* Budget document download buttons */
+.budget-doc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.4px; text-transform: uppercase;
+  background: #fff; color: #cc0000;
+  border: 1.5px solid #cc0000; border-radius: 2px;
+  text-decoration: none; transition: background 0.15s, color 0.15s;
+}
+.budget-doc-btn:hover { background: #cc0000; color: #fff; }
+
 /* ============================================================
    FOOTER
    ============================================================ */
