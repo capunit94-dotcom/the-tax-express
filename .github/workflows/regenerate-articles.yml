@@ -45,4 +45,9 @@ jobs:
             git commit -m "AI editorial regeneration: $(date -u '+%d %b %Y %H:%M UTC')" &&
             git push origin main
           )
-      # Cloudflare Pages deploys automatically via GitHub git integration on every push
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy . --project-name=the-tax-express --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
