@@ -141,14 +141,14 @@ def get_rss_image(entry, raw_content=""):
 # ── AI Editorial Generator ────────────────────────────────────
 def generate_editorial(title, summary, category, api_key):
     """
-    Call xAI Grok-3 API to write a full editorial article.
+    Call Groq API (Llama 3.3 70B) to write a full editorial article.
     Returns HTML string with h3/p tags.
     Falls back to basic body if API unavailable.
-    Get free API key at: https://console.x.ai/
+    Get free key at: https://console.groq.com/
     """
     try:
-        from openai import OpenAI
-        client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
+        from groq import Groq
+        client = Groq(api_key=api_key)
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
@@ -195,37 +195,45 @@ def generate_editorial(title, summary, category, api_key):
             "Implications for Taxpayers",
         ])
 
-        sections_str = "\n".join(f"- <h3>{s}</h3>" for s in section_guide)
+        sections_str = "\n".join(f"  <h3>{s}</h3>" for s in section_guide)
 
-        prompt = f"""You are a senior tax journalist and legal analyst writing for The Tax Express — India's premier tax intelligence platform read by chartered accountants, tax advocates, and finance professionals.
+        prompt = f"""You are the Chief Tax Correspondent of The Tax Express — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
 
-Write a comprehensive, authoritative editorial article (550–750 words) about the following {cat_context}:
+Your task: Write a premium, publication-ready editorial (700–900 words) on the following {cat_context}.
 
-TITLE: {title}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ARTICLE TITLE: {title}
+NEWS BRIEF: {strip_html(summary)[:700]}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-BRIEF: {strip_html(summary)[:600]}
-
-INSTRUCTIONS:
-1. Write in a professional Indian tax journalism style — factual, precise, and insightful.
-2. Use these exact HTML section headings in this order:
+MANDATORY STRUCTURE — use these exact HTML headings in order:
 {sections_str}
-3. Each section must have at least 2 substantive paragraphs using <p> tags.
-4. STRICT RULE — Do NOT invent or fabricate ANY specific facts not present in the TITLE or BRIEF above. This means:
-   - Do NOT invent circular numbers, notification numbers, or case citation numbers (e.g. do not write "Circular No. 45/2026" unless it appears in the title/brief)
-   - Do NOT invent specific dates, deadlines, or monetary amounts not mentioned
-   - Do NOT invent names of parties in a case not mentioned
-   - If a specific detail is unknown, refer to it generically (e.g. "this circular", "the ruling in question", "the court held")
-5. You MAY and SHOULD draw on your knowledge of Indian tax law to provide legal context: cite real sections of the CGST Act, Income Tax Act, relevant established case law, and CBDT/CBIC circulars that form the BACKGROUND to this topic — not the specific development being reported.
-6. Do NOT reference "Tax Guru", "Taxmann", or any third-party source. Write as The Tax Express original editorial.
-7. The "Implications for Taxpayers" section must give concrete, actionable guidance for CAs and taxpayers.
-8. Write only the article body HTML (h3 and p tags only). No preamble, no title, no byline, no markdown.
+
+WRITING STANDARDS (non-negotiable):
+
+1. DEPTH & ANALYSIS: Each section must contain 2–3 rich paragraphs. Go beyond summarising — analyse the significance, the legal reasoning, and the real-world impact.
+
+2. LEGAL PRECISION: Cite specific, real sections of the Income Tax Act 2025/1961, CGST Act 2017, established Supreme Court/High Court precedents, and CBDT/CBIC circulars relevant as background. Name actual legal provisions (e.g., "Section 9(1) of the CGST Act", "Section 145A of the Income Tax Act").
+
+3. STRICT FACT DISCIPLINE: Do NOT invent case citation numbers, circular numbers, or notification numbers unless explicitly stated in the NEWS BRIEF. Refer generically if unknown (e.g., "the impugned order", "this circular"). You MUST use real background law and landmark precedents.
+
+4. PRACTITIONER FOCUS: The final section must deliver 4–5 concrete, numbered action points that a CA or tax lawyer can act on immediately — filing steps, documentation requirements, risk areas, or advisory tips.
+
+5. TONE: Authoritative, active voice. Avoid clichés like "it is pertinent to note". Write as a legal expert to a peer.
+
+6. Do NOT reference Tax Guru, Taxmann, ITAT Online, or any third-party publication.
+
+OUTPUT: Return ONLY the article body HTML using <h3> and <p> tags. No preamble, no title, no byline, no markdown, no code fences. Start directly with the first <h3> tag.
 """
 
         response = client.chat.completions.create(
-            model="grok-3-mini",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=1800,
-            temperature=0.7,
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "system", "content": "You are a senior Indian tax journalist. Write detailed, legally precise editorial articles in HTML format using only <h3> and <p> tags."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=2000,
+            temperature=0.65,
         )
         html = response.choices[0].message.content.strip()
         html = re.sub(r"```html?\s*", "", html)
@@ -279,12 +287,12 @@ def save_news(data, path="news.json"):
 
 # ── Main ──────────────────────────────────────────────────────
 def main():
-    api_key    = os.environ.get("XAI_API_KEY", "")
+    api_key    = os.environ.get("GROQ_API_KEY", "")
     use_ai     = bool(api_key)
     if use_ai:
-        print("xAI Grok-3 editorial generation: ENABLED")
+        print("Groq AI editorial generation: ENABLED (Llama 3.3 70B — enhanced prompt)")
     else:
-        print("xAI Grok-3 editorial generation: DISABLED (add XAI_API_KEY to GitHub secrets)")
+        print("Groq AI editorial generation: DISABLED (add GROQ_API_KEY to GitHub secrets)")
 
     existing  = load_news()
     seen_ids  = {item["id"] for item in existing.get("items", [])}

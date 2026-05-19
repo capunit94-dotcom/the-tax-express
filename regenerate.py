@@ -26,51 +26,64 @@ def generate_editorial(title, summary, category, client):
     cat_context = {
         "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
         "court": "High Court or Supreme Court tax ruling",
-        "gst":   "GST / indirect tax development, circular, or ruling",
-        "it":    "income tax notification, circular, amendment, or CBDT development",
-    }.get(category, "Indian tax development")
+        "gst":   "GST / indirect tax development, notification, circular, or ruling",
+        "it":    "income tax notification, circular, amendment, or CBDT/CBIC development",
+    }.get(category, "Indian tax law development")
 
     section_guide = {
-        "itat":  ["Background", "Facts of the Case", "Issue Before the Tribunal",
-                  "Arguments Raised", "Tribunal's Decision", "Implications for Taxpayers"],
-        "court": ["Background", "Facts of the Case", "Issue Before the Court",
-                  "Arguments and Legal Provisions", "Court's Ruling", "Implications for Taxpayers"],
-        "gst":   ["Background", "What Was Issued", "Key Provisions and Clarifications",
-                  "Analysis", "Compliance Impact"],
-        "it":    ["Background", "What Was Notified or Decided", "Key Provisions",
-                  "Analysis", "Implications for Taxpayers"],
-    }.get(category, ["Background", "Key Development", "Analysis", "Implications for Taxpayers"])
+        "itat":  ["Background & Legal Framework", "Facts of the Case",
+                  "Issue Before the Tribunal", "Arguments & Contentions",
+                  "Tribunal's Ruling & Reasoning", "Key Takeaways for Practitioners"],
+        "court": ["Background & Legal Framework", "Facts of the Case",
+                  "Issue Before the Court", "Arguments & Legal Provisions",
+                  "Court's Decision & Reasoning", "Key Takeaways for Practitioners"],
+        "gst":   ["Background & Statutory Framework", "The Development in Detail",
+                  "Key Provisions & Clarifications", "Critical Analysis",
+                  "Compliance Implications & Action Points"],
+        "it":    ["Background & Statutory Framework", "The Development in Detail",
+                  "Key Provisions & Impact", "Critical Analysis",
+                  "Compliance Implications & Action Points"],
+    }.get(category, ["Background & Framework", "The Development",
+                     "Legal Analysis", "Key Takeaways for Practitioners"])
 
-    sections_str = "\n".join(f"- <h3>{s}</h3>" for s in section_guide)
+    sections_str = "\n".join(f"  <h3>{s}</h3>" for s in section_guide)
 
-    prompt = f"""You are a senior tax journalist and legal analyst writing for The Tax Express — India's premier tax intelligence platform read by chartered accountants, tax advocates, and finance professionals.
+    prompt = f"""You are the Chief Tax Correspondent of The Tax Express — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
 
-Write a comprehensive, authoritative editorial article (550–750 words) about the following {cat_context}:
+Your task: Write a premium, publication-ready editorial (700–900 words) on the following {cat_context}.
 
-TITLE: {title}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ARTICLE TITLE: {title}
+NEWS BRIEF: {strip_html(summary)[:700]}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-BRIEF: {strip_html(summary)[:600]}
-
-INSTRUCTIONS:
-1. Write in a professional Indian tax journalism style — factual, precise, and insightful.
-2. Use these exact HTML section headings in this order:
+MANDATORY STRUCTURE — use these exact HTML headings in order:
 {sections_str}
-3. Each section must have at least 2 substantive paragraphs using <p> tags.
-4. STRICT RULE — Do NOT invent or fabricate ANY specific facts not present in the TITLE or BRIEF above. This means:
-   - Do NOT invent circular numbers, notification numbers, or case citation numbers unless they appear in the title/brief
-   - Do NOT invent specific dates, deadlines, or monetary amounts not mentioned
-   - Do NOT invent names of parties in a case not mentioned
-   - If a specific detail is unknown, refer to it generically (e.g. "this circular", "the ruling in question", "the court held")
-5. You MAY and SHOULD draw on your knowledge of Indian tax law to provide legal context: cite real sections of the CGST Act, Income Tax Act, relevant established case law, and CBDT/CBIC circulars that form the BACKGROUND to this topic — not the specific development being reported.
-6. Do NOT reference "Tax Guru", "Taxmann", "ITAT Online" or any third-party publication. Write as The Tax Express original editorial.
-7. The "Implications for Taxpayers" section must give concrete, actionable guidance for CAs and taxpayers.
-8. Return ONLY the article body HTML (h3 and p tags). No preamble, no title, no byline, no markdown fences.
+
+WRITING STANDARDS (non-negotiable):
+
+1. DEPTH & ANALYSIS: Each section must contain 2–3 rich paragraphs. Go beyond summarising — analyse the significance, the legal reasoning, and the real-world impact. Ask "why does this matter?" and answer it.
+
+2. LEGAL PRECISION: Cite specific, real sections of the Income Tax Act 2025/1961, CGST Act 2017, IGST Act, established Supreme Court/High Court precedents, and CBDT/CBIC circulars that are GENUINELY relevant as background and context. Name actual legal provisions (e.g., "Section 9(1) of the CGST Act", "Section 145A of the Income Tax Act"). This is what separates The Tax Express from generic publications.
+
+3. STRICT FACT DISCIPLINE: Do NOT invent case citation numbers, circular numbers, or notification numbers unless explicitly stated in the NEWS BRIEF above. Refer to them generically if unknown (e.g., "the impugned order", "this circular", "the tribunal held"). You may and MUST use real background law and landmark precedents.
+
+4. PRACTITIONER FOCUS: The final section "Key Takeaways for Practitioners" must deliver 4–5 concrete, numbered action points that a CA or tax lawyer can act on immediately — filing deadlines, compliance steps, documentation requirements, risk areas, or advisory tips.
+
+5. TONE & VOICE: Authoritative yet accessible. Use active voice. Avoid clichés like "it is pertinent to note" or "it is worth mentioning". Write as a legal expert explaining to a peer, not a student summarising for a teacher.
+
+6. EXCLUSIVITY: Never reference Tax Guru, Taxmann, ITAT Online, or any third-party publication. This is original Tax Express journalism.
+
+OUTPUT: Return ONLY the article body HTML using <h3> and <p> tags. No preamble, no title tag, no byline, no markdown, no code fences. Start directly with the first <h3> tag.
 """
     response = client.chat.completions.create(
-        model="grok-3-mini",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=1800,
-        temperature=0.7,
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": "You are a senior Indian tax journalist. Write detailed, legally precise editorial articles in HTML format using only <h3> and <p> tags."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=2000,
+        temperature=0.65,
     )
     html = response.choices[0].message.content.strip()
     html = re.sub(r"```html?\s*", "", html)
@@ -87,13 +100,13 @@ def save_progress(data, items):
 
 
 def main():
-    api_key = os.environ.get("XAI_API_KEY", "")
+    api_key = os.environ.get("GROQ_API_KEY", "")
     if not api_key:
-        print("ERROR: XAI_API_KEY not set")
+        print("ERROR: GROQ_API_KEY not set")
         return
 
-    from openai import OpenAI
-    client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
+    from groq import Groq
+    client = Groq(api_key=api_key)
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)
