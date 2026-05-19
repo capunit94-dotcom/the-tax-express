@@ -1,5 +1,5 @@
 /* ============================================================
-   THE TAX EXPRESS  —  Application Logic
+   TAX AXIS  —  Application Logic
    ============================================================ */
 
 // ── Date ─────────────────────────────────────────────────────
@@ -330,7 +330,7 @@ function viewFullStory() {
   w.document.write(`<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${title.replace(/</g,'&lt;')} — The Tax Express</title>
+<title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -369,7 +369,7 @@ function viewFullStory() {
 </style>
 </head><body>
 <div class="top-bar">
-  <span class="top-logo">The Tax Express</span>
+  <span class="top-logo">Tax Axis</span>
   <div class="top-btns">
     <button class="btn btn-print" onclick="window.print()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -382,13 +382,13 @@ function viewFullStory() {
   </div>
 </div>
 <div class="page">
-  <div class="label">The Tax Express — Exclusive Report</div>
+  <div class="label">Tax Axis — Exclusive Report</div>
   <h1>${title}</h1>
   <p class="meta">${meta}</p>
   <hr/>
   ${body}
   <div class="foot">
-    <span>&copy; The Tax Express &nbsp;|&nbsp; thetaxexpress.in</span>
+    <span>&copy; Tax Axis &nbsp;|&nbsp; taxaxis.in</span>
     <span>Viewed: ${date}</span>
   </div>
 </div>
@@ -432,7 +432,7 @@ function _openPDFWindow(title, meta, bodyHTML) {
   if (!w) { toast('Please allow pop-ups to download PDF.'); return; }
   w.document.write(`<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/>
-<title>${title.replace(/</g,'&lt;')} — The Tax Express</title>
+<title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -485,16 +485,16 @@ function _openPDFWindow(title, meta, bodyHTML) {
 </style>
 </head><body>
 <div class="pdf-head">
-  <div class="pdf-logo">The Tax Express</div>
+  <div class="pdf-logo">Tax Axis</div>
   <div class="pdf-tagline">Income Tax &nbsp;&middot;&nbsp; GST &nbsp;&middot;&nbsp; Case Laws &nbsp;&middot;&nbsp; Bare Acts</div>
 </div>
-<div class="pdf-label">The Tax Express &mdash; Exclusive Report</div>
+<div class="pdf-label">Tax Axis &mdash; Exclusive Report</div>
 <h1>${title}</h1>
 <p class="pdf-meta">${meta}</p>
 <hr/>
 ${bodyHTML}
 <div class="pdf-foot">
-  <span>&copy; The Tax Express &nbsp;|&nbsp; thetaxexpress.in</span>
+  <span>&copy; Tax Axis &nbsp;|&nbsp; taxaxis.in</span>
   <span>Downloaded: ${date}</span>
 </div>
 </body></html>`);

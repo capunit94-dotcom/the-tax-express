@@ -22,8 +22,8 @@ jobs:
 
       - name: Pull latest (avoid stale checkout conflicts)
         run: |
-          git config --global user.email "taxexpress-bot@users.noreply.github.com"
-          git config --global user.name "Tax Express Bot"
+          git config --global user.email "taxaxis-bot@users.noreply.github.com"
+          git config --global user.name "Tax Axis Bot"
           git pull --rebase origin main || true
 
       - name: Set up Python

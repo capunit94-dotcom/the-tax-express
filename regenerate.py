@@ -1,5 +1,5 @@
 """
-The Tax Express — One-time AI Editorial Regeneration
+Tax Axis — One-time AI Editorial Regeneration
 Rewrites body field of visible items in news.json using xAI Grok-3.
 Run via GitHub Actions: Actions > Regenerate All Articles with AI Editorials > Run workflow
 
@@ -48,7 +48,7 @@ def generate_editorial(title, summary, category, client):
 
     sections_str = "\n".join(f"  <h3>{s}</h3>" for s in section_guide)
 
-    prompt = f"""You are the Chief Tax Correspondent of The Tax Express — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
+    prompt = f"""You are the Chief Tax Correspondent of Tax Axis — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
 
 Your task: Write a premium, publication-ready editorial (700–900 words) on the following {cat_context}.
 
@@ -64,7 +64,7 @@ WRITING STANDARDS (non-negotiable):
 
 1. DEPTH & ANALYSIS: Each section must contain 2–3 rich paragraphs. Go beyond summarising — analyse the significance, the legal reasoning, and the real-world impact. Ask "why does this matter?" and answer it.
 
-2. LEGAL PRECISION: Cite specific, real sections of the Income Tax Act 2025/1961, CGST Act 2017, IGST Act, established Supreme Court/High Court precedents, and CBDT/CBIC circulars that are GENUINELY relevant as background and context. Name actual legal provisions (e.g., "Section 9(1) of the CGST Act", "Section 145A of the Income Tax Act"). This is what separates The Tax Express from generic publications.
+2. LEGAL PRECISION: Cite specific, real sections of the Income Tax Act 2025/1961, CGST Act 2017, IGST Act, established Supreme Court/High Court precedents, and CBDT/CBIC circulars that are GENUINELY relevant as background and context. Name actual legal provisions (e.g., "Section 9(1) of the CGST Act", "Section 145A of the Income Tax Act"). This is what separates Tax Axis from generic publications.
 
 3. STRICT FACT DISCIPLINE: Do NOT invent case citation numbers, circular numbers, or notification numbers unless explicitly stated in the NEWS BRIEF above. Refer to them generically if unknown (e.g., "the impugned order", "this circular", "the tribunal held"). You may and MUST use real background law and landmark precedents.
 
@@ -153,7 +153,7 @@ def main():
             try:
                 body = generate_editorial(title, summary, category, client)
                 item["body"]   = body
-                item["source"] = "The Tax Express"
+                item["source"] = "Tax Axis"
                 updated       += 1
                 consec_errors  = 0
                 print(f"  ✓ {len(body)} chars generated")
@@ -210,7 +210,7 @@ def main():
         for ritem in remote_data["items"]:
             if ritem["id"] in regen_map:
                 ritem["body"]   = regen_map[ritem["id"]]
-                ritem["source"] = "The Tax Express"
+                ritem["source"] = "Tax Axis"
                 merge_count     += 1
 
         remote_data["last_updated"] = data["last_updated"]

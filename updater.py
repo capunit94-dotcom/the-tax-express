@@ -1,5 +1,5 @@
 """
-The Tax Express — Auto-Update Bot
+Tax Axis — Auto-Update Bot
 Runs every 3 hours via GitHub Actions.
 Fetches latest tax news from RSS feeds, then uses Claude AI to write
 full 500-700 word editorial articles for each new item.
@@ -197,7 +197,7 @@ def generate_editorial(title, summary, category, api_key):
 
         sections_str = "\n".join(f"  <h3>{s}</h3>" for s in section_guide)
 
-        prompt = f"""You are the Chief Tax Correspondent of The Tax Express — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
+        prompt = f"""You are the Chief Tax Correspondent of Tax Axis — India's most authoritative tax intelligence publication, read exclusively by senior Chartered Accountants, tax advocates, and CFOs. Your writing is the gold standard for Indian tax journalism: rigorous, insightful, and deeply grounded in statute and case law.
 
 Your task: Write a premium, publication-ready editorial (700–900 words) on the following {cat_context}.
 
@@ -345,7 +345,7 @@ def main():
                     "category": category,
                     "title":    title,
                     "summary":  plain_sum or title,
-                    "source":   "The Tax Express",   # original editorial, not external source
+                    "source":   "Tax Axis",   # original editorial, not external source
                     "url":      entry.get("link", "#"),
                     "image":    image_url,
                     "body":     body_html,
