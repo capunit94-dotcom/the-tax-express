@@ -39,12 +39,18 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
+      - name: Fill missing editorials (top 16 articles)
+        run: python regenerate.py
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          FORCE_REGEN: "false"   # only fills articles that are still placeholders
+
       - name: Commit and push news.json
         run: |
           git add news.json
           # Always commit — updater always writes updated timestamp
           git diff --staged --quiet && echo "No changes to commit" || (
-            git commit -m "Auto-update: Tax news $(date -u '+%d %b %Y %H:%M UTC')" &&
+            git commit -m "Auto-update: Tax news + editorials $(date -u '+%d %b %Y %H:%M UTC')" &&
             git push origin main
           )
 
