@@ -32,12 +32,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install feedparser requests groq
+        run: pip install feedparser requests openai
 
       - name: Run auto-updater
         run: python updater.py
         env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
 
       - name: Commit and push news.json
         run: |

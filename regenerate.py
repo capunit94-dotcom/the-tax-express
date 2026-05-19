@@ -1,6 +1,6 @@
 """
 The Tax Express — One-time AI Editorial Regeneration
-Rewrites body field of visible items in news.json using Groq (Llama 3.3 70B).
+Rewrites body field of visible items in news.json using xAI Grok-3.
 Run via GitHub Actions: Actions > Regenerate All Articles with AI Editorials > Run workflow
 
 Quota-aware: exits early if quota is exhausted (5 consecutive errors).
@@ -67,9 +67,9 @@ INSTRUCTIONS:
 8. Return ONLY the article body HTML (h3 and p tags). No preamble, no title, no byline, no markdown fences.
 """
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="grok-3",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=1500,
+        max_tokens=1800,
         temperature=0.7,
     )
     html = response.choices[0].message.content.strip()
@@ -87,13 +87,13 @@ def save_progress(data, items):
 
 
 def main():
-    api_key = os.environ.get("GROQ_API_KEY", "")
+    api_key = os.environ.get("XAI_API_KEY", "")
     if not api_key:
-        print("ERROR: GROQ_API_KEY not set")
+        print("ERROR: XAI_API_KEY not set")
         return
 
-    from groq import Groq
-    client = Groq(api_key=api_key)
+    from openai import OpenAI
+    client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
 
     with open("news.json", "r", encoding="utf-8") as f:
         data = json.load(f)

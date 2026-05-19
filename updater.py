@@ -141,15 +141,14 @@ def get_rss_image(entry, raw_content=""):
 # ── AI Editorial Generator ────────────────────────────────────
 def generate_editorial(title, summary, category, api_key):
     """
-    Call Groq API (free tier, Llama 3.3 70B) to write a full editorial article.
+    Call xAI Grok-3 API to write a full editorial article.
     Returns HTML string with h3/p tags.
     Falls back to basic body if API unavailable.
-    Free tier: 14,400 requests/day — very generous.
-    Get free key at: https://console.groq.com/
+    Get free API key at: https://console.x.ai/
     """
     try:
-        from groq import Groq
-        client = Groq(api_key=api_key)
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
 
         cat_context = {
             "itat":  "ITAT (Income Tax Appellate Tribunal) judgment",
@@ -223,19 +222,19 @@ INSTRUCTIONS:
 """
 
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="grok-3",
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=1500,
+            max_tokens=1800,
             temperature=0.7,
         )
         html = response.choices[0].message.content.strip()
         html = re.sub(r"```html?\s*", "", html)
         html = re.sub(r"```\s*$",     "", html).strip()
-        print(f"    ✓ Gemini editorial generated ({len(html)} chars)")
+        print(f"    ✓ Grok-3 editorial generated ({len(html)} chars)")
         return html
 
     except ImportError:
-        print("    ✗ groq not installed — using basic body")
+        print("    ✗ openai not installed — using basic body")
         return _basic_body(title, summary, category)
     except Exception as e:
         print(f"    ✗ Gemini API error: {e} — using basic body")
@@ -280,12 +279,12 @@ def save_news(data, path="news.json"):
 
 # ── Main ──────────────────────────────────────────────────────
 def main():
-    api_key    = os.environ.get("GROQ_API_KEY", "")
+    api_key    = os.environ.get("XAI_API_KEY", "")
     use_ai     = bool(api_key)
     if use_ai:
-        print("Groq AI editorial generation: ENABLED (Llama 3.3 70B, free tier)")
+        print("xAI Grok-3 editorial generation: ENABLED")
     else:
-        print("Groq AI editorial generation: DISABLED (add GROQ_API_KEY to GitHub secrets)")
+        print("xAI Grok-3 editorial generation: DISABLED (add XAI_API_KEY to GitHub secrets)")
 
     existing  = load_news()
     seen_ids  = {item["id"] for item in existing.get("items", [])}
