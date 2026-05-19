@@ -67,7 +67,7 @@ INSTRUCTIONS:
 8. Return ONLY the article body HTML (h3 and p tags). No preamble, no title, no byline, no markdown fences.
 """
     response = client.chat.completions.create(
-        model="grok-3",
+        model="grok-3-mini",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1800,
         temperature=0.7,
@@ -147,14 +147,15 @@ def main():
                 success = True
                 break
             except Exception as e:
-                if "429" in str(e) and attempt < 2:
+                err_str = str(e)
+                print(f"  ✗ Attempt {attempt+1}/3 failed: {err_str[:300]}")
+                if "429" in err_str and attempt < 2:
                     wait = 60 * (attempt + 1)   # 60s, then 120s
-                    print(f"  ⚠ Rate limited — waiting {wait}s (attempt {attempt+2}/3)...")
+                    print(f"  ⚠ Rate limited — waiting {wait}s...")
                     time.sleep(wait)
                 else:
                     errors       += 1
                     consec_errors += 1
-                    print(f"  ✗ Error: {e}")
                     break
 
         # Save progress to disk every SAVE_EVERY successes

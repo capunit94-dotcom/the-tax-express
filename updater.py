@@ -222,7 +222,7 @@ INSTRUCTIONS:
 """
 
         response = client.chat.completions.create(
-            model="grok-3",
+            model="grok-3-mini",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=1800,
             temperature=0.7,
