@@ -35,6 +35,7 @@ jobs:
         run: python regenerate.py
         env:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          FORCE_REGEN: "true"
 
       - name: Commit and push
         run: |

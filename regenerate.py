@@ -104,17 +104,21 @@ def main():
     consec_errors    = 0   # consecutive failures — quota exhaustion detector
     quota_exhausted  = False
 
+    force = os.environ.get("FORCE_REGEN", "").lower() in ("1", "true", "yes")
     visible_items = items[:VISIBLE_SLOTS]
 
-    need_regen = [i for i, x in enumerate(visible_items)
-                  if not (len(x.get("body","")) > 800 and "<h3>" in x.get("body",""))]
+    need_regen = list(range(len(visible_items))) if force else [
+        i for i, x in enumerate(visible_items)
+        if not (len(x.get("body","")) > 800 and "<h3>" in x.get("body",""))
+    ]
 
     print(f"Total articles : {len(items)}")
     print(f"Visible slots  : {VISIBLE_SLOTS} (lead + secondary + three-col + live feed)")
     print(f"Show More skip : {max(0, len(items) - VISIBLE_SLOTS)} articles (items[{VISIBLE_SLOTS}+] — not regenerated)")
+    print(f"Force regen    : {'YES — rewriting all visible articles' if force else 'NO — skipping already-done'}")
     print(f"Need editorials: {len(need_regen)}")
     print(f"Already done   : {VISIBLE_SLOTS - len(need_regen)}")
-    print("Starting Gemini regeneration (visible articles only)...\n")
+    print("Starting Grok-3 regeneration (visible articles only)...\n")
 
     for i, item in enumerate(visible_items):
         title    = item.get("title", "")
@@ -123,9 +127,9 @@ def main():
 
         print(f"[{i+1}/{VISIBLE_SLOTS}] {title[:65]}")
 
-        # Skip articles already having a full AI-generated body
+        # Skip articles already having a full AI-generated body (unless force mode)
         existing_body = item.get("body", "")
-        if len(existing_body) > 800 and "<h3>" in existing_body:
+        if not force and len(existing_body) > 800 and "<h3>" in existing_body:
             print(f"  ↷ Already done ({len(existing_body)} chars) — skipping")
             consec_errors = 0   # reset streak on skip (not a failure)
             continue
