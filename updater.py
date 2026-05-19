@@ -304,13 +304,13 @@ def main():
 
     new_items = []
     ai_count  = 0
-    AI_LIMIT  = 8   # max AI articles per run (cost control)
+    AI_LIMIT  = 20  # max AI articles per run (covers all new articles in one go)
 
     for feed_cfg in FEEDS:
         print(f"\nFetching: {feed_cfg['url']}")
         try:
             feed = feedparser.parse(feed_cfg["url"])
-            for entry in feed.entries[:15]:
+            for entry in feed.entries[:20]:
                 title = strip_html(entry.get("title", "")).strip()
                 if not title or len(title) < 10:
                     continue
