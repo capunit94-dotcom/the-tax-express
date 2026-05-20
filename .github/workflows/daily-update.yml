@@ -44,6 +44,7 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           FORCE_REGEN: "false"   # only fills articles that are still placeholders
+          MAX_REGEN: "4"         # max new editorials per run → stays under 100K TPD
 
       - name: Commit and push news.json
         run: |
@@ -51,6 +52,7 @@ jobs:
           # Always commit — updater always writes updated timestamp
           git diff --staged --quiet && echo "No changes to commit" || (
             git commit -m "Auto-update: Tax news + editorials $(date -u '+%d %b %Y %H:%M UTC')" &&
+            git pull --rebase origin main &&
             git push origin main
           )
 
