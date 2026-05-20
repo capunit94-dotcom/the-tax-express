@@ -331,36 +331,38 @@ function viewFullStory() {
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Source Sans 3', Arial, sans-serif; color: #111; background: #fff; font-size: 15px; line-height: 1.8; }
+  body { font-family: 'Inter', Arial, sans-serif; color: #33302E; background: #fff; font-size: 15px; line-height: 1.8; }
   .page { max-width: 780px; margin: 0 auto; padding: 40px 28px 60px; }
   .top-bar {
-    position: sticky; top: 0; background: #fff; border-bottom: 2px solid #cc0000;
+    position: sticky; top: 0; background: #FFF1E5; border-bottom: 2px solid #0F5499;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 28px; z-index: 100;
+    padding: 10px 24px; z-index: 100;
   }
-  .top-logo { font-family: 'Merriweather', Georgia, serif; font-size: 20px; font-weight: 900; color: #cc0000; }
+  .top-logo { display: flex; align-items: stretch; gap: 0; text-decoration: none; }
+  .logo-tax  { background: #0F5499; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 2px; padding: 7px 13px; line-height: 1; display: flex; align-items: center; }
+  .logo-axis { background: #1a1a1a; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 2px; padding: 7px 13px; line-height: 1; display: flex; align-items: center; }
   .top-btns { display: flex; gap: 10px; }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 16px; font-size: 12px; font-weight: 700;
+    padding: 8px 16px; font-size: 11px; font-weight: 700; font-family: 'Inter', sans-serif;
     letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer;
     border-radius: 2px; border: none;
   }
-  .btn-print { background: #111; color: #fff; }
-  .btn-print:hover { background: #cc0000; }
-  .btn-dl { background: #fff; color: #111; border: 1.5px solid #ccc; }
-  .btn-dl:hover { border-color: #cc0000; color: #cc0000; }
-  .label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: #cc0000; color: #fff; padding: 3px 10px; border-radius: 2px; display: inline-block; margin: 32px 0 14px; }
-  h1 { font-family: 'Merriweather', Georgia, serif; font-size: 26px; font-weight: 900; line-height: 1.35; color: #0a0a0a; margin-bottom: 10px; }
-  .meta { font-size: 13px; color: #777; margin-bottom: 20px; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 20px 0; }
-  h3, h4 { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #cc0000; margin: 26px 0 8px; }
-  p { font-size: 15px; line-height: 1.85; color: #222; margin-bottom: 14px; }
-  .disclaimer { font-size: 12px; color: #888; font-style: italic; margin-top: 24px; padding: 10px 14px; border-left: 3px solid #ddd; background: #fafafa; }
-  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; }
+  .btn-print { background: #0F5499; color: #fff; }
+  .btn-print:hover { background: #0a3d6b; }
+  .btn-dl { background: #fff; color: #33302E; border: 1.5px solid #CFC5BA; }
+  .btn-dl:hover { border-color: #0F5499; color: #0F5499; }
+  .label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: #0F5499; color: #fff; padding: 3px 10px; border-radius: 2px; display: inline-block; margin: 32px 0 14px; }
+  h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 900; line-height: 1.3; color: #33302E; margin-bottom: 10px; }
+  .meta { font-size: 13px; color: #66605A; margin-bottom: 20px; }
+  hr { border: none; border-top: 1px solid #CFC5BA; margin: 20px 0; }
+  h3, h4 { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #0F5499; margin: 26px 0 8px; font-family: 'Inter', sans-serif; }
+  p { font-size: 15px; line-height: 1.85; color: #33302E; margin-bottom: 14px; }
+  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid #CFC5BA; font-size: 11px; color: #66605A; display: flex; justify-content: space-between; }
   @media print {
     .top-bar { display: none; }
     body { font-size: 13px; }
@@ -369,7 +371,10 @@ function viewFullStory() {
 </style>
 </head><body>
 <div class="top-bar">
-  <span class="top-logo">Tax Axis</span>
+  <div class="top-logo">
+    <div class="logo-tax">TAX</div>
+    <div class="logo-axis">AXIS</div>
+  </div>
   <div class="top-btns">
     <button class="btn btn-print" onclick="window.print()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -433,49 +438,49 @@ function _openPDFWindow(title, meta, bodyHTML) {
   w.document.write(`<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/>
 <title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Source Sans 3', Arial, sans-serif;
-    color: #111; background: #fff;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #33302E; background: #fff;
     padding: 52px 56px; max-width: 800px; margin: 0 auto;
     font-size: 14px; line-height: 1.8;
   }
   .pdf-head {
-    text-align: center; padding-bottom: 18px;
-    border-bottom: 3px solid #cc0000; margin-bottom: 28px;
+    display: flex; flex-direction: column; align-items: flex-start;
+    padding-bottom: 18px; border-bottom: 3px solid #0F5499; margin-bottom: 28px;
   }
-  .pdf-logo {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 30px; font-weight: 900; color: #cc0000; letter-spacing: -0.5px;
-  }
+  .pdf-logo { display: flex; align-items: stretch; gap: 0; margin-bottom: 6px; }
+  .logo-tax  { background: #0F5499; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: 2px; padding: 7px 14px; line-height: 1; display: flex; align-items: center; }
+  .logo-axis { background: #1a1a1a; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: 2px; padding: 7px 14px; line-height: 1; display: flex; align-items: center; }
   .pdf-tagline {
     font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: #888; margin-top: 5px;
+    color: #66605A; margin-top: 4px;
   }
   .pdf-label {
     display: inline-block; font-size: 10px; font-weight: 800;
     letter-spacing: 1.5px; text-transform: uppercase;
-    background: #cc0000; color: #fff;
+    background: #0F5499; color: #fff;
     padding: 3px 10px; border-radius: 2px; margin-bottom: 14px;
   }
   h1 {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 22px; font-weight: 900; line-height: 1.4;
-    color: #0a0a0a; margin-bottom: 10px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px; font-weight: 900; line-height: 1.35;
+    color: #33302E; margin-bottom: 10px;
   }
-  .pdf-meta { font-size: 12px; color: #777; margin-bottom: 18px; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 18px 0; }
+  .pdf-meta { font-size: 12px; color: #66605A; margin-bottom: 18px; }
+  hr { border: none; border-top: 1px solid #CFC5BA; margin: 18px 0; }
   h3, h4 {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
-    text-transform: uppercase; color: #cc0000; margin: 22px 0 8px;
+    text-transform: uppercase; color: #0F5499; margin: 22px 0 8px;
   }
-  p { font-size: 14px; line-height: 1.8; color: #222; margin-bottom: 13px; }
+  p { font-size: 14px; line-height: 1.8; color: #33302E; margin-bottom: 13px; }
   .pdf-foot {
     margin-top: 44px; padding-top: 14px;
-    border-top: 1px solid #ddd; font-size: 11px; color: #aaa;
+    border-top: 1px solid #CFC5BA; font-size: 11px; color: #66605A;
     display: flex; justify-content: space-between;
   }
   @media print {
@@ -485,7 +490,10 @@ function _openPDFWindow(title, meta, bodyHTML) {
 </style>
 </head><body>
 <div class="pdf-head">
-  <div class="pdf-logo">Tax Axis</div>
+  <div class="pdf-logo">
+    <div class="logo-tax">TAX</div>
+    <div class="logo-axis">AXIS</div>
+  </div>
   <div class="pdf-tagline">Income Tax &nbsp;&middot;&nbsp; GST &nbsp;&middot;&nbsp; Case Laws &nbsp;&middot;&nbsp; Bare Acts</div>
 </div>
 <div class="pdf-label">Tax Axis &mdash; Exclusive Report</div>
