@@ -304,7 +304,8 @@ def main():
 
     new_items = []
     ai_count  = 0
-    AI_LIMIT  = 20  # max AI articles per run (covers all new articles in one go)
+    AI_LIMIT  = 0   # updater.py no longer generates editorials — regenerate.py
+                    # handles that with its MAX_REGEN cap to stay under 100K TPD
 
     for feed_cfg in FEEDS:
         print(f"\nFetching: {feed_cfg['url']}")

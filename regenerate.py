@@ -10,7 +10,6 @@ Saves progress to disk every 10 articles so partial work is never lost.
 import json
 import os
 import re
-import subprocess
 import time
 from datetime import datetime, timezone
 
@@ -187,37 +186,32 @@ def main():
         if run_num < len(need_regen) - 1:
             time.sleep(4)
 
-    # ── Final save + merge with remote ───────────────────────────────────────
-    save_progress(data, items)
+    # ── Final save ────────────────────────────────────────────────────────────
+    # Build a map of every article that now has a full AI editorial
+    regen_map = {
+        item["id"]: item["body"]
+        for item in items
+        if item.get("body") and len(item.get("body", "")) > 800 and "<h3>" in item.get("body", "")
+    }
 
-    # Merge with remote to preserve articles added during the long run
+    # Re-read the on-disk news.json (may have been updated by updater.py
+    # running just before us in the same workflow — we MUST NOT lose those
+    # new articles by overwriting with old remote data).
     try:
-        subprocess.run(["git", "fetch", "origin", "main"], capture_output=True)
-        remote_raw = subprocess.check_output(
-            ["git", "show", "origin/main:news.json"], stderr=subprocess.DEVNULL
-        ).decode("utf-8")
-        remote_data = json.loads(remote_raw)
-
-        # Map of article IDs that now have full AI editorials
-        regen_map = {
-            item["id"]: item["body"]
-            for item in items
-            if item.get("body") and len(item.get("body", "")) > 800 and "<h3>" in item.get("body", "")
-        }
-
-        # Apply regenerated bodies onto the remote's article list
+        with open("news.json", "r", encoding="utf-8") as f:
+            fresh = json.load(f)
+        # Apply regenerated bodies onto the freshest local copy
         merge_count = 0
-        for ritem in remote_data["items"]:
-            if ritem["id"] in regen_map:
-                ritem["body"]   = regen_map[ritem["id"]]
-                ritem["source"] = "Tax Axis"
-                merge_count     += 1
-
-        remote_data["last_updated"] = data["last_updated"]
-        data = remote_data
-        print(f"\nMerged {merge_count} regenerated bodies onto {len(data['items'])} remote articles.")
+        for fitem in fresh.get("items", []):
+            if fitem["id"] in regen_map:
+                fitem["body"]   = regen_map[fitem["id"]]
+                fitem["source"] = "Tax Axis"
+                merge_count    += 1
+        fresh["last_updated"] = data["last_updated"]
+        data = fresh
+        print(f"\nApplied {merge_count} regenerated bodies onto {len(data['items'])} local articles.")
     except Exception as e:
-        print(f"\nCould not merge with remote ({e}) — saving local data only.")
+        print(f"\nCould not re-read local news.json ({e}) — using in-memory data.")
 
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
