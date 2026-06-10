@@ -245,49 +245,74 @@ button { font-family: var(--font-body); cursor: pointer; }
 }
 .masthead__logo-link:hover .logo-split { box-shadow: var(--shadow-2); }
 
-/* Option 9 — Split-Block Logo (premium cut) */
-.logo-split {
-  display: flex;
+/* ── TAX BENCH — Signature "Bench Mark" Logo ─────────────────
+   The wordmark sits on a gold bench (seat + legs) topped by a
+   gavel block: judicial bench + benchmark, in one mark.        */
+.logo-bench {
+  display: inline-flex;
+  flex-direction: column;
   align-items: stretch;
-  gap: 0;
-  box-shadow: var(--shadow-1);
-  transition: box-shadow var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+  transition: transform var(--dur-2) var(--ease-out);
 }
-.logo-split__tax {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  color: #fff;
+.masthead__logo-link:hover .logo-bench { transform: translateY(-2px); }
+.logo-bench__word {
   font-family: var(--font-body);
   font-weight: 900;
-  font-size: 30px;
-  letter-spacing: 4px;
-  padding: 12px 20px 12px 24px;
+  font-size: 38px;
+  letter-spacing: 2.5px;
   line-height: 1;
   display: flex;
-  align-items: center;
-  position: relative;
   animation: logoSlideL var(--dur-3) var(--ease-swift) both;
 }
-.logo-split__axis {
-  background: linear-gradient(135deg, #211E19 0%, var(--ink) 100%);
-  color: #fff;
-  font-family: var(--font-body);
-  font-weight: 900;
-  font-size: 30px;
-  letter-spacing: 4px;
-  padding: 12px 24px 12px 20px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  animation: logoSlideR var(--dur-3) var(--ease-swift) both;
+.logo-bench__tax {
+  color: var(--navy);
+  padding-right: 8px;
 }
-.logo-split__axis::after {
+.logo-bench__bench {
+  color: var(--ink);
+}
+.logo-bench__seat {
+  position: relative;
+  height: 5px;
+  margin-top: 9px;
+  background: linear-gradient(90deg, var(--gold-bright), var(--gold) 55%, var(--gold-bright));
+  border-radius: 1px;
+  box-shadow: 0 2px 8px rgba(185,137,47,.35);
+  animation: ruleGrow var(--dur-3) var(--ease-swift) .25s both;
+}
+/* bench legs */
+.logo-bench__seat::before,
+.logo-bench__seat::after {
   content: '';
   position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 2px;
-  background: var(--gold);
+  top: 5px;
+  width: 5px; height: 9px;
+  background: var(--ink);
 }
+.logo-bench__seat::before { left: 12%; }
+.logo-bench__seat::after  { right: 12%; }
+/* gavel block resting on the bench */
+.logo-bench__gavel {
+  position: absolute;
+  right: -28px;
+  top: -11px;
+  width: 15px; height: 9px;
+  background: var(--navy);
+  border-radius: 1px;
+  box-shadow: 0 13px 0 -3px var(--gold);   /* echo block below */
+  animation: fadeIn var(--dur-3) var(--ease-out) .6s both;
+}
+/* Inverted (dark backgrounds: footer) */
+.logo-bench--invert .logo-bench__tax   { color: #7FB3DB; }
+.logo-bench--invert .logo-bench__bench { color: #fff; }
+.logo-bench--invert .logo-bench__seat::before,
+.logo-bench--invert .logo-bench__seat::after { background: #fff; }
+.logo-bench--footer .logo-bench__word { font-size: 26px; letter-spacing: 2px; animation: none; }
+.logo-bench--footer .logo-bench__seat { animation: none; margin-top: 7px; height: 4px; }
+.logo-bench--footer .logo-bench__gavel { display: none; }
+
+/* Legacy split logo (removed) */
+.logo-split { display: none; }
 .masthead__tagline {
   font-size: 10.5px;
   font-weight: 600;
@@ -1500,14 +1525,6 @@ button { font-family: var(--font-body); cursor: pointer; }
   padding-bottom: 56px;
 }
 .footer__logo { margin-bottom: 20px; }
-.logo-split--footer { box-shadow: none; display: inline-flex; }
-.logo-split--footer .logo-split__tax,
-.logo-split--footer .logo-split__axis {
-  font-size: 21px;
-  padding: 9px 15px;
-  letter-spacing: 2.5px;
-  animation: none;
-}
 .footer__about {
   font-size: 13.5px;
   line-height: 1.8;
@@ -1809,3 +1826,142 @@ button { font-family: var(--font-body); cursor: pointer; }
 
 /* ── Legacy classes kept for safety ─────────────────────────── */
 .logo-box, .logo-wordmark, .logo-word1, .logo-word2, .logo-sub { display: none; }
+
+/* ════════════════════════════════════════════════════════════
+   CINEMATIC BRAND INTRO — taxbench.in
+   Letters rise from a clipped stage, the gold bench draws in
+   beneath them, the gavel lands, then twin ink curtains part.
+   ════════════════════════════════════════════════════════════ */
+@keyframes introLtr {
+  from { opacity: 0; transform: translateY(110%) rotate(4deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0); }
+}
+@keyframes introSeat {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes introGavel {
+  0%   { opacity: 0; transform: translateY(-34px) rotate(-14deg); }
+  55%  { opacity: 1; transform: translateY(2px) rotate(0); }
+  72%  { transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes introFade {
+  from { opacity: 0; transform: translateY(14px); letter-spacing: 6px; }
+  to   { opacity: 1; transform: translateY(0); letter-spacing: 3px; }
+}
+@keyframes introGlow {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body.intro-lock { overflow: hidden; }
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro__curtain {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50.5%;
+  background:
+    radial-gradient(700px 420px at 50% 110%, rgba(14,58,93,.45), transparent 70%),
+    linear-gradient(160deg, #14110C, #0A0805);
+  transition: transform .85s var(--ease-swift);
+}
+.intro__curtain--l { left: 0;  transform-origin: left; }
+.intro__curtain--r { right: 0; transform-origin: right; }
+.intro.is-done .intro__curtain--l { transform: translateX(-101%); }
+.intro.is-done .intro__curtain--r { transform: translateX(101%); }
+
+.intro__stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
+}
+.intro.is-done .intro__stage { opacity: 0; transform: scale(.96); }
+
+.intro__word {
+  display: flex;
+  overflow: hidden;
+  padding-bottom: 4px;
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: clamp(44px, 8vw, 84px);
+  letter-spacing: 4px;
+  line-height: 1;
+  color: #F5EFE4;
+}
+.intro__ltr {
+  display: inline-block;
+  animation: introLtr .7s var(--ease-swift) both;
+}
+.intro__ltr--navy { color: #6FA8D6; }
+.intro__ltr:nth-child(1) { animation-delay: .10s; }
+.intro__ltr:nth-child(2) { animation-delay: .16s; }
+.intro__ltr:nth-child(3) { animation-delay: .22s; }
+.intro__gap { width: .35em; }
+.intro__ltr:nth-child(5) { animation-delay: .34s; }
+.intro__ltr:nth-child(6) { animation-delay: .40s; }
+.intro__ltr:nth-child(7) { animation-delay: .46s; }
+.intro__ltr:nth-child(8) { animation-delay: .52s; }
+.intro__ltr:nth-child(9) { animation-delay: .58s; }
+
+.intro__seat {
+  position: relative;
+  width: min(64vw, 560px);
+  height: 6px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, var(--gold-bright), var(--gold) 55%, var(--gold-bright));
+  border-radius: 2px;
+  box-shadow: 0 0 26px rgba(212,164,55,.5);
+  transform-origin: center;
+  animation: introSeat .8s var(--ease-swift) .85s both;
+}
+.intro__seat::before,
+.intro__seat::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  width: 6px; height: 13px;
+  background: #F5EFE4;
+  animation: introGlow .4s var(--ease-out) 1.5s both;
+}
+.intro__seat::before { left: 11%; }
+.intro__seat::after  { right: 11%; }
+
+.intro__gavel {
+  position: absolute;
+  right: 4%;
+  top: -17px;
+  width: 22px; height: 13px;
+  background: #6FA8D6;
+  border-radius: 2px;
+  animation: introGavel .65s var(--ease-swift) 1.45s both;
+}
+
+.intro__tag {
+  margin-top: 26px;
+  font-size: clamp(9px, 1.4vw, 12px);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #A39A8D;
+  animation: introFade .8s var(--ease-out) 1.75s both;
+}
+.intro__domain {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+  animation: introFade .8s var(--ease-out) 1.95s both;
+}

@@ -330,7 +330,7 @@ function viewFullStory() {
   w.document.write(`<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
+<title>${title.replace(/</g,'&lt;')} — Tax Bench</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -343,8 +343,11 @@ function viewFullStory() {
     padding: 10px 24px; z-index: 100;
   }
   .top-logo { display: flex; align-items: stretch; gap: 0; text-decoration: none; }
-  .logo-tax  { background: #0F5499; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 2px; padding: 7px 13px; line-height: 1; display: flex; align-items: center; }
-  .logo-axis { background: #1a1a1a; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 2px; padding: 7px 13px; line-height: 1; display: flex; align-items: center; }
+  .logo-bench { display: inline-flex; flex-direction: column; }
+  .logo-word { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 19px; letter-spacing: 2px; line-height: 1; }
+  .logo-word .t { color: #0E3A5D; padding-right: 5px; }
+  .logo-word .b { color: #14120F; }
+  .logo-seat { height: 3px; margin-top: 5px; background: linear-gradient(90deg, #D4A437, #B9892F); border-radius: 1px; }
   .top-btns { display: flex; gap: 10px; }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
@@ -372,8 +375,10 @@ function viewFullStory() {
 </head><body>
 <div class="top-bar">
   <div class="top-logo">
-    <div class="logo-tax">TAX</div>
-    <div class="logo-axis">AXIS</div>
+    <div class="logo-bench">
+      <div class="logo-word"><span class="t">TAX</span><span class="b">BENCH</span></div>
+      <div class="logo-seat"></div>
+    </div>
   </div>
   <div class="top-btns">
     <button class="btn btn-print" onclick="window.print()">
@@ -387,13 +392,13 @@ function viewFullStory() {
   </div>
 </div>
 <div class="page">
-  <div class="label">Tax Axis — Exclusive Report</div>
+  <div class="label">Tax Bench — Exclusive Report</div>
   <h1>${title}</h1>
   <p class="meta">${meta}</p>
   <hr/>
   ${body}
   <div class="foot">
-    <span>&copy; Tax Axis &nbsp;|&nbsp; taxaxis.in</span>
+    <span>&copy; Tax Bench &nbsp;|&nbsp; taxbench.in</span>
     <span>Viewed: ${date}</span>
   </div>
 </div>
@@ -437,7 +442,7 @@ function _openPDFWindow(title, meta, bodyHTML) {
   if (!w) { toast('Please allow pop-ups to download PDF.'); return; }
   w.document.write(`<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/>
-<title>${title.replace(/</g,'&lt;')} — Tax Axis</title>
+<title>${title.replace(/</g,'&lt;')} — Tax Bench</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -453,8 +458,11 @@ function _openPDFWindow(title, meta, bodyHTML) {
     padding-bottom: 18px; border-bottom: 3px solid #0F5499; margin-bottom: 28px;
   }
   .pdf-logo { display: flex; align-items: stretch; gap: 0; margin-bottom: 6px; }
-  .logo-tax  { background: #0F5499; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: 2px; padding: 7px 14px; line-height: 1; display: flex; align-items: center; }
-  .logo-axis { background: #1a1a1a; color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: 2px; padding: 7px 14px; line-height: 1; display: flex; align-items: center; }
+  .logo-bench { display: inline-flex; flex-direction: column; }
+  .logo-word { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 24px; letter-spacing: 2.5px; line-height: 1; }
+  .logo-word .t { color: #0E3A5D; padding-right: 6px; }
+  .logo-word .b { color: #14120F; }
+  .logo-seat { height: 4px; margin-top: 6px; background: linear-gradient(90deg, #D4A437, #B9892F); border-radius: 1px; }
   .pdf-tagline {
     font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
     color: #66605A; margin-top: 4px;
@@ -491,18 +499,20 @@ function _openPDFWindow(title, meta, bodyHTML) {
 </head><body>
 <div class="pdf-head">
   <div class="pdf-logo">
-    <div class="logo-tax">TAX</div>
-    <div class="logo-axis">AXIS</div>
+    <div class="logo-bench">
+      <div class="logo-word"><span class="t">TAX</span><span class="b">BENCH</span></div>
+      <div class="logo-seat"></div>
+    </div>
   </div>
   <div class="pdf-tagline">Income Tax &nbsp;&middot;&nbsp; GST &nbsp;&middot;&nbsp; Case Laws &nbsp;&middot;&nbsp; Bare Acts</div>
 </div>
-<div class="pdf-label">Tax Axis &mdash; Exclusive Report</div>
+<div class="pdf-label">Tax Bench &mdash; Exclusive Report</div>
 <h1>${title}</h1>
 <p class="pdf-meta">${meta}</p>
 <hr/>
 ${bodyHTML}
 <div class="pdf-foot">
-  <span>&copy; Tax Axis &nbsp;|&nbsp; taxaxis.in</span>
+  <span>&copy; Tax Bench &nbsp;|&nbsp; taxbench.in</span>
   <span>Downloaded: ${date}</span>
 </div>
 </body></html>`);
