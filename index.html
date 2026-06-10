@@ -6,7 +6,7 @@
   <title>Tax Axis – India's Tax Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -1167,5 +1167,41 @@
   <div class="toast" id="js-toast"></div>
 
   <script src="app.js"></script>
+  <script>
+    /* ── Premium motion layer ─────────────────────────────────
+       Scroll-reveal via IntersectionObserver + seamless ticker */
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Duplicate ticker content so the -50% marquee loops seamlessly
+      var belt = document.getElementById('js-ticker');
+      if (belt && !belt.dataset.looped) {
+        belt.innerHTML += belt.innerHTML;
+        belt.dataset.looped = '1';
+      }
+
+      if (reduce || !('IntersectionObserver' in window)) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+      var targets = document.querySelectorAll(
+        '.lead-story, .h-story, .v-story, .sidebar-block, .article-row,' +
+        '.judgment-card, .budget-item, .provision, .bare-act-promo,' +
+        '.live-feed-header, .section-masthead, .budget-lead'
+      );
+      targets.forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--rv-delay', (i % 3) * 0.07 + 's');
+        io.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
