@@ -1,6 +1,83 @@
 {
-  "last_updated": "2026-07-31 05:52 UTC",
+  "last_updated": "2026-07-31 06:47 UTC",
   "items": [
+    {
+      "id": "tte_f0e2624789",
+      "date": "2026-07-31",
+      "category": "gst",
+      "title": "Karnataka HC Quashes GST Deduction from Land Acquisition Compensation",
+      "summary": "HC quashed GST deduction from land acquisition compensation, directed refund with 15% interest, holding compulsory acquisition is not a supply of goods or services. The post Karnataka HC Quashes GST Deduction from Land Acquisition Compensation appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/goods-and-service-tax/karnataka-hc-quashes-gst-deduction-land-acquisition-compensation.html",
+      "image": "",
+      "body": "<h3>Background & Statutory Framework</h3>\n<p>The Goods and Services Tax (GST) regime, introduced by the CGST Act 2017, has been a subject of interpretation and litigation, particularly in cases where its application intersects with other legal frameworks such as land acquisition. The CGST Act defines \"supply\" broadly under Section 7, which includes all forms of supply of goods or services, except those exempted or treated as neither a supply of goods nor a supply of services under Schedule II and Schedule III, respectively. However, the question of whether compulsory acquisition of land constitutes a \"supply\" under GST law has been contentious. This issue is critical because if such acquisition is considered a supply, it would attract GST, impacting the compensation payable to landowners.</p>\n<p>Section 9(1) of the CGST Act stipulates that GST shall be levied on the value of supply of goods or services, as may be determined under Section 15 of the Act. This implies that for GST to be applicable, there must be a clear determination that the transaction in question constitutes a supply. The concept of supply is central to the GST regime, and its application to land acquisition has been subject to varying interpretations by tax authorities and judicial bodies.</p>\n<p>The legal framework governing land acquisition in India, primarily the Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act, 2013, does not explicitly address the GST implications of land acquisition. This has led to a gap in understanding how GST applies to compensation paid to landowners in cases of compulsory acquisition, necessitating judicial intervention for clarity.</p>\n\n<h3>The Development in Detail</h3>\n<p>The recent judgment by the Karnataka High Court, quashing GST deduction from land acquisition compensation and directing a refund with 15% interest, marks a significant development in this area. The court's decision hinges on the interpretation that compulsory acquisition of land does not constitute a supply of goods or services under the GST law. This ruling is based on the understanding that the landowner does not have a choice in the matter of acquisition and thus does not \"supply\" the land in the commercial sense intended by the GST Act.</p>\n<p>The court's reasoning is grounded in the principle that for a transaction to be considered a supply under GST, it must involve an element of voluntary provision of goods or services. In the case of compulsory land acquisition, the landowner's participation is not voluntary but rather mandated by law, which distinguishes it from the typical supply transactions envisioned under the GST regime. This distinction is crucial as it underscores the court's effort to align the GST law with the broader legal context of land acquisition in India.</p>\n<p>This judgment has implications for both the government, in terms of revenue collection, and landowners, regarding the net compensation they receive. It suggests that the government may need to revisit its approach to taxing land acquisition transactions under GST, potentially leading to a reevaluation of the revenue projections from such sources. For landowners, the ruling could result in higher net compensation, as they would not have to bear the GST component, potentially altering the economic dynamics of land acquisition projects.</p>\n\n<h3>Key Provisions & Clarifications</h3>\n<p>Section 2(17) of the CGST Act defines \"business\" to include any activity or transaction which is done with the intention to make a profit, whether or not such activity or transaction actually results in making a profit. However, in the context of compulsory land acquisition, the transaction does not fit neatly within this definition, as the landowner's primary intention is not to engage in a commercial activity but rather to retain ownership of their property. This nuance is essential in understanding why the court might have concluded that such transactions do not fall under the GST ambit.</p>\n<p>The Schedule II to the CGST Act, which lists activities to be treated as supply of goods or services, does not explicitly include compulsory acquisition of land. This omission is significant because it implies that unless specifically included, activities that do not have a commercial flavor are not intended to be brought within the GST net. The court's decision can be seen as an affirmation of this principle, emphasizing that GST should not be levied on transactions that lack the characteristic of a voluntary supply.</p>\n<p>The clarification provided by the Karnataka High Court's judgment is crucial for bringing consistency and clarity to the application of GST law in the context of land acquisition. It underscores the need for tax authorities to carefully consider the nature of transactions and the intentions of parties involved before determining GST liability, ensuring that the tax is applied in a manner consistent with its underlying principles and objectives.</p>\n\n<h3>Critical Analysis</h3>\n<p>The judgment of the Karnataka High Court reflects a careful consideration of the legal framework governing both GST and land acquisition. By distinguishing compulsory land acquisition from voluntary supply transactions, the court has provided a logical and legally sound basis for excluding such acquisitions from the GST net. This approach is consistent with the principle of taxing only those transactions that involve a commercial element, ensuring that the GST regime remains focused on its core objectives.</p>\n<p>However, the ruling may also raise questions about the potential for inconsistent application of GST law across different states, given the possibility that other high courts might interpret the law differently. This underscores the need for a unified approach, potentially through a Supreme Court judgment or a clarificatory amendment to the GST law, to provide nationwide consistency and certainty on this issue.</p>\n<p>The economic implications of this judgment should not be overlooked. By potentially reducing the financial burden on landowners, the ruling could influence the willingness of individuals and communities to participate in land acquisition processes, which are critical for infrastructure development and other public projects. On the other hand, the reduction in GST revenue could necessitate adjustments in government budgeting and fiscal planning, highlighting the complex interplay between legal interpretations, economic policies, and public finance.</p>\n\n<h3>Compliance Implications & Action Points</h3>\n<p>Given the significance of the Karnataka High Court's judgment, both tax practitioners and landowners need to be aware of the potential implications for GST compliance and refund claims. The following are key action points:</p>\n<p>1. <strong>Review of Past Transactions</strong>: Landowners who have undergone compulsory acquisition and paid GST on the compensation should review their past transactions to determine eligibility for refunds, considering the court's directive for a refund with 15% interest.</p>\n<p>2. <strong>Documentation and Record Keeping</strong>: It is essential to maintain detailed records of land acquisition transactions, including documentation of compensation paid and any GST deducted, to facilitate potential refund claims and audits.</p>\n<p>3. <strong>GST Audit and Assessment</strong>: Tax practitioners should be prepared to address GST audit and assessment notices related to land acquisition compensation, armed with the legal precedent set by the Karnataka High Court's judgment.</p>\n<p>4. <strong>Advisory on Ongoing Transactions</strong>: For ongoing or future land acquisition processes, advisors should counsel clients on the potential GST implications, taking into account the latest judicial interpretations and the possibility of refunds or exemptions.</p>\n<p>5. <strong>Monitoring of Future Developments</strong>: Given the evolving nature of GST law and its application, continuous monitoring of judicial decisions, legislative amendments, and regulatory guidelines is crucial for staying abreast of changes that could impact land acquisition transactions and GST compliance.</p>"
+    },
+    {
+      "id": "tte_7a537a7308",
+      "date": "2026-07-31",
+      "category": "it",
+      "title": "Kerala HC Upholds PMLA Summons Without Prior FIR; Income Tax Settlement Immunity No Bar",
+      "summary": "Kerala HC upheld ED's power to issue Section 50 PMLA summons without a prior FIR and held Income Tax settlement immunity does not bar PMLA proceedings. The post Kerala HC Upholds PMLA Summons Without Prior FIR; Income Tax Settlement Immunity No Bar appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/rbi/kerala-hc-upholds-pmla-summons-without-prior-fir-income-tax-settlement-immunity-no-bar.html",
+      "image": "",
+      "body": "<p>Kerala HC upheld ED's power to issue Section 50 PMLA summons without a prior FIR and held Income Tax settlement immunity does not bar PMLA proceedings. The post Kerala HC Upholds PMLA Summons Without Prior FIR; Income Tax Settlement Immunity No Bar appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_00923daf59",
+      "date": "2026-07-31",
+      "category": "it",
+      "title": "Delhi HC Upholds Cheque Bounce Conviction, Rejects Blank Security Cheque Defence",
+      "summary": "Delhi HC upheld a Section 138 NI Act conviction, holding the accused failed to rebut statutory presumptions with cogent evidence supporting the blank cheque defence. The post Delhi HC Upholds Cheque Bounce Conviction, Rejects Blank Security Cheque Defence appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/delhi-hc-upholds-cheque-bounce-conviction-rejects-blank-security-cheque-defence.html",
+      "image": "",
+      "body": "<p>Delhi HC upheld a Section 138 NI Act conviction, holding the accused failed to rebut statutory presumptions with cogent evidence supporting the blank cheque defence. The post Delhi HC Upholds Cheque Bounce Conviction, Rejects Blank Security Cheque Defence appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_11f7cce8f8",
+      "date": "2026-07-31",
+      "category": "itat",
+      "title": "Ahmedabad ITAT Grants BSNL VRS Exemption, Condones Delay and Orders Refund Despite Belated Claim",
+      "summary": "Ahmedabad ITAT condoned delay, allowed Section 10(10B) exemption on BSNL VRS-2019 compensation and directed refund after verification. The post Ahmedabad ITAT Grants BSNL VRS Exemption, Condones Delay and Orders Refund Despite Belated Claim appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/ahmedabad-itat-grants-bsnl-vrs-exemption-condones-delay-orders-refund-belated-claim.html",
+      "image": "",
+      "body": "<p>Ahmedabad ITAT condoned delay, allowed Section 10(10B) exemption on BSNL VRS-2019 compensation and directed refund after verification. The post Ahmedabad ITAT Grants BSNL VRS Exemption, Condones Delay and Orders Refund Despite Belated Claim appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_b7fde8c2dc",
+      "date": "2026-07-31",
+      "category": "itat",
+      "title": "Mumbai ITAT Deletes ₹14 Lakh Accommodation Entry Addition; Search Report Alone Insufficient",
+      "summary": "Mumbai ITAT deleted a ₹14 lakh Section 69A addition, holding a search report alone cannot override documentary evidence and loan repayment. The post Mumbai ITAT Deletes ₹14 Lakh Accommodation Entry Addition; Search Report Alone Insufficient appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/mumbai-itat-deletes-rs-14-lakh-accommodation-entry-addition-search-report-insufficient.html",
+      "image": "",
+      "body": "<p>Mumbai ITAT deleted a ₹14 lakh Section 69A addition, holding a search report alone cannot override documentary evidence and loan repayment. The post Mumbai ITAT Deletes ₹14 Lakh Accommodation Entry Addition; Search Report Alone Insufficient appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_6f79bf5017",
+      "date": "2026-07-31",
+      "category": "it",
+      "title": "Top AI-Based Stock Brokers in India",
+      "summary": "Explore AI-based stock brokers in India, their AI features, brokerage charges, research tools, benefits, limitations and investment options. The post Top AI-Based Stock Brokers in India appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/finance/top-ai-based-stock-brokers-india.html",
+      "image": "",
+      "body": "<p>Explore AI-based stock brokers in India, their AI features, brokerage charges, research tools, benefits, limitations and investment options. The post Top AI-Based Stock Brokers in India appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_e7b991f34f",
+      "date": "2026-07-31",
+      "category": "itat",
+      "title": "Mumbai ITAT Upholds Depreciation on Goodwill from NCLT-Approved Amalgamation",
+      "summary": "Mumbai ITAT upheld depreciation on goodwill from an NCLT-approved amalgamation under Section 32(1)(ii) and dismissed the Revenue’s appeal. The post Mumbai ITAT Upholds Depreciation on Goodwill from NCLT-Approved Amalgamation appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/mumbai-itat-upholds-depreciation-goodwill-nclt-approved-amalgamation.html",
+      "image": "",
+      "body": "<p>Mumbai ITAT upheld depreciation on goodwill from an NCLT-approved amalgamation under Section 32(1)(ii) and dismissed the Revenue’s appeal. The post Mumbai ITAT Upholds Depreciation on Goodwill from NCLT-Approved Amalgamation appeared first on TaxGuru .</p>"
+    },
     {
       "id": "tte_a8d1e21e12",
       "date": "2026-07-31",
@@ -1243,83 +1320,6 @@
       "url": "https://taxguru.in/goods-and-service-tax/uploading-scn-gst-portal-not-valid-service-punjab-haryana-hc.html",
       "image": "",
       "body": "<p>Punjab and Haryana HC disposed of the GST writ following Luxmi Traders, holding that uploading orders only on the Common Portal was insufficient in the facts of the case. The post Uploading SCN on GST Portal Alone Is Not Valid Service: Punjab &#038; Haryana HC appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_95b4469146",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "CBDT Notifies Kerala RERA for Section 11 Exemption",
-      "summary": "CBDT Notification No. 102/2026 grants Section 11 exemption to Kerala RERA for specified income, subject to prescribed conditions, for tax year 2026-27. The post CBDT Notifies Kerala RERA for Section 11 Exemption appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/cbdt-notifies-kerala-rera-section-11-exemption.html",
-      "image": "",
-      "body": "<p>CBDT Notification No. 102/2026 grants Section 11 exemption to Kerala RERA for specified income, subject to prescribed conditions, for tax year 2026-27. The post CBDT Notifies Kerala RERA for Section 11 Exemption appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_1d16555792",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "SAFEMA Tribunal Quashes FEMA Penalties in Tamilnad Mercantile Bank Share Transfer Case",
-      "summary": "SAFEMA Tribunal quashed FEMA penalties after holding the alleged contraventions in the TMB share transfer case were not established. The post SAFEMA Tribunal Quashes FEMA Penalties in Tamilnad Mercantile Bank Share Transfer Case appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/rbi/safema-tribunal-quashes-fema-penalties-tamilnad-mercantile-bank-share-transfer-case.html",
-      "image": "",
-      "body": "<p>SAFEMA Tribunal quashed FEMA penalties after holding the alleged contraventions in the TMB share transfer case were not established. The post SAFEMA Tribunal Quashes FEMA Penalties in Tamilnad Mercantile Bank Share Transfer Case appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_60899e6f60",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "CBDT Notifies Kerala RERA for Section 10(46) Exemption",
-      "summary": "CBDT Notification No. 101/2026 grants Section 10(46) exemption to Kerala RERA for specified income for AYs 2023-24 to 2026-27, subject to conditions. The post CBDT Notifies Kerala RERA for Section 10(46) Exemption appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/cbdt-notifies-kerala-rera-section-10-46-exemption.html",
-      "image": "",
-      "body": "<p>CBDT Notification No. 101/2026 grants Section 10(46) exemption to Kerala RERA for specified income for AYs 2023-24 to 2026-27, subject to conditions. The post CBDT Notifies Kerala RERA for Section 10(46) Exemption appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_db7566e1a3",
-      "date": "2026-07-30",
-      "category": "gst",
-      "title": "GSTN Keeps Proposed e-Way Bill Enhancements on Hold Until Further Notice",
-      "summary": "GSTN has deferred the proposed e-Way Bill enhancements scheduled for 1 August 2026 and withdrawn related advisories and FAQs until further notice. The post GSTN Keeps Proposed e-Way Bill Enhancements on Hold Until Further Notice appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/goods-and-service-tax/gstn-proposed-bill-enhancements-hold-notice.html",
-      "image": "",
-      "body": "<p>GSTN has deferred the proposed e-Way Bill enhancements scheduled for 1 August 2026 and withdrawn related advisories and FAQs until further notice. The post GSTN Keeps Proposed e-Way Bill Enhancements on Hold Until Further Notice appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_4b3f7312e0",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "SAFEMA Tribunal Refuses to Confiscate Tamilnad Mercantile Bank Shares Despite FEMA Violations",
-      "summary": "SAFEMA Tribunal held confiscation under Section 13(2) of FEMA is discretionary and upheld the decision not to confiscate TMB shares. The post SAFEMA Tribunal Refuses to Confiscate Tamilnad Mercantile Bank Shares Despite FEMA Violations appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/rbi/safema-tribunal-refuses-confiscate-tamilnad-mercantile-bank-shares-fema-violations.html",
-      "image": "",
-      "body": "<h3>Background & Statutory Framework</h3>\n<p>The Foreign Exchange Management Act, 1999 (FEMA) is a critical legislation that regulates and facilitates foreign exchange in India. Section 13 of FEMA empowers the authorities to confiscate any property, including shares, found to be in violation of the provisions of the Act. The Section 13(2) of FEMA, in particular, states that if any person is found to have contravened any provision of the Act, the adjudicating authority may, by an order, confiscate the currency, security, or any other property, involved in the contravention. However, the confiscation under Section 13(2) is discretionary, as held by the SAFEMA Tribunal in a recent decision. This decision is significant as it sets a precedent for the interpretation of FEMA provisions and the exercise of discretion by the adjudicating authorities.</p>\n<p>The SAFEMA Tribunal's decision is grounded in the understanding that the primary objective of FEMA is to regulate and facilitate foreign exchange, rather than to penalize individuals or entities. This is reflected in the provisions of Section 13, which provide for confiscation as a measure of last resort. The Tribunal's interpretation of Section 13(2) as discretionary is consistent with the legislative intent behind FEMA, which is to strike a balance between regulating foreign exchange and facilitating economic growth. The decision also highlights the importance of considering the facts and circumstances of each case before exercising discretion under Section 13(2).</p>\n<p>The FEMA provisions are also supplemented by the rules and regulations framed under the Act, including the Foreign Exchange Management (Transfer or Issue of Security by a Person Resident Outside India) Regulations, 2017. These regulations provide a framework for the transfer or issue of securities by persons resident outside India, including the requirements for reporting and compliance. The regulations also provide for the consequences of non-compliance, including the imposition of penalties and confiscation of property. The SAFEMA Tribunal's decision must be considered in the context of these regulations and the overall framework of FEMA.</p>\n\n<h3>The Development in Detail</h3>\n<p>The SAFEMA Tribunal's decision in the case of Tamilnad Mercantile Bank (TMB) is a significant development in the context of FEMA. The Tribunal held that the confiscation of TMB shares under Section 13(2) of FEMA was not warranted, despite the bank having committed violations of FEMA provisions. The decision is based on the Tribunal's interpretation of Section 13(2) as discretionary, and its consideration of the facts and circumstances of the case. The Tribunal noted that the bank had taken corrective steps to rectify the violations and had cooperated with the authorities in the investigation.</p>\n<p>The Tribunal's decision is also significant because it highlights the importance of considering the principles of natural justice and fairness in the application of FEMA provisions. The Tribunal noted that the bank had not been given adequate opportunity to respond to the allegations of violations, and that the authorities had not followed the proper procedure in initiating confiscation proceedings. The decision demonstrates that the Tribunal is willing to exercise its discretion to prevent unjust outcomes and to ensure that the provisions of FEMA are applied in a fair and reasonable manner.</p>\n<p>The decision also has implications for the application of Section 145A of the Income Tax Act, 1961, which provides for the computation of income from foreign exchange transactions. The Tribunal's interpretation of Section 13(2) of FEMA may have a bearing on the computation of income under Section 145A, particularly in cases where there are violations of FEMA provisions. The decision highlights the need for a coordinated approach to the application of FEMA and income tax provisions, to ensure that the provisions are applied consistently and fairly.</p>\n\n<h3>Key Provisions & Impact</h3>\n<p>The SAFEMA Tribunal's decision has significant implications for the application of FEMA provisions, particularly Section 13(2). The decision highlights the importance of considering the facts and circumstances of each case before exercising discretion under Section 13(2). The Tribunal's interpretation of Section 13(2) as discretionary provides a framework for the adjudicating authorities to exercise their discretion in a fair and reasonable manner. The decision also underscores the importance of considering the principles of natural justice and fairness in the application of FEMA provisions.</p>\n<p>The decision may also have an impact on the approach of the Reserve Bank of India (RBI) and other regulatory authorities in enforcing FEMA provisions. The RBI may need to revisit its guidelines and circulars on the application of Section 13(2) and ensure that they are consistent with the Tribunal's interpretation. The decision may also lead to a more nuanced approach to the enforcement of FEMA provisions, with a greater emphasis on corrective measures and cooperation with the authorities, rather than confiscation and penalties.</p>\n<p>The decision is also relevant in the context of the CGST Act, 2017, which provides for the imposition of penalties and confiscation of property in cases of non-compliance. The SAFEMA Tribunal's interpretation of Section 13(2) of FEMA may have a bearing on the interpretation of similar provisions under the CGST Act, particularly Section 122, which provides for the imposition of penalties. The decision highlights the need for a coordinated approach to the application of tax and regulatory provisions, to ensure that the provisions are applied consistently and fairly.</p>\n\n<h3>Critical Analysis</h3>\n<p>The SAFEMA Tribunal's decision is a significant development in the context of FEMA, and has implications for the application of Section 13(2) and other provisions of the Act. The decision highlights the importance of considering the facts and circumstances of each case before exercising discretion under Section 13(2). The Tribunal's interpretation of Section 13(2) as discretionary provides a framework for the adjudicating authorities to exercise their discretion in a fair and reasonable manner. However, the decision also raises questions about the consistency of the Tribunal's approach and the potential for arbitrary decisions.</p>\n<p>The decision also underscores the need for a more nuanced approach to the enforcement of FEMA provisions, with a greater emphasis on corrective measures and cooperation with the authorities, rather than confiscation and penalties. The RBI and other regulatory authorities may need to revisit their guidelines and circulars on the application of Section 13(2) and ensure that they are consistent with the Tribunal's interpretation. The decision may also lead to a more coordinated approach to the application of tax and regulatory provisions, to ensure that the provisions are applied consistently and fairly.</p>\n<p>The decision is also significant because it highlights the importance of considering the principles of natural justice and fairness in the application of FEMA provisions. The Tribunal's emphasis on the need for adequate opportunity to respond to allegations of violations and the importance of following proper procedure in initiating confiscation proceedings is a welcome development. The decision demonstrates that the Tribunal is willing to exercise its discretion to prevent unjust outcomes and to ensure that the provisions of FEMA are applied in a fair and reasonable manner.</p>\n\n<h3>Compliance Implications & Action Points</h3>\n<p>The SAFEMA Tribunal's decision has significant implications for compliance with FEMA provisions, particularly Section 13(2). The decision highlights the importance of considering the facts and circumstances of each case before exercising discretion under Section 13(2). The Tribunal's interpretation of Section 13(2) as discretionary provides a framework for the adjudicating authorities to exercise their discretion in a fair and reasonable manner. To ensure compliance with FEMA provisions, the following action points are recommended:</p>\n<p>1. Ensure that all foreign exchange transactions are properly reported and documented, and that all necessary approvals and permissions are obtained. 2. Cooperate fully with the authorities in the event of an investigation or inquiry, and provide all necessary information and documentation. 3. Take corrective steps to rectify any violations of FEMA provisions, and demonstrate a willingness to comply with the provisions of the Act. 4. Seek professional advice and guidance on the application of FEMA provisions, particularly Section 13(2), to ensure that all necessary steps are taken to comply with the provisions of the Act. 5. Monitor developments in the application of FEMA provisions, particularly Section 13(2), and be prepared to adapt to changes in the regulatory environment.</p>\n<p>The decision also highlights the need for a coordinated approach to the application of tax and regulatory provisions, to ensure that the provisions are applied consistently and fairly. Taxpayers and practitioners must be aware of the implications of the decision and take necessary steps to ensure compliance with FEMA provisions and other regulatory requirements. The decision is a significant development in the context of FEMA, and has implications for the application of Section 13(2) and other provisions of the Act.</p>"
-    },
-    {
-      "id": "tte_320fc45890",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "SAFEMA Tribunal Upholds Post-Death PMLA Attachment, Directs Legal Heir to Special Court",
-      "summary": "SAFEMA Tribunal upheld PMLA attachment after the accused's death and granted liberty to the legal heir to seek relief under Section 8(7). The post SAFEMA Tribunal Upholds Post-Death PMLA Attachment, Directs Legal Heir to Special Court appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/rbi/safema-tribunal-upholds-post-death-pmla-attachment-directs-legal-heir-special-court.html",
-      "image": "",
-      "body": "<p>SAFEMA Tribunal upheld PMLA attachment after the accused's death and granted liberty to the legal heir to seek relief under Section 8(7). The post SAFEMA Tribunal Upholds Post-Death PMLA Attachment, Directs Legal Heir to Special Court appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_9faaf04ce6",
-      "date": "2026-07-30",
-      "category": "it",
-      "title": "SAFEMA Tribunal Upholds PMLA Attachment in PRD Mini Nidhi Scam",
-      "summary": "SAFEMA Tribunal upheld PMLA attachment after holding the appellant failed to explain the source of assets and discharge the burden under Section 24. The post SAFEMA Tribunal Upholds PMLA Attachment in PRD Mini Nidhi Scam appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/rbi/safema-tribunal-upholds-pmla-attachment-prd-mini-nidhi-scam.html",
-      "image": "",
-      "body": "<p>SAFEMA Tribunal upheld PMLA attachment after holding the appellant failed to explain the source of assets and discharge the burden under Section 24. The post SAFEMA Tribunal Upholds PMLA Attachment in PRD Mini Nidhi Scam appeared first on TaxGuru .</p>"
     }
   ]
 }
