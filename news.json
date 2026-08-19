@@ -1,6 +1,105 @@
 {
-  "last_updated": "2026-08-19 18:47 UTC",
+  "last_updated": "2026-08-19 21:06 UTC",
   "items": [
+    {
+      "id": "tte_3196944943",
+      "date": "2026-08-19",
+      "category": "it",
+      "title": "Can a Company Apply for Strike-Off Without Filing Pending Annual Returns?",
+      "summary": "Can an inactive company file STK-2 without clearing all pending annual filings? Understand INC-20A, annual returns, approvals and strike-off requirements. The post Can a Company Apply for Strike-Off Without Filing Pending Annual Returns? appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/company-law/company-apply-strike-off-without-filing-pending-annual-returns.html",
+      "image": "",
+      "body": "<p>Can an inactive company file STK-2 without clearing all pending annual filings? Understand INC-20A, annual returns, approvals and strike-off requirements. The post Can a Company Apply for Strike-Off Without Filing Pending Annual Returns? appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_93b819bbca",
+      "date": "2026-08-19",
+      "category": "gst",
+      "title": "CBIC Mining Data Sharing: GST Risks and Defence",
+      "summary": "CBIC Instruction 01/2026-GST links mining and GST data, exposing turnover and RCM mismatches and requiring scientific reconciliation and controls. The post CBIC Mining Data Sharing: GST Risks and Defence appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/goods-and-service-tax/cbic-mining-data-sharing-gst-risks-defence.html",
+      "image": "",
+      "body": "<p>CBIC Instruction 01/2026-GST links mining and GST data, exposing turnover and RCM mismatches and requiring scientific reconciliation and controls. The post CBIC Mining Data Sharing: GST Risks and Defence appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_70f1cc3c40",
+      "date": "2026-08-19",
+      "category": "gst",
+      "title": "Arbitral Damages & Enforcement Proceedings Settlement Not Taxable as GST Supply: Bombay HC",
+      "summary": "Bombay High Court held that arbitral award damages and settlement were not consideration for supply under Section 7 of the CGST Act. The post Arbitral Damages &#038; Enforcement Proceedings Settlement Not Taxable as GST Supply: Bombay HC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/goods-and-service-tax/arbitral-damages-enforcement-proceedings-settlement-not-taxable-gst-supply-bombay-hc.html",
+      "image": "",
+      "body": "<p>Bombay High Court held that arbitral award damages and settlement were not consideration for supply under Section 7 of the CGST Act. The post Arbitral Damages &#038; Enforcement Proceedings Settlement Not Taxable as GST Supply: Bombay HC appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_c465486a62",
+      "date": "2026-08-19",
+      "category": "gst",
+      "title": "GST Registration: Suspension, Cancellation and Revocation",
+      "summary": "GST registration suspension and cancellation require fair notice, reasons, hearing and due process, especially for retrospective cancellation and ITC disputes. The post GST Registration: Suspension, Cancellation and Revocation appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/goods-and-service-tax/gst-registration-suspension-cancellation-revocation.html",
+      "image": "",
+      "body": "<p>GST registration suspension and cancellation require fair notice, reasons, hearing and due process, especially for retrospective cancellation and ITC disputes. The post GST Registration: Suspension, Cancellation and Revocation appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_eb3e7b48d1",
+      "date": "2026-08-19",
+      "category": "it",
+      "title": "Taxation of Partnerships under UAE Corporate Tax",
+      "summary": "The UAE Corporate Tax regime distinguishes between unincorporated and incorporated partnerships, with differing tax treatment and an election for unincorporated partnerships. The post Taxation of Partnerships under UAE Corporate Tax appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/taxation-partnerships-uae-corporate-tax.html",
+      "image": "",
+      "body": "<p>The UAE Corporate Tax regime distinguishes between unincorporated and incorporated partnerships, with differing tax treatment and an election for unincorporated partnerships. The post Taxation of Partnerships under UAE Corporate Tax appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_7a6cc541e1",
+      "date": "2026-08-19",
+      "category": "it",
+      "title": "Privacy Audit: A New Imperative Under India’s Data Protection Framework",
+      "summary": "Privacy audits under India’s DPDP framework assess data mapping, consent, rights, security, retention, vendors, governance and evidence. The post Privacy Audit: A New Imperative Under India’s Data Protection Framework appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/privacy-audit-imperative-indias-data-protection-framework.html",
+      "image": "",
+      "body": "<p>Privacy audits under India’s DPDP framework assess data mapping, consent, rights, security, retention, vendors, governance and evidence. The post Privacy Audit: A New Imperative Under India’s Data Protection Framework appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_cc18ee0ff8",
+      "date": "2026-08-19",
+      "category": "itat",
+      "title": "Commercial Dependence Alone Does Not Create Associated Enterprise: Mumbai ITAT",
+      "summary": "Mumbai ITAT sets aside TP adjustment, holds Section 92A(2)(g) cannot alone establish AE status, and remands CUP comparability examination. The post Commercial Dependence Alone Does Not Create Associated Enterprise: Mumbai ITAT appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/commercial-dependence-not-create-enterprise-mumbai-itat.html",
+      "image": "",
+      "body": "<p>Mumbai ITAT sets aside TP adjustment, holds Section 92A(2)(g) cannot alone establish AE status, and remands CUP comparability examination. The post Commercial Dependence Alone Does Not Create Associated Enterprise: Mumbai ITAT appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_4c831c254a",
+      "date": "2026-08-19",
+      "category": "itat",
+      "title": "Ind AS Book Entries Cannot Create Taxable Income: Mumbai ITAT Deleted ₹130.92-Crore Additions",
+      "summary": "ITAT Mumbai allows ICDS adjustments, including royalty, grants and borrowing costs, and Section 35(2AB) deduction for AY 2019-20. The post Ind AS Book Entries Cannot Create Taxable Income: Mumbai ITAT Deleted ₹130.92-Crore Additions appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/ind-book-entries-cannot-create-taxable-income-mumbai-itat-deleted-rs-130-92-crore-additions.html",
+      "image": "",
+      "body": "<p>ITAT Mumbai allows ICDS adjustments, including royalty, grants and borrowing costs, and Section 35(2AB) deduction for AY 2019-20. The post Ind AS Book Entries Cannot Create Taxable Income: Mumbai ITAT Deleted ₹130.92-Crore Additions appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_b1edb40520",
+      "date": "2026-08-19",
+      "category": "it",
+      "title": "SC Cancels Bail, Issues 13 Binding Directions for Foreign Nationals in NDPS Cases",
+      "summary": "Supreme Court cancels bail to foreign NDPS accused and issues 13 directions on surety verification, passports, FRRO registration and property liens. The post SC Cancels Bail, Issues 13 Binding Directions for Foreign Nationals in NDPS Cases appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/sc-cancels-bail-issues-13-binding-directions-foreign-nationals-ndps-cases.html",
+      "image": "",
+      "body": "<p>Supreme Court cancels bail to foreign NDPS accused and issues 13 directions on surety verification, passports, FRRO registration and property liens. The post SC Cancels Bail, Issues 13 Binding Directions for Foreign Nationals in NDPS Cases appeared first on TaxGuru .</p>"
+    },
     {
       "id": "tte_65933cf720",
       "date": "2026-08-19",
@@ -1221,105 +1320,6 @@
       "url": "https://taxguru.in/company-law/nfra-updates-provisional-nfra-2-non-filers-incomplete-filers-2024-25.html",
       "image": "",
       "body": "<p>NFRA updates its provisional list of audit firms that have not filed or filed incomplete Form NFRA-2 for 2024-25. The post NFRA Updates Provisional NFRA-2 Non-Filers and Incomplete Filers for 2024-25 appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_8446dcf68b",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Nagpur ITAT: ₹1.08 Crore Penalty U/s 271(1)(c) Deleted on Income Disclosed U/s 148",
-      "summary": "Nagpur ITAT deleted ₹1.08 crore penalty u/s 271(1)(c) where income declared in a Section 148 return was accepted without addition. The post Nagpur ITAT: ₹1.08 Crore Penalty U/s 271(1)(c) Deleted on Income Disclosed U/s 148 appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/nagpur-itat-rs-1-08-crore-penalty-271-1-deleted-income-disclosed-148.html",
-      "image": "",
-      "body": "<p>Nagpur ITAT deleted ₹1.08 crore penalty u/s 271(1)(c) where income declared in a Section 148 return was accepted without addition. The post Nagpur ITAT: ₹1.08 Crore Penalty U/s 271(1)(c) Deleted on Income Disclosed U/s 148 appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_25c23e9a6f",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Digital Advertising and SEO Expenses Allowed as Revenue Expenditure: Pune ITAT",
-      "summary": "Pune ITAT upholds deduction of digital marketing and IT expenses, holding them revenue expenditure and dismisses Revenues appeals. The post Digital Advertising and SEO Expenses Allowed as Revenue Expenditure: Pune ITAT appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/digital-advertising-seo-expenses-allowed-revenue-expenditure-pune-itat.html",
-      "image": "",
-      "body": "<p>Pune ITAT upholds deduction of digital marketing and IT expenses, holding them revenue expenditure and dismisses Revenues appeals. The post Digital Advertising and SEO Expenses Allowed as Revenue Expenditure: Pune ITAT appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_adfd4517c9",
-      "date": "2026-08-18",
-      "category": "gst",
-      "title": "Who Can Represent You Before Proper Officer and Appellate Authority Under GST?",
-      "summary": "Section 116 of the CGST Act specifies who may represent taxpayers before GST authorities, including professionals, employees, retired officers and GST Practitioners. The post Who Can Represent You Before Proper Officer and Appellate Authority Under GST? appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/goods-and-service-tax/represent-proper-officer-appellate-authority-gst.html",
-      "image": "",
-      "body": "<p>Section 116 of the CGST Act specifies who may represent taxpayers before GST authorities, including professionals, employees, retired officers and GST Practitioners. The post Who Can Represent You Before Proper Officer and Appellate Authority Under GST? appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_9cb7b36080",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Section 69C Addition Set Aside; Commission Reconciliation Remanded to AO: Kolkata ITAT",
-      "summary": "Kolkata ITAT remanded a Section 69C addition over Flipkart/Amazon commission mismatch for fresh reconciliation by the AO. The post Section 69C Addition Set Aside; Commission Reconciliation Remanded to AO: Kolkata ITAT appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/section-69c-addition-set-commission-reconciliation-remanded-ao-kolkata-itat.html",
-      "image": "",
-      "body": "<p>Kolkata ITAT remanded a Section 69C addition over Flipkart/Amazon commission mismatch for fresh reconciliation by the AO. The post Section 69C Addition Set Aside; Commission Reconciliation Remanded to AO: Kolkata ITAT appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_5e98742d15",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Nagpur ITAT: ₹71.76 Lakh U/s 69A Addition Remanded Over Disputed Bank Account Ownership",
-      "summary": "Nagpur ITAT remanded ₹71.76 lakh Section 69A addition for verification of disputed bank account ownership and fresh assessment. The post Nagpur ITAT: ₹71.76 Lakh U/s 69A Addition Remanded Over Disputed Bank Account Ownership appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/nagpur-itat-rs-71-76-lakh-69a-addition-remanded-disputed-bank-account-ownership.html",
-      "image": "",
-      "body": "<p>Nagpur ITAT remanded ₹71.76 lakh Section 69A addition for verification of disputed bank account ownership and fresh assessment. The post Nagpur ITAT: ₹71.76 Lakh U/s 69A Addition Remanded Over Disputed Bank Account Ownership appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_73323937ce",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Delhi ITAT: Reassessment Beyond 3 Years Invalid Below ₹50 Lakh – AYs 2014-15 & 2015-16 Quashed",
-      "summary": "Delhi ITAT quashed AY 2014-15 and 2015-16 reassessment notices issued beyond 3 years where escaped income was below ₹50 lakh. The post Delhi ITAT: Reassessment Beyond 3 Years Invalid Below ₹50 Lakh – AYs 2014-15 &#038; 2015-16 Quashed appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/delhi-itat-reassessment-3-years-invalid-rs-50-lakh-ays-2014-15-2015-16-quashed.html",
-      "image": "",
-      "body": "<p>Delhi ITAT quashed AY 2014-15 and 2015-16 reassessment notices issued beyond 3 years where escaped income was below ₹50 lakh. The post Delhi ITAT: Reassessment Beyond 3 Years Invalid Below ₹50 Lakh – AYs 2014-15 &#038; 2015-16 Quashed appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_61c7d843bc",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Delhi ITAT: Post-1 April 2021 Deemed Search Invalidates Section 153C Notice & Assessment",
-      "summary": "Delhi ITAT quashed Section 153C notice and assessment where the relevant search initiation for the other person fell after 1 April 2021. The post Delhi ITAT: Post-1 April 2021 Deemed Search Invalidates Section 153C Notice &#038; Assessment appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/delhi-itat-post-1-april-2021-deemed-search-invalidates-section-153c-notice-assessment.html",
-      "image": "",
-      "body": "<p>Delhi ITAT quashed Section 153C notice and assessment where the relevant search initiation for the other person fell after 1 April 2021. The post Delhi ITAT: Post-1 April 2021 Deemed Search Invalidates Section 153C Notice &#038; Assessment appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_1dccdff844",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Delhi ITAT: Ex-Parte U/s 12A & 80G Rejection Set Aside; Trust Gets Fresh Hearing on Irrevocable Clause",
-      "summary": "Delhi ITAT set aside 12A and 80G rejection, granting the trust a fresh opportunity to submit evidence and address the irrevocable clause objection. The post Delhi ITAT: Ex-Parte U/s 12A &#038; 80G Rejection Set Aside; Trust Gets Fresh Hearing on Irrevocable Clause appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/delhi-itat-parte-12a-80g-rejection-set-trust-fresh-hearing-irrevocable-clause.html",
-      "image": "",
-      "body": "<p>Delhi ITAT set aside 12A and 80G rejection, granting the trust a fresh opportunity to submit evidence and address the irrevocable clause objection. The post Delhi ITAT: Ex-Parte U/s 12A &#038; 80G Rejection Set Aside; Trust Gets Fresh Hearing on Irrevocable Clause appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_1c76205cd4",
-      "date": "2026-08-18",
-      "category": "itat",
-      "title": "Ahmedabad ITAT: ₹18.31 Lakh Cash Deposit Addition Restored for Bank Verification",
-      "summary": "Ahmedabad ITAT restored ₹18.31 lakh cash deposit addition to AO for verification of corresponding withdrawals and bank statement. The post Ahmedabad ITAT: ₹18.31 Lakh Cash Deposit Addition Restored for Bank Verification appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/ahmedabad-itat-rs-18-31-lakh-cash-deposit-addition-restored-bank-verification.html",
-      "image": "",
-      "body": "<p>Ahmedabad ITAT restored ₹18.31 lakh cash deposit addition to AO for verification of corresponding withdrawals and bank statement. The post Ahmedabad ITAT: ₹18.31 Lakh Cash Deposit Addition Restored for Bank Verification appeared first on TaxGuru .</p>"
     }
   ]
 }
