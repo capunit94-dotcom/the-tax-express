@@ -1,6 +1,182 @@
 {
-  "last_updated": "2026-09-10 13:08 UTC",
+  "last_updated": "2026-09-10 15:47 UTC",
   "items": [
+    {
+      "id": "tte_f63149aeab",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Corporate Law | Partner’s Right in Unsold Firm Assets Survives Until Actual Settlement: SC",
+      "summary": "Supreme Court holds that a partner’s share in unliquidated partnership assets cannot be frozen at the 1983 dissolution value. The post Partner’s Right in Unsold Firm Assets Survives Until Actual Settlement: SC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/dissolved-firms-land-liquidated-partners-share-settled-sc.html",
+      "image": "",
+      "body": "<p>Supreme Court holds that a partner’s share in unliquidated partnership assets cannot be frozen at the 1983 dissolution value. The post Partner’s Right in Unsold Firm Assets Survives Until Actual Settlement: SC appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_5242335f1c",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Penny Stock Label Alone Cannot Convert Exempt LTCG Into Section 68 Addition: Delhi ITAT",
+      "summary": "Delhi ITAT deleted ₹27.83 lakh LTCG addition &#038; consequential commission addition for lack of evidence linking assessee to price rigging. The post Penny Stock Label Alone Cannot Convert Exempt LTCG Into Section 68 Addition: Delhi ITAT appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/penny-stock-ltcg-addition-deleted-without-assessee-specific-evidence-itat-delhi.html",
+      "image": "",
+      "body": "<p>Delhi ITAT deleted ₹27.83 lakh LTCG addition &#038; consequential commission addition for lack of evidence linking assessee to price rigging. The post Penny Stock Label Alone Cannot Convert Exempt LTCG Into Section 68 Addition: Delhi ITAT appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_70e9693473",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Rent Paid to Earn Subletting Income Deductible Under Section 57: ITAT Delhi",
+      "summary": "Delhi ITAT allows rent, repairs and caretaker expenses u/s 57 against subletting income, partly allowing Suman Devi’s appeal for AY 2023-24. The post Rent Paid to Earn Subletting Income Deductible Under Section 57: ITAT Delhi appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/rent-paid-earn-subletting-income-deductible-section-57-itat-delhi.html",
+      "image": "",
+      "body": "<p>Delhi ITAT allows rent, repairs and caretaker expenses u/s 57 against subletting income, partly allowing Suman Devi’s appeal for AY 2023-24. The post Rent Paid to Earn Subletting Income Deductible Under Section 57: ITAT Delhi appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_c8c78a0381",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Section 87A Rebate Covers Section 111A Gains for AY 2025-26: ITAT Delhi",
+      "summary": "Delhi ITAT allows ₹25,000 Section 87A rebate against STCG u/s 111A for AY 2025-26, holding later Finance Act 2025 restriction prospective. The post Section 87A Rebate Covers Section 111A Gains for AY 2025-26: ITAT Delhi appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/itat-section-87a-rebate-stcg-111a-ay-2025-26.html",
+      "image": "",
+      "body": "<p>Delhi ITAT allows ₹25,000 Section 87A rebate against STCG u/s 111A for AY 2025-26, holding later Finance Act 2025 restriction prospective. The post Section 87A Rebate Covers Section 111A Gains for AY 2025-26: ITAT Delhi appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_17b11e187e",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Wife’s Jewellery Found at Common Residence Cannot Be Added to Husband: Nagpur ITAT",
+      "summary": "ITAT Nagpur deletes jewellery addition u/s 69A and holds enhanced Section 115BBE rate inapplicable to pre-amendment search. The post Wife’s Jewellery Found at Common Residence Cannot Be Added to Husband: Nagpur ITAT appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/itat-nagpur-deletes-jewellery-addition-rejects-retrospective-section-115bbe-tax.html",
+      "image": "",
+      "body": "<p>ITAT Nagpur deletes jewellery addition u/s 69A and holds enhanced Section 115BBE rate inapplicable to pre-amendment search. The post Wife’s Jewellery Found at Common Residence Cannot Be Added to Husband: Nagpur ITAT appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_d269be766e",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Investigation Report Alone Cannot Sustain ₹2 Crore Section 68 Addition: ITAT Mumbai",
+      "summary": "Mumbai ITAT quashes reassessment where 143(2) notice preceded the return and deletes ₹2 crore section 68 addition on unsecured loans. The post Investigation Report Alone Cannot Sustain ₹2 Crore Section 68 Addition: ITAT Mumbai appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/mumbai-itat-quashes-reassessment-pre-return-143-2-notice-deletes-rs-2-crore-section-68-addition.html",
+      "image": "",
+      "body": "<p>Mumbai ITAT quashes reassessment where 143(2) notice preceded the return and deletes ₹2 crore section 68 addition on unsecured loans. The post Investigation Report Alone Cannot Sustain ₹2 Crore Section 68 Addition: ITAT Mumbai appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_c8e2fa08d6",
+      "date": "2026-09-10",
+      "category": "itat",
+      "title": "Income Tax | Section 12AB Renewal Cannot End Over One Missed Email: ITAT Mumbai",
+      "summary": "Mumbai ITAT restores 12AB renewal application for fresh adjudication after missed email notice, directing sufficient opportunity to furnish documents. The post Section 12AB Renewal Cannot End Over One Missed Email: ITAT Mumbai appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/mumbai-itat-restores-12ab-renewal-application-fresh-opportunity-furnish-documents.html",
+      "image": "",
+      "body": "<p>Mumbai ITAT restores 12AB renewal application for fresh adjudication after missed email notice, directing sufficient opportunity to furnish documents. The post Section 12AB Renewal Cannot End Over One Missed Email: ITAT Mumbai appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_171b8f8401",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "SEBI | Converting a Privately Placed InvIT into a Publicly offered InvIT: Is Trust Deed Ready?",
+      "summary": "Key trust deed amendments, approvals and governance changes when converting a privately placed InvIT into a publicly offered InvIT. The post Converting a Privately Placed InvIT into a Publicly offered InvIT: Is Trust Deed Ready? appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/sebi/converting-privately-invit-publicly-offered-invit-trust-deed-ready.html",
+      "image": "",
+      "body": "<p>Key trust deed amendments, approvals and governance changes when converting a privately placed InvIT into a publicly offered InvIT. The post Converting a Privately Placed InvIT into a Publicly offered InvIT: Is Trust Deed Ready? appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_1b0b8f2057",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Fema / RBI | RBI Proposes Ban on Revolving Credit Products for Most NBFCs",
+      "summary": "RBI proposes restricting NBFCs to term loans, banning revolving credit products, while FIDC seeks safeguards for limited redraws. The post RBI Proposes Ban on Revolving Credit Products for Most NBFCs appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/rbi/rbi-proposes-ban-revolving-credit-products-nbfcs.html",
+      "image": "",
+      "body": "<p>RBI proposes restricting NBFCs to term loans, banning revolving credit products, while FIDC seeks safeguards for limited redraws. The post RBI Proposes Ban on Revolving Credit Products for Most NBFCs appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_b3fa6c87b5",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Company Law | MCA Annual Filing: AOC-4 and MGT-7 Compliance Guide",
+      "summary": "MCA Annual Filing covers AOC-4 and MGT-7, their documents, due dates, disclosures, compliance requirements and key differences under Companies Act, 2013. The post MCA Annual Filing: AOC-4 and MGT-7 Compliance Guide appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/company-law/mca-annual-filing-aoc-4-mgt-7-compliance-guide.html",
+      "image": "",
+      "body": "<p>MCA Annual Filing covers AOC-4 and MGT-7, their documents, due dates, disclosures, compliance requirements and key differences under Companies Act, 2013. The post MCA Annual Filing: AOC-4 and MGT-7 Compliance Guide appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_be593fdbe8",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Corporate Law | AGM Venue Anywhere in India for Unlisted Companies under Section 96",
+      "summary": "Section 96(2) permits unlisted companies to hold AGMs anywhere in India with advance consent of all members, subject to statutory conditions. The post AGM Venue Anywhere in India for Unlisted Companies under Section 96 appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/agm-venue-india-unlisted-companies-section-96.html",
+      "image": "",
+      "body": "<p>Section 96(2) permits unlisted companies to hold AGMs anywhere in India with advance consent of all members, subject to statutory conditions. The post AGM Venue Anywhere in India for Unlisted Companies under Section 96 appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_420afa14b3",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Corporate Law | Anti-Dilution Clauses in Indian Venture Capital: Legal & Commercial Dimensions",
+      "summary": "Anti-dilution clauses in Indian VC agreements: legal, tax, FEMA, governance, valuation, investor protection and founder dilution implications. The post Anti-Dilution Clauses in Indian Venture Capital: Legal &#038; Commercial Dimensions appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/anti-dilution-clauses-indian-venture-capital-legal-commercial-dimensions.html",
+      "image": "",
+      "body": "<p>Anti-dilution clauses in Indian VC agreements: legal, tax, FEMA, governance, valuation, investor protection and founder dilution implications. The post Anti-Dilution Clauses in Indian Venture Capital: Legal &#038; Commercial Dimensions appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_ce824439c4",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Corporate Law | Section 13(1)(d) Conviction Cannot Survive Without Pecuniary Advantage: SC",
+      "summary": "Supreme Court acquits accused under Section 13(1)(d) PC Act where no pecuniary advantage was proved despite alleged false medicine bills. The post Section 13(1)(d) Conviction Cannot Survive Without Pecuniary Advantage: SC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/supreme-court-acquits-accused-pecuniary-advantage-not-proved-pc-act.html",
+      "image": "",
+      "body": "<p>Supreme Court acquits accused under Section 13(1)(d) PC Act where no pecuniary advantage was proved despite alleged false medicine bills. The post Section 13(1)(d) Conviction Cannot Survive Without Pecuniary Advantage: SC appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_dd2e1b0bc0",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Income Tax | Firm’s Property Can Be Auctioned Without Separate Notice to Every Partner: Madras HC",
+      "summary": "Madras HC holds notice to firm sufficient for recovery against firm property, while individual partner notice is required for personal assets. The post Firm’s Property Can Be Auctioned Without Separate Notice to Every Partner: Madras HC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/income-tax/notice-firm-sufficient-recovery-firm-property-madras-high-court.html",
+      "image": "",
+      "body": "<p>Madras HC holds notice to firm sufficient for recovery against firm property, while individual partner notice is required for personal assets. The post Firm’s Property Can Be Auctioned Without Separate Notice to Every Partner: Madras HC appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_7ebb183af3",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "Corporate Law | Excepted-Matter Objection Must First Be Decided by Arbitral Tribunal: SC",
+      "summary": "Supreme Court clarifies that arbitrability of contract termination must first be decided by the Arbitral Tribunal under Section 16. The post Excepted-Matter Objection Must First Be Decided by Arbitral Tribunal: SC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/corporate-law/supreme-court-holds-arbitrator-decide-termination-excepted-matter-section-16.html",
+      "image": "",
+      "body": "<p>Supreme Court clarifies that arbitrability of contract termination must first be decided by the Arbitral Tribunal under Section 16. The post Excepted-Matter Objection Must First Be Decided by Arbitral Tribunal: SC appeared first on TaxGuru .</p>"
+    },
+    {
+      "id": "tte_fcc7dd3d11",
+      "date": "2026-09-10",
+      "category": "it",
+      "title": "SEBI | Failed Buyback Alone Cannot Establish Fraud Without Corroborative Evidence: SC",
+      "summary": "Supreme Court holds escrow release under Buyback Regulation 15B(8) does not bar PFUTP fraud inquiry and remands fraud issue to SAT. The post Failed Buyback Alone Cannot Establish Fraud Without Corroborative Evidence: SC appeared first on TaxGuru .",
+      "source": "Tax Bench",
+      "url": "https://taxguru.in/sebi/sebi-prove-buyback-fraud-suspicious-trading-patterns-sat-fresh-inquiry.html",
+      "image": "",
+      "body": "<p>Supreme Court holds escrow release under Buyback Regulation 15B(8) does not bar PFUTP fraud inquiry and remands fraud issue to SAT. The post Failed Buyback Alone Cannot Establish Fraud Without Corroborative Evidence: SC appeared first on TaxGuru .</p>"
+    },
     {
       "id": "tte_351500dde2",
       "date": "2026-09-10",
@@ -1144,182 +1320,6 @@
       "url": "https://taxguru.in/finance/prem-dharmani-corporate-governance-compliance-key-considerations-modern-ai-businesses.html",
       "image": "",
       "body": "<p>Prem Dharmani examines corporate governance, data protection, AI governance and compliance priorities for modern AI businesses operating in India. The post Prem Dharmani on Corporate Governance and Compliance: Key Considerations for Modern AI Businesses appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_49d7b374c9",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Corporate Law | CCI Closes Google RMG Abuse Inquiry After Online Gaming Law Prohibition",
-      "summary": "CCI closes Google RMG abuse inquiry after online gaming law bans RMG distribution, advertising and payment facilitation, finding no effective relief survives. The post CCI Closes Google RMG Abuse Inquiry After Online Gaming Law Prohibition appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/corporate-law/cci-closes-google-rmg-abuse-inquiry-online-gaming-law-prohibition.html",
-      "image": "",
-      "body": "<p>CCI closes Google RMG abuse inquiry after online gaming law bans RMG distribution, advertising and payment facilitation, finding no effective relief survives. The post CCI Closes Google RMG Abuse Inquiry After Online Gaming Law Prohibition appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_ef810d40ed",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Chennai Quashes Section 263 Revision Over Earlier-Year Lease Advances",
-      "summary": "ITAT Chennai quashes section 263 revision, holding section 68 cannot apply to opening lease advances from earlier years. The post ITAT Chennai Quashes Section 263 Revision Over Earlier-Year Lease Advances appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-chennai-quashes-section-263-revision-earlier-year-lease-advances.html",
-      "image": "",
-      "body": "<p>ITAT Chennai quashes section 263 revision, holding section 68 cannot apply to opening lease advances from earlier years. The post ITAT Chennai Quashes Section 263 Revision Over Earlier-Year Lease Advances appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_6b7f0bbeaf",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | Natural Justice Secures Fresh Hearing on ₹45.84 Lakh Disallowance: ITAT Mumbai",
-      "summary": "ITAT Mumbai restores Omya India’s ₹45.84 lakh section 36(1)(iii) dispute to CIT(A) for one effective hearing and fresh adjudication. The post Natural Justice Secures Fresh Hearing on ₹45.84 Lakh Disallowance: ITAT Mumbai appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/natural-justice-secures-fresh-hearing-rs-45-84-lakh-disallowance-itat-mumbai.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai restores Omya India’s ₹45.84 lakh section 36(1)(iii) dispute to CIT(A) for one effective hearing and fresh adjudication. The post Natural Justice Secures Fresh Hearing on ₹45.84 Lakh Disallowance: ITAT Mumbai appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_d35998eadb",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Mumbai Admits Additional Evidence in ₹11.17 Lakh Section 69A Dispute",
-      "summary": "ITAT Mumbai admits additional evidence on ₹11.17 lakh credit-card payments and remands the Section 69A addition to AO for fresh verification. The post ITAT Mumbai Admits Additional Evidence in ₹11.17 Lakh Section 69A Dispute appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-mumbai-admits-additional-evidence-rs-11-17-lakh-section-69a-dispute.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai admits additional evidence on ₹11.17 lakh credit-card payments and remands the Section 69A addition to AO for fresh verification. The post ITAT Mumbai Admits Additional Evidence in ₹11.17 Lakh Section 69A Dispute appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_58f69ec1ab",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Mumbai Deletes Section 68 Addition Based on Already Disclosed Commodity Profit",
-      "summary": "ITAT Mumbai deletes ₹1.50 lakh Section 68 addition after finding the commodity trading profit was already disclosed in business income. The post ITAT Mumbai Deletes Section 68 Addition Based on Already Disclosed Commodity Profit appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-mumbai-deletes-section-68-addition-based-disclosed-commodity-profit.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai deletes ₹1.50 lakh Section 68 addition after finding the commodity trading profit was already disclosed in business income. The post ITAT Mumbai Deletes Section 68 Addition Based on Already Disclosed Commodity Profit appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_196c7085e6",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Mumbai Follows Bhavana Chauhan in Loan Addition Case",
-      "summary": "ITAT Mumbai allowed the assessee’s appeal where a loan was received and fully repaid in the same year, following its decision in Bhavana Suresh Chauhan. The post ITAT Mumbai Follows Bhavana Chauhan in Loan Addition Case appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-mumbai-bhavana-chauhan-loan-addition-case.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai allowed the assessee’s appeal where a loan was received and fully repaid in the same year, following its decision in Bhavana Suresh Chauhan. The post ITAT Mumbai Follows Bhavana Chauhan in Loan Addition Case appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_bd7fef3953",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Income Tax | Section 48 Cannot Borrow Tomorrow’s Price: ₹97 Crore Gain Addition Deleted",
-      "summary": "ITAT Mumbai held that consideration from a later share transfer cannot be retrospectively substituted for an earlier transfer; section 50CA was inapplicable. The post Section 48 Cannot Borrow Tomorrow’s Price: ₹97 Crore Gain Addition Deleted appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/section-48-cannot-borrow-tomorrows-price-rs-97-crore-gain-addition-deleted.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai held that consideration from a later share transfer cannot be retrospectively substituted for an earlier transfer; section 50CA was inapplicable. The post Section 48 Cannot Borrow Tomorrow’s Price: ₹97 Crore Gain Addition Deleted appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_e8a8e69c70",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Mumbai Deletes ₹30 Lakh Unexplained Money Addition U/s 69A",
-      "summary": "ITAT Mumbai deletes ₹30 lakh u/s 69A after accepting foreign salary savings as a satisfactory source despite no exact cash trail. The post ITAT Mumbai Deletes ₹30 Lakh Unexplained Money Addition U/s 69A appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-mumbai-deletes-rs-30-lakh-unexplained-money-addition-69a.html",
-      "image": "",
-      "body": "<p>ITAT Mumbai deletes ₹30 lakh u/s 69A after accepting foreign salary savings as a satisfactory source despite no exact cash trail. The post ITAT Mumbai Deletes ₹30 Lakh Unexplained Money Addition U/s 69A appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_6d1116232b",
-      "date": "2026-09-09",
-      "category": "itat",
-      "title": "Income Tax | ITAT Allows Full Section 57 Interest Deduction Beyond Interest Income",
-      "summary": "Mumbai ITAT holds Section 57 has no income-sized cap and allows entire interest expenditure where requisite nexus with other-source income is proved. The post ITAT Allows Full Section 57 Interest Deduction Beyond Interest Income appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-full-section-57-interest-deduction-interest-income.html",
-      "image": "",
-      "body": "<p>Mumbai ITAT holds Section 57 has no income-sized cap and allows entire interest expenditure where requisite nexus with other-source income is proved. The post ITAT Allows Full Section 57 Interest Deduction Beyond Interest Income appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_a6e63a8a6a",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Finance | Benefits of Registering a Startup in India | DPIIT Tax Exemptions 2026",
-      "summary": "Learn how DPIIT-recognised startups in India can claim 80-IAC tax holidays, carry forward losses after dilution, defer ESOP tax, and access Rs 10,000 crore Fund of Funds. Complete guide for founders and CAs. The post Benefits of Registering a Startup in India | DPIIT Tax Exemptions 2026 appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/finance/benefits-registering-startup-india-dpiit-tax-exemptions-2026.html",
-      "image": "",
-      "body": "<p>Learn how DPIIT-recognised startups in India can claim 80-IAC tax holidays, carry forward losses after dilution, defer ESOP tax, and access Rs 10,000 crore Fund of Funds. Complete guide for founders and CAs. The post Benefits of Registering a Startup in India | DPIIT Tax Exemptions 2026 appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_efe2f010ef",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Income Tax | BSNL VRS Compensation Exempt U/s 10(10B): Delayed Claims Allowed",
-      "summary": "ITAT Bangalore condones delayed appeals and allows Section 10(10B) exemption to BSNL VRS retirees, rejecting technical objections and Goetze-based denial. The post BSNL VRS Compensation Exempt U/s 10(10B): Delayed Claims Allowed appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/bsnl-vrs-compensation-exempt-10-10b-delayed-claims-allowed.html",
-      "image": "",
-      "body": "<p>ITAT Bangalore condones delayed appeals and allows Section 10(10B) exemption to BSNL VRS retirees, rejecting technical objections and Goetze-based denial. The post BSNL VRS Compensation Exempt U/s 10(10B): Delayed Claims Allowed appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_173a317673",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Income Tax | Advance Sale Consideration Invested in Agricultural Land Qualifies U/s 54B",
-      "summary": "ITAT Bangalore allows Section 54B deduction where advance sale consideration was invested in new agricultural land before the final sale deed. The post Advance Sale Consideration Invested in Agricultural Land Qualifies U/s 54B appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/advance-sale-consideration-invested-agricultural-land-qualifies-54b.html",
-      "image": "",
-      "body": "<p>ITAT Bangalore allows Section 54B deduction where advance sale consideration was invested in new agricultural land before the final sale deed. The post Advance Sale Consideration Invested in Agricultural Land Qualifies U/s 54B appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_bfc94c4440",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Income Tax | Reopening U/s 148 Beyond Six Years Quashed: Silk-Waste Trader’s Appeal Allowed",
-      "summary": "ITAT Bangalore allowed the appeal after holding the Section 148 notice for AY 2015-16 time-barred, leaving profit estimation unadjudicated. The post Reopening U/s 148 Beyond Six Years Quashed: Silk-Waste Trader’s Appeal Allowed appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/reopening-148-years-quashed-silk-waste-traders-appeal-allowed.html",
-      "image": "",
-      "body": "<p>ITAT Bangalore allowed the appeal after holding the Section 148 notice for AY 2015-16 time-barred, leaving profit estimation unadjudicated. The post Reopening U/s 148 Beyond Six Years Quashed: Silk-Waste Trader’s Appeal Allowed appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_d94a7ec1ff",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Income Tax | No 8% Profit Estimate Without Rejecting Audited Books U/s 145(3)",
-      "summary": "ITAT deletes profit estimation where audited books were not rejected, holding that Section 44AD could not justify an arbitrary rate. The post No 8% Profit Estimate Without Rejecting Audited Books U/s 145(3) appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/no-8-percent-profit-estimate-without-rejecting-audited-books-145-3.html",
-      "image": "",
-      "body": "<p>ITAT deletes profit estimation where audited books were not rejected, holding that Section 44AD could not justify an arbitrary rate. The post No 8% Profit Estimate Without Rejecting Audited Books U/s 145(3) appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_e2f39847d5",
-      "date": "2026-09-09",
-      "category": "it",
-      "title": "Finance | Is the Zero Depreciation Add-on Worth It for Your Car Insurance?",
-      "summary": "Understand how zero depreciation car insurance works, its benefits, costs, limitations and suitability for newer vehicles, including claim-related financial protection. The post Is the Zero Depreciation Add-on Worth It for Your Car Insurance? appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/finance/depreciation-add-worth-car-insurance.html",
-      "image": "",
-      "body": "<p>Understand how zero depreciation car insurance works, its benefits, costs, limitations and suitability for newer vehicles, including claim-related financial protection. The post Is the Zero Depreciation Add-on Worth It for Your Car Insurance? appeared first on TaxGuru .</p>"
-    },
-    {
-      "id": "tte_43ac96a3d9",
-      "date": "2026-09-09",
-      "category": "gst",
-      "title": "Income Tax | ITAT Rejects U/s 69A Addition Without Examining GST/VAT Records of Cash Sales",
-      "summary": "ITAT Bangalore remands ₹1.43 crore Section 69A addition, directing AO to verify VAT/GST returns and records supporting cash sales. The post ITAT Rejects U/s 69A Addition Without Examining GST/VAT Records of Cash Sales appeared first on TaxGuru .",
-      "source": "Tax Bench",
-      "url": "https://taxguru.in/income-tax/itat-rejects-69a-addition-without-examining-gst-vat-records-cash-sales.html",
-      "image": "",
-      "body": "<p>ITAT Bangalore remands ₹1.43 crore Section 69A addition, directing AO to verify VAT/GST returns and records supporting cash sales. The post ITAT Rejects U/s 69A Addition Without Examining GST/VAT Records of Cash Sales appeared first on TaxGuru .</p>"
     }
   ]
 }
